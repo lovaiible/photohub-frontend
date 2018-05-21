@@ -1,0 +1,10 @@
+html {
+    background: #ffffff;
+}
+body {
+    margin: 0 50px;
+}
+.logo {
+    width: auto;
+    height: 50px;
+}

@@ -32,12 +32,19 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "@material-ui/core": "^1.0.0",
+    "file-loader": "^1.1.11",
+    "material-ui": "^0.20.1",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2",
+    "react-google-autocomplete": "^1.0.15",
     "react-md": "^1.2.11",
+    "react-router-dom": "^4.2.2",
+    "styled-components": "^3.1.6",
+    "uglifyjs-webpack-plugin": "^1.2.5",
     "webfontloader": "^1.6.28",
-    "styled-components": "^3.1.6"
+    "whatwg-fetch": "^2.0.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

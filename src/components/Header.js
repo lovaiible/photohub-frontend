@@ -1,26 +1,21 @@
 "use strict";
 
 import React from 'react';
-import { Toolbar, Button } from 'react-md';
-import { withRouter } from 'react-router-dom'
-
+import { withRouter } from 'react-router-dom';
+import { Toolbar } from 'react-md';
 import KebabMenu from './KebabMenu';
-
+import Nav from "./Nav";
 
 class Header extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (
             <Toolbar
-                colored
-                nav={<Button onClick={() => this.props.history.push('/')} icon>home</Button>}
-                title={this.props.title}
-                actions={<KebabMenu id="toolbar-colored-kebab-menu" />}>
-            </Toolbar>
+                nav={<Nav/>}
+                fixed={false}
+                actions={<KebabMenu id="toolbar-transparent-kebab-menu" />}
+            />
+
         );
     }
 };
