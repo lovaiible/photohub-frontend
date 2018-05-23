@@ -8,6 +8,8 @@ import { MovieDetailView }   from './views/MovieDetailView';
 import { MovieFormView }   from './views/MovieFormView';
 import { UserLoginView } from "./views/UserLoginView";
 import { UserSignupView } from "./views/UserSignupView";
+import { ReviewListView } from "./views/ReviewListView";
+import { ReviewFormView } from "./views/ReviewFormView";
 
 import UserService from "./services/UserService";
 
@@ -18,9 +20,10 @@ export default class App extends React.Component {
         super(props);
 
         this.state = {
-            title: 'Movie Example App',
+            title: 'Photohub',
             routes: [
                 { component: MovieListView , path: '/', exact: true},
+                { component: ReviewListView , path: '/review'},
                 { component: MovieDetailView , path: '/show/:id'},
                 { render: (props) => {
                         if(UserService.isAuthenticated()) {
@@ -36,6 +39,13 @@ export default class App extends React.Component {
                     else {
                         return (<Redirect to={'/login'}/>)
                     }}, path: '/add',},
+                  { render: (props) => {
+                        if(UserService.isAuthenticated()) {
+                            return (<ReviewFormView {... props} />)
+                        }
+                        else {
+                            return (<Redirect to={'/login'}/>)
+                        }}, path: '/addReview',},
                 { component: UserLoginView, path: '/login'},
                 { component: UserSignupView, path: '/register'}
             ]
@@ -58,4 +68,3 @@ export default class App extends React.Component {
         );
     }
 }
-

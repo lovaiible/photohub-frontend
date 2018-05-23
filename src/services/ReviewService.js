@@ -2,14 +2,14 @@
 
 import HttpService from './HttpService';
 
-export default class MovieService {
+export default class ReviewService {
 
     constructor(){
     }
 
-    static baseURL() {return "http://localhost:3000/movies" }
+    static baseURL() {return "http://localhost:3000/reviews" }
 
-    static getMovies(){
+    static getReviews(){
        return new Promise((resolve, reject) => {
            HttpService.get(this.baseURL(), function(data) {
                resolve(data);
@@ -19,14 +19,14 @@ export default class MovieService {
        });
     }
 
-    static getMovie(id) {
+    static getReview(id) {
         return new Promise((resolve, reject) => {
-            HttpService.get(`${MovieService.baseURL()}/${id}`, function(data) {
+            HttpService.get(`${ReviewService.baseURL()}/${id}`, function(data) {
                 if(data != undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 }
                 else {
-                    reject('Error while retrieving movie');
+                    reject('Error while retrieving review');
                 }
             }, function(textStatus) {
                 reject(textStatus);
@@ -34,9 +34,9 @@ export default class MovieService {
         });
     }
 
-    static deleteMovie(id) {
+    static deleteReview(id) {
         return new Promise((resolve, reject) => {
-            HttpService.remove(`${MovieService.baseURL()}/${id}`, function(data) {
+            HttpService.remove(`${ReviewService.baseURL()}/${id}`, function(data) {
                 if(data.message != undefined) {
                     resolve(data.message);
                 }
@@ -49,9 +49,9 @@ export default class MovieService {
         });
     }
 
-    static updateMovie(movie) {
+    static updateReview(review) {
         return new Promise((resolve, reject) => {
-            HttpService.put(`${this.baseURL()}/${movie._id}`, movie, function(data) {
+            HttpService.put(`${this.baseURL()}/${review._id}`, review, function(data) {
                 resolve(data);
             }, function(textStatus) {
                reject(textStatus);
@@ -59,16 +59,11 @@ export default class MovieService {
         });
     }
 
-    static createMovie(movie) {
-        movie.id = Math.floor((Math.random() * 100000000) + 1).toString();
-        movie.posters = {
-            thumbnail: "http://resizing.flixster.com/AeDB8hgaGed_TMCcIF1P_gubGwA=/54x81/dkpu1ddg7pbsk.cloudfront.net/movie/11/27/63/11276344_ori.jpg",
-            profile: "http://resizing.flixster.com/AeDB8hgaGed_TMCcIF1P_gubGwA=/54x81/dkpu1ddg7pbsk.cloudfront.net/movie/11/27/63/11276344_ori.jpg",
-            detailed: "http://resizing.flixster.com/AeDB8hgaGed_TMCcIF1P_gubGwA=/54x81/dkpu1ddg7pbsk.cloudfront.net/movie/11/27/63/11276344_ori.jpg",
-            original: "http://resizing.flixster.com/AeDB8hgaGed_TMCcIF1P_gubGwA=/54x81/dkpu1ddg7pbsk.cloudfront.net/movie/11/27/63/11276344_ori.jpg"
-        };
+    static createReview(review) {
+        review.id = Math.floor((Math.random() * 100000000) + 1).toString();
+
         return new Promise((resolve, reject) => {
-            HttpService.post(MovieService.baseURL(), movie, function(data) {
+            HttpService.post(ReviewService.baseURL(), review, function(data) {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);
