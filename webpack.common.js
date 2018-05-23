@@ -55,7 +55,7 @@ module.exports = {
                         loader: 'file-loader',
                         options: {
                             name: '[path][name].[ext]',
-                            publicPath: '/'
+                            publicPath: '/',
                         }
                     }
                 ]
@@ -68,6 +68,7 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({name: "vendor", minChunks: Infinity}),
         new HtmlWebpackPlugin({
             template: './src/index.html',
+            chunks: 'all',
             filename: 'index.html',
             inject: 'body'
         }),

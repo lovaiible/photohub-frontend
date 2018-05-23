@@ -2,13 +2,13 @@
 
 import React from 'react';
 import {Avatar, List, ListItem} from "react-md";
-import img from '../../public/img/logo/logo.png';
+import img from '../img/logo/logo.png';
 
 const flexContainer = {
-    display: 'flex',
+    display: 'inline-flex',
+    float: 'right',
     flexDirection: 'row',
-    padding: 0,
-    float: 'right'
+    height: '50px'
 };
 
 class Nav extends React.Component {
@@ -16,7 +16,7 @@ class Nav extends React.Component {
         return (
             <nav>
                 <div>
-                    <img src={img} className='logo'/>
+                    <img src={img} className='logo float-left'/>
                 </div>
                 <div>
                     <List style={flexContainer}>

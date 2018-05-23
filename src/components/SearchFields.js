@@ -1,18 +1,34 @@
 "use strict"
 
 import React from 'react';
-import {Autocomplete, Button, DatePicker, SelectField} from 'react-md';
-import PropTypes from 'prop-types';
+import {Autocomplete, Button, DatePicker, SelectField, TextField} from 'react-md';
+import {geolocated, geoPropTypes} from 'react-geolocated';
 
+const cities = ['Berlin', 'Munich', 'Paris'];
 const categories = ['Wedding Photography', 'Portrait Photography', 'Event Photography'];
 
 class SearchFields extends React.Component {
 
-    handleAutocomplete(value) {
-        return fetch('http://gd.geobytes.com/AutoCompleteCity?callback=?&q=' + value)
-            .then((response) => {
-                this.props.results = response.toArray();
-                return response.toArray();
+    browserLocation() {
+        if (this.props.isGeolocationAvailable && this.props.isGeolocationEnabled) {
+            console.log('console: ' + this.props.isGeolocationEnabled + " " + this.props.isGeolocationAvailable)
+            // TODO: return current browser location for default value
+            console.log('Date: ' + Date.now());
+        } else {
+            return "No browser location"
+        }
+    }
+
+    handleAutocomplete() {
+        // TODO: implement autocomplete
+        let url = 'http://gd.geobytes.com/AutoCompleteCity?callback=?&q=Mun';
+        let headers = new Headers();
+        fetch(url, {
+            method: 'GET',
+            headers: headers,
+            mode: 'no-cors'
+        }).then((response) => {
+                console.log(response.status);
             })
             .catch((error) => {
                 console.error(error);
@@ -20,48 +36,59 @@ class SearchFields extends React.Component {
     }
 
     render() {
-        /*const data = this.props.results.map(({ value }) => ({
-            primaryText: value
-        }));*/
-
         return (
-            <div className="md-grid">
-                <Autocomplete
-                    id="select-loc"
-                    className="md-cell"
-                    label="Location"
-                    placeholder="Choose your location"
-                    filter={Autocomplete.caseInsensitiveFilter}
-                    onAutocomplete={this.handleAutocomplete}
-                    data={categories}
-                    sameWidth={true}
-                />
-                <SelectField
-                    id="select-cat"
-                    className="md-cell"
-                    label="Category"
-                    placeholder="Choose your category"
-                    anchor={{x: SelectField.HorizontalAnchors.INNER_LEFT, y: SelectField.VerticalAnchors.TOP}}
-                    menuItems={categories}
-                    sameWidth={true}
-                    simplifiedMenu={false}
-                />
-                <DatePicker
-                    id="select-date"
-                    label="Date"
-                    placeholder="Choose your date"
-                    className="md-cell"
-                    displayMode="portrait"
-                />
-                <Button flat primary swapTheming>Search</Button>
+            <div>
+                <div>
+                    <h2>60 results</h2>
+                </div>
+                <div className="md-grid bottom-30">
+                    <Autocomplete
+                        id="select-loc"
+                        className="md-cell--3 margin-5"
+                        label="Location"
+                        placeholder="Choose your location"
+                        filter={Autocomplete.caseInsensitiveFilter}
+                        data={cities}
+                        sameWidth={true}
+                        defaultValue={this.browserLocation()}
+                    />
+                    <SelectField
+                        id="select-cat"
+                        className="md-cell--3 margin-5"
+                        label="Category"
+                        placeholder="Choose your category"
+                        anchor={{x: SelectField.HorizontalAnchors.INNER_LEFT, y: SelectField.VerticalAnchors.BOTTOM}}
+                        menuItems={categories}
+                        sameWidth={true}
+                        simplifiedMenu={false}
+                    />
+                    <DatePicker
+                        id="select-date"
+                        label="Date"
+                        disableOuterDates={true}
+                        disabledDays={{before: Date.now()}}
+                        placeholder="Choose your date"
+                        className="md-cell--3 margin-5"
+                        displayMode="portrait"
+                    />
+                    <Button flat primary swapTheming className='search-button md-cell--3' onClick={this.handleAutocomplete()}>Search</Button>
+                </div>
             </div>
         );
     }
 
 }
 
-SearchFields.propTypes = {
-    results: PropTypes.array
-}
+SearchFields.propTypes = Object.assign({}, SearchFields.propTypes, geoPropTypes);
 
-export default SearchFields;
+export default geolocated({
+    positionOptions: {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: Infinity,
+    },
+    watchPosition: false,
+    userDecisionTimeout: null,
+    suppressLocationOnMount: false,
+    geolocationProvider: navigator.geolocation
+})(SearchFields);

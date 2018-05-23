@@ -3,8 +3,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Toolbar } from 'react-md';
-import KebabMenu from './KebabMenu';
 import Nav from "./Nav";
+import Breadcrumb from "./Breadcrumb";
 
 class Header extends React.Component {
 
@@ -13,9 +13,8 @@ class Header extends React.Component {
             <Toolbar
                 nav={<Nav/>}
                 fixed={false}
-                actions={<KebabMenu id="toolbar-transparent-kebab-menu" />}
+                /*actions={<KebabMenu id="toolbar-transparent-kebab-menu" />}*/
             />
-
         );
     }
 };

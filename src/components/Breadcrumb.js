@@ -7,7 +7,7 @@ class Breadcrumb extends React.Component {
 
     render() {
         return (
-            'Breadcrumb'
+            <div id='breadcrumb'>'Home > Search Result (tbd.)'</div>
         );
     }
 };
