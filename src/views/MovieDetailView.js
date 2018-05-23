@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { MovieDetail } from '../components/MovieDetail';
+import { Confirm } from '../components/Confirm';
 
 import MovieService from '../services/MovieService';
 
@@ -45,7 +45,7 @@ export class MovieDetailView extends React.Component {
         }
 
         return (
-            <MovieDetail movie={this.state.movie} onDelete={(id) => this.deleteMovie(id)}/>
+            <Confirm movie={this.state.movie} onDelete={(id) => this.deleteMovie(id)}/>
         );
     }
 }
