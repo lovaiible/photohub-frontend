@@ -9,6 +9,10 @@ const categories = ['Wedding Photography', 'Portrait Photography', 'Event Photog
 
 class SearchFields extends React.Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     browserLocation() {
         if (this.props.isGeolocationAvailable && this.props.isGeolocationEnabled) {
             console.log('console: ' + this.props.isGeolocationEnabled + " " + this.props.isGeolocationAvailable)
@@ -22,11 +26,12 @@ class SearchFields extends React.Component {
     handleAutocomplete() {
         // TODO: implement autocomplete
         let url = 'http://gd.geobytes.com/AutoCompleteCity?callback=?&q=Mun';
-        let headers = new Headers();
         fetch(url, {
             method: 'GET',
-            headers: headers,
-            mode: 'no-cors'
+            mode: 'no-cors',
+            headers: {
+                'content-type' : 'application/javascript',
+            }
         }).then((response) => {
                 console.log(response.status);
             })
