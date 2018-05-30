@@ -127,14 +127,14 @@ export class Confirm extends React.Component {
                 <Grid>
                     <Cell size={2}>
                         <div>
-                            <Button raised primary swapThemingx>
+                            <Button flat primary swapTheming>
                                 Confirm
                             </Button>
                         </div>
                     </Cell>
                     <Cell size={2}>
                         <div>
-                            <Button raised secondary swapTheming>
+                            <Button flat secondary swapTheming>
                                 Cancel
                             </Button>
                         </div>
