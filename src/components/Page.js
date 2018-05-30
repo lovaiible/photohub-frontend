@@ -3,7 +3,8 @@
 import React from 'react';
 
 import Header from './Header';
-import { Footer } from './Footer';
+import {Footer} from './Footer';
+import Breadcrumb from "./Breadcrumb";
 
 
 export default class Page extends React.Component {
@@ -16,18 +17,21 @@ export default class Page extends React.Component {
         }
     }
 
-    componentDidMount(){
-       this.setState({
-           title: document.title
-       });
+    componentDidMount() {
+        this.setState({
+            title: document.title
+        });
     }
 
     render() {
         return (
             <section>
-                <Header title={this.state.title} />
-                {this.props.children}
-                <Footer />
+                <Header title={this.state.title}/>
+                <main id='content'>
+                    <Breadcrumb />
+                    {this.props.children}
+                </main>
+                <Footer/>
             </section>
         );
     }
