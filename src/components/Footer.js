@@ -12,9 +12,17 @@ class PlainFooter extends React.Component {
 
     render() {
         return (
-            <div className={this.props.className}>
-                <hr/>
-                <p>© {new Date().getFullYear()} sebis. All rights reserved.</p>
+            <div className="w3-container" id="footer">
+                <div className="footer center">
+                    <div className="social">
+                        <a href="#"><i className="fab fa-facebook-f"></i><span>Facebook</span></a>
+                        <a href="#"><i className="fab fa-twitter"></i><span>Twitter</span></a>
+                        <a href="#"><i className="fab fa-envelope"></i><span>Mail</span></a>
+                    </div>
+                </div>
+                <div className="copyright center">
+                    Copyright © 2018 <a href="#">Photohub</a>. All rights reserved.
+                </div>
             </div>
         );
     }
