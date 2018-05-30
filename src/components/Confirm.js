@@ -44,7 +44,7 @@ export class Confirm extends React.Component {
                         </Media>
                     </Cell>
                     <Cell size={7}>
-                        <h1>Portrait Photography</h1>
+                        <h1>{this.props.movie.title}</h1>
                         <p>Max Mustermann: Rating: <b>8.0</b>/10</p>
                         <div id="showRating"/>
                         <p>Date: May 18th, 2018</p>
@@ -52,7 +52,7 @@ export class Confirm extends React.Component {
 
                     </Cell>
                     <Cell size={2}>
-                        <h2>100.00 Euro</h2>
+                        <h2>{this.props.service.title}</h2>
                     </Cell>
                 </Grid>
 
