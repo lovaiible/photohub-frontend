@@ -15,9 +15,15 @@ import {
     DatePicker,
     TextField
 } from 'react-md';
+import ReactStars from 'react-stars'
 
 
 import Page from './Page';
+import Visa from '../../src/img/payments/Visa Logo.jpg'
+import MasterCard from '../../src/img/payments/MasterCard Logo.png'
+import PayPal from '../../src/img/payments/Paypal Logo.jpg'
+import Sofort from '../../src/img/payments/Sofort.png'
+
 
 import UserService from '../services/UserService';
 
@@ -45,9 +51,9 @@ export class Confirm extends React.Component {
                     </Cell>
                     <Cell size={7}>
                         <h1>Portrait Photography</h1>
-                        <p>Max Mustermann: Rating: <b>8.0</b>/10</p>
+                        <p>Max Mustermann: </p>
+                        <ReactStars count={5} size={24} color2={'#ffd700'} value={4} edit={false}/>
                         <div id="showRating"/>
-                        <p>Date: May 18th, 2018</p>
                         <p>Servicebeschreibung</p>
 
                     </Cell>
@@ -63,6 +69,11 @@ export class Confirm extends React.Component {
                         required
                         label="Select an appointment date"
                         className="md-cell"
+                        disableOuterDates={true}
+                        disabledDays={{before: Date.now()}}
+                        displayMode="landscape"
+                        disableWeekEnds={true}
+                        showAllDays={false}
                     />
                     <TextField
                         id="Additional Information"
@@ -82,38 +93,37 @@ export class Confirm extends React.Component {
                     <Cell size={3}>
                         <a href="https://www.visa.com"
                            title="Select Visa as your payment method">
-                            <img src="https://www.designtagebuch.de/wp-content/uploads/mediathek//2014/01/visa_2014-700x455.jpg"
-                                 border={1}
+                            <img src={Visa}
                                  alt="Visa"
                                  width={150}
-                                 height={94}/>
+                                 height={100}/>
                         </a>
                     </Cell>
                     <Cell size={3}>
                         <a href="https://www.mastercard.com"
                            title="Select MasterCard as your payment method">
-                            <img src="https://www.designtagebuch.de/wp-content/uploads/mediathek//2016/07/mastercard_logo-700x490.png"
-                                 border={1}
+                            <img src={MasterCard}
                                  alt="MasterCard"
                                  width={150}
-                                 height={94}/>
+                                 height={100}/>
                         </a>
                     </Cell>
                     <Cell size={3}>
-                        <a href="https://www.paypal.com/webapps/mpp/paypal-popup"
+                        <a href="https://www.paypal.com"
                            title="Select PayPal as your payment method">
-                            <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_74x46.jpg"
-                                            border={1} alt="PayPal"/>
+                            <img src={PayPal}
+                                 alt="PayPal"
+                                 width={150}
+                                 height={100}/>
                         </a>
                     </Cell>
                     <Cell size={3}>
                         <a href={"https://www.klarna.com/sofort/"}
                            title="Select 'Sofortueberweisung' as your payment method">
-                            <img src="http://www.paydirect-casinos.com/wp-content/uploads/2016/04/sofortueberweisung-logo.jpg"
-                                 border={1}
+                            <img src={Sofort}
                                  alt="Sofortueberweisung"
                                  width={150}
-                                 height={94}
+                                 height={100}
                             />
                         </a>
                     </Cell>
