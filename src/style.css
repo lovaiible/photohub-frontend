@@ -4,10 +4,8 @@ html {
 
 body {
     margin: 0;
-}
-
-main {
-    margin: 0 50px;
+    font-family: Lato !important;
+    font-weight: 400;
 }
 
 .margin-5 {
@@ -51,17 +49,40 @@ nav {
 
 /* Footer */
 #footer {
-    background: #3d3d3d;
-    color: #fff;
+    background: #f0f0f0;
+    font-weight: 300;
+    line-height: 0.8;
+    margin: 0;
 }
 
-#footer .footer, .copyright {
-    padding: 40px 0 10px 0;
+#footer ul {
+    margin: 0;
+}
+
+#footer ul li {
+    display: inline;
+}
+
+#footer ul li a {
+    padding: 0 25px;
+}
+
+#footer img {
+    width: 30px;
+    height: auto;
+    padding-right: 5px;
+}
+
+#footer div {
+    padding: 25px 0;
 }
 
 #footer a {
-    color: #a3a3a3;
+    color: #212529;
     text-decoration: none;
+}
+#footer a:hover {
+    opacity: 0.5;
 }
 
 #footer .social a {
@@ -78,7 +99,7 @@ nav {
 
 /* Search */
 .search-button {
-    margin: 0 auto;
+    margin-top: 25px;
 }
 
 

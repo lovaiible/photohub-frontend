@@ -27,7 +27,7 @@ export default class Page extends React.Component {
         return (
             <section>
                 <Header title={this.state.title}/>
-                <main id='content'>
+                <main id='content' className="container">
                     <Breadcrumb />
                     {this.props.children}
                 </main>
