@@ -90,15 +90,20 @@ export class Confirm extends React.Component {
                         </Media>
                     </Cell>
                     <Cell size={7}>
+<<<<<<< HEAD
                         <h1>Portrait Photography</h1>
                         <p>Max Mustermann: </p>
                         <ReactStars count={5} size={24} color2={'#ffd700'} value={4} edit={false}/>
+=======
+                        <h1>{this.props.movie.title}</h1>
+                        <p>Max Mustermann: Rating: <b>8.0</b>/10</p>
+>>>>>>> f508bbdc659ca757652e0726fe57fcb63d1e8d72
                         <div id="showRating"/>
                         <p>Servicebeschreibung</p>
 
                     </Cell>
                     <Cell size={2}>
-                        <h2>100.00 Euro</h2>
+                        <h2>{this.props.service.title}</h2>
                     </Cell>
                 </Grid>
 

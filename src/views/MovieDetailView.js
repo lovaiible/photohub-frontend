@@ -45,7 +45,7 @@ export class MovieDetailView extends React.Component {
         }
 
         return (
-            <Confirm movie={this.state.movie} onDelete={(id) => this.deleteMovie(id)}/>
+            <Confirm movie={this.state.service} onDelete={(id) => this.deleteMovie(id)}/>
         );
     }
 }
