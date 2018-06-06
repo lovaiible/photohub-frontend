@@ -16,7 +16,7 @@ import {
     TextField
 } from 'react-md';
 import ReactStars from 'react-stars'
-import { RadioGroup, RadioButton } from 'react-radio-buttons';
+import {RadioGroup, RadioButton} from 'react-radio-buttons';
 
 
 import Page from './Page';
@@ -39,40 +39,37 @@ export class Confirm extends React.Component {
 
         this.state = {
             payment: '',
-            date:'',
-            addInfo:''
+            date: '',
+            addInfo: ''
         };
 
         this.handleChangePayment = this.handleChangePayment.bind(this);
         this.handleChangeDate = this.handleChangeDate.bind(this);
         this.handleChangeAddInfo = this.handleChangeAddInfo.bind(this);
-    //    this.handleSubmit = this.handleSubmit.bind(this);
+        //    this.handleSubmit = this.handleSubmit.bind(this);
 
     }
 
 
-
-    handleChangePayment(event){
+    handleChangePayment(event) {
         this.setState({payment: event});
     }
 
-    handleChangeDate(event){
+    handleChangeDate(event) {
         this.setState({date: event});
     }
 
-    handleChangeAddInfo(event){
+    handleChangeAddInfo(event) {
         this.setState({addInfo: event});
     }
 
     //handleSubmit(event){
-        //event.preventDefault();
+    //event.preventDefault();
 
-     //   booking.payment = this.state.payment;
+    //   booking.payment = this.state.payment;
 
-     //   this.props.onSubmit(booking)
-   // }
-
-
+    //   this.props.onSubmit(booking)
+    // }
 
 
     render() {
@@ -82,7 +79,7 @@ export class Confirm extends React.Component {
                            subtitle="Please confirm your booking details and select a payment method below."/>
 
                 <Grid className="grid-example"
-                      //onSubmit={this.handleSubmit()}
+                    //onSubmit={this.handleSubmit()}
                 >
                     <Cell size={3}>
                         <Media aspectRatio="1-1">
@@ -90,20 +87,15 @@ export class Confirm extends React.Component {
                         </Media>
                     </Cell>
                     <Cell size={7}>
-<<<<<<< HEAD
                         <h1>Portrait Photography</h1>
                         <p>Max Mustermann: </p>
                         <ReactStars count={5} size={24} color2={'#ffd700'} value={4} edit={false}/>
-=======
-                        <h1>{this.props.movie.title}</h1>
-                        <p>Max Mustermann: Rating: <b>8.0</b>/10</p>
->>>>>>> f508bbdc659ca757652e0726fe57fcb63d1e8d72
                         <div id="showRating"/>
                         <p>Servicebeschreibung</p>
 
                     </Cell>
                     <Cell size={2}>
-                        <h2>{this.props.service.title}</h2>
+                        <h2>100.00 Euro</h2>
                     </Cell>
                 </Grid>
 
@@ -126,7 +118,6 @@ export class Confirm extends React.Component {
                         onChange={this.handleChangeAddInfo}
                         id="Additional Information"
                         label="Additional Information"
-                        rows={2}
                         maxLength={300}
                         placeholder="What should the photographer need to know?"
                         className="insertAddress"
@@ -146,7 +137,7 @@ export class Confirm extends React.Component {
                                  width={150}
                                  height={100}
                                  align="middle"
-                                 />
+                            />
                         </a>
                     </Cell>
                     <Cell size={3} style={{display: 'flex', justifyContent: 'center'}}>
@@ -180,7 +171,7 @@ export class Confirm extends React.Component {
                         </a>
                     </Cell>
                 </Grid>
-                <RadioGroup horizontal onChange={this.handleChangePayment}>
+                <RadioGroup horizontal onChange={this.handleChangePayment} required>
                     <RadioButton value="Visa" rootColor={'#000000'} pointColor={'#000000'} iconSize={5}>
                         <b>Visa</b>
                     </RadioButton>
@@ -190,7 +181,7 @@ export class Confirm extends React.Component {
                     <RadioButton value="Paypal" rootColor={'#000000'} pointColor={'#000000'} iconSize={5}>
                         <b>Paypal</b>
                     </RadioButton>
-                    <RadioButton value="Sofort" rootColor={'#000000'} pointColor={'#000000'}iconSize={5}>
+                    <RadioButton value="Sofort" rootColor={'#000000'} pointColor={'#000000'} iconSize={5}>
                         <b>Sofortüberweisung</b>
                     </RadioButton>
                 </RadioGroup>
@@ -218,12 +209,8 @@ export class Confirm extends React.Component {
                 </Grid>
 
 
-
-
-
-
             </Card>
         </Page>
-    ;
+            ;
     }
-    }
+}
