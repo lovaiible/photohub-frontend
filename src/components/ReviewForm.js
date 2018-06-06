@@ -7,6 +7,8 @@ import { withRouter } from 'react-router-dom'
 import { AlertMessage } from './AlertMessage';
 import Page from './Page';
 
+import StarsRating from 'react-stars-rating';
+import ReactStars from 'react-stars'
 
 const style = { maxWidth: 500 };
 
@@ -98,7 +100,7 @@ class ReviewForm extends React.Component {
                         <TextField
                             label="Rating"
                             id="RatingField"
-                            type="Number"
+                            type="number"
                             className="md-row"
                             required={false}
                             value={this.state.rating}
@@ -113,6 +115,14 @@ class ReviewForm extends React.Component {
                             value={this.state.text}
                             onChange={this.handleChangeText}
                             errorText="Text is required"/>
+
+                        <StarsRating rating={3} />
+                        <ReactStars
+                          count={5}
+                          size={24}
+                          value={3.75}
+                          edit={false}
+                          color2={'#ffd700'} />
 
                         <Button id="submit" type="submit"
                                 disabled={this.state.date.toString().length < 5 || this.state.name == undefined || this.state.name == '' || this.state.date == undefined || this.state.date == '' || this.state.text == undefined || this.state.text == ''}

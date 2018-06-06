@@ -41,7 +41,8 @@ class KebabMenu extends React.Component {
                     <ListItem key={2} leftAvatar={<Avatar icon={<FontIcon>add</FontIcon>}/>} primaryText="Add Movie" onClick={() => this.props.history.push('/add')}/>,
                     <ListItem key={3} primaryText="Logout" onClick={() => this.logout()}/>,
                     <ListItem key={4} primaryText="Review" onClick={() => this.props.history.push('/review')}/>,
-                    <ListItem key={5} leftAvatar={<Avatar icon={<FontIcon>add</FontIcon>}/>} primaryText="Add Review" onClick={() => this.props.history.push('/addReview')}/>
+                    <ListItem key={5} leftAvatar={<Avatar icon={<FontIcon>add</FontIcon>}/>} primaryText="Add Review" onClick={() => this.props.history.push('/addReview')}/>,
+                    <ListItem key={6} primaryText="Review List" onClick={() => this.props.history.push('/reviewList')}/>
                 ]: [<ListItem key={1} primaryText="Login" onClick={() => this.props.history.push('/login')}/>]}
             >
                 more_vert

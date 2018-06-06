@@ -7,8 +7,7 @@ import { Link } from 'react-router-dom';
 import { SimpleLink } from './SimpleLink';
 
 import UserService from '../services/UserService';
-import StarsRating from 'react-stars-rating';
-import ReactStars from 'react-stars'
+
 
 export class ReviewListRow extends React.Component {
 
@@ -23,7 +22,7 @@ export class ReviewListRow extends React.Component {
                 <TableColumn><SimpleLink to={`/showReview/${this.props.review._id}`}>{this.props.review.name}</SimpleLink></TableColumn>
                 <TableColumn><SimpleLink to={`/showReview/${this.props.review._id}`}>{this.props.review.date}</SimpleLink></TableColumn>
                 <TableColumn><SimpleLink to={`/showReview/${this.props.review._id}`}>{this.props.review.text}</SimpleLink></TableColumn>
-                <TableColumn><ReactStars value={this.props.review.rating} edit={false} size={24} color2={'#ffd700'} count={5}/></TableColumn>
+                <TableColumn><SimpleLink to={`/showReview/${this.props.review._id}`}>{this.props.review.rating}</SimpleLink></TableColumn>
 
                 {UserService.isAuthenticated() ?
                     <TableColumn><Link to={`/edit/${this.props.review._id}`}><FontIcon>mode_edit</FontIcon></Link></TableColumn>
