@@ -1,17 +1,14 @@
 "use strict";
 
 import React from 'react';
-import {Link} from 'react-router-dom'
 import {
     Card,
     CardTitle,
     CardText,
     Media,
-    MediaOverlay,
     Grid,
     Cell,
     Button,
-    FontIcon,
     DatePicker,
     TextField
 } from 'react-md';
@@ -26,10 +23,21 @@ import PayPal from '../../src/img/payments/Paypal Logo.jpg'
 import Sofort from '../../src/img/payments/Sofort.png'
 
 
-import UserService from '../services/UserService';
-
-
-const style = {maxWidth: 1000};
+const style = {
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        padding: '15px'
+    },
+    gridList: {
+        overflowY: 'auto',
+        width: '100%'
+    },
+    titleStyle: {
+        color: 'rgb(0, 188, 212)',
+    },
+};
 
 
 export class Confirm extends React.Component {
@@ -191,11 +199,11 @@ export class Confirm extends React.Component {
                     <div>Here stands the cancellation policy of PhotoHub</div>
                 </CardText>
 
-                <Grid>
+                <Grid style={{display: 'flex', justifyContent: 'center'}}>
                     <Cell size={2}>
                         <div>
                             <Button flat primary swapTheming>
-                                Confirm
+                                Submit
                             </Button>
                         </div>
                     </Cell>
