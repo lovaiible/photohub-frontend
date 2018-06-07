@@ -11,6 +11,7 @@ import { UserSignupView } from "./views/UserSignupView";
 
 import UserService from "./services/UserService";
 import {SearchResultView} from "./views/SearchResultView";
+import {CategoryListView} from "./views/CategoryListView";
 
 
 export default class App extends React.Component {
@@ -21,7 +22,7 @@ export default class App extends React.Component {
         this.state = {
             title: 'Photohub',
             routes: [
-                { component: SearchResultView , path: '/', exact: true},
+                { component: CategoryListView , path: '/', exact: true},
                 { component: SearchResultView , path: '/results'},
                 { component: MovieDetailView , path: '/show/:id'},
                 { render: (props) => {

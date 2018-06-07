@@ -125,19 +125,29 @@ nav {
     margin: 25px 0 20px;
 }
 
-.search-container .card {
+.search-container .card, .categories .card {
     margin: 10px 5px 0;
 }
 
+.categories {
+    margin-bottom: 25px;
+}
+
+.categories .card a {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%; width: 100%;
+}
+
 @media (min-width: 768px) {
-    .search-container .card {
+    .search-container .card, .categories .card {
         display: inline-block;
         width: 48%;
     }
 }
 
 @media (min-width: 992px) {
-    .search-container .card {
+    .search-container .card, .categories .card {
         display: inline-block;
         width: 32%;
     }
