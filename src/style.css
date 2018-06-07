@@ -101,5 +101,12 @@ div.photographerAttr {
     font-size: 14px;
 }
 div.gallery {
-    height: 100px;
+    display: flex;
+    float: center;
+    justifyContent: center;
+    height: 10%;
+    margin-top: 50px;
+    margin-right: 50px;
+    margin-bottom: 30px;
+    margin-left: 70px;
 }

@@ -4,8 +4,7 @@ import React from 'react';
 
 import Header from './Header';
 import { Footer } from './Footer';
-import { PhotographerProfile } from "./PhotographerProfile";
-import {PhotographerProfileView} from "../views/PhotographerProfileView";
+
 
 export default class Page extends React.Component {
 
