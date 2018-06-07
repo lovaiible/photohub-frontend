@@ -1,10 +1,9 @@
 "use strict";
 
 import React from 'react';
-import Styled from 'styled-components';
 import img from '../img/logo/logo-dark.png';
 
-class PlainFooter extends React.Component {
+export class Footer extends React.Component {
 
     constructor(props) {
         super(props);
@@ -32,22 +31,9 @@ class PlainFooter extends React.Component {
                     <a href="tel:+491731511778"><i className="fas fa-phone"></i><span>Support</span></a>
                 </div>
                 <div className="copyright">
-                    Copyright © 2018 <a href="#">Photohub</a>. All rights reserved.
+                    Copyright © 2018 <a href="/">Photohub</a>. All rights reserved.
                 </div>
             </div>
         );
     }
 }
-
-export const Footer = Styled(PlainFooter)`
-    max-height: 35px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: fixed;
-    background: white;
-    > p {
-        text-align: center;
-        margin-top: 4px;
-    }
-`;
