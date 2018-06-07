@@ -29,6 +29,7 @@ class SearchFields extends React.Component {
 
     handleCity(input) {
         this.setState({city: input});
+        console.log(this.getCurrentPosition);
     }
 
     handleCategory(input) {

@@ -10,7 +10,7 @@ import './style.css'
 
 WebFontLoader.load({
     google: {
-        families: ['Material Icons'],
+        families: ['Lato','Material Icons'],
     },
 });
 

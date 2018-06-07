@@ -5,119 +5,112 @@ import Page from './Page';
 import SearchFields from "./SearchFields";
 import PaginationNav from "./Pagination";
 import {SearchResultItem} from "./SearchResultItem";
-import img1 from "../img/stock-img/wedding.jpg"
-import img2 from "../img/stock-img/portrait.jpg"
-import img3 from "../img/stock-img/landscape.jpg"
-
-const styles = {
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        padding: '15px'
-    },
-    gridList: {
-        overflowY: 'auto',
-        width: '100%'
-    },
-    titleStyle: {
-        color: 'rgb(0, 188, 212)',
-    },
-};
 
 const data = [
     {
         img: '../../src/img/stock-img/wedding.jpg',
-        title: 'Wedding',
+        title: 'Wedding 1',
         category: 'Wedding Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
-        photographer: 'Max Mustermann'
+        photographer: 'Max Mustermann',
+        price: '100€'
     },
     {
         img: '../../src/img/stock-img/portrait.jpg',
-        title: 'Portrait',
+        title: 'Portrait 1',
         category: 'Portrait Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
         photographer: 'pashminu',
+        price: '100€'
     },
     {
         img: '../../src/img/stock-img/landscape.jpg',
-        title: 'Landscape',
+        title: 'Landscape 1',
         category: 'Landscape Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
         photographer: 'Danson67',
+        price: '100€'
     },
     {
         img: '../../src/img/stock-img/wedding.jpg',
-        title: 'Wedding',
+        title: 'Wedding 2',
         category: 'Wedding Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
-        photographer: 'Max Mustermann'
+        photographer: 'Max Mustermann',
+        price: '100€'
     },
     {
         img: '../../src/img/stock-img/portrait.jpg',
-        title: 'Portrait',
+        title: 'Portrait 2',
         category: 'Portrait Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
         photographer: 'pashminu',
+        price: '100€'
     },
     {
         img: '../../src/img/stock-img/landscape.jpg',
-        title: 'Landscape',
+        title: 'Landscape 2',
         category: 'Landscape Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
         photographer: 'Danson67',
+        price: '100€'
     },
     {
         img: '../../src/img/stock-img/wedding.jpg',
-        title: 'Wedding',
+        title: 'Wedding 3',
         category: 'Wedding Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
-        photographer: 'Max Mustermann'
+        photographer: 'Max Mustermann',
+        price: '100€'
     },
     {
         img: '../../src/img/stock-img/portrait.jpg',
-        title: 'Portrait',
+        title: 'Portrait 3',
         category: 'Portrait Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
         photographer: 'pashminu',
+        price: '100€'
     },
     {
         img: '../../src/img/stock-img/landscape.jpg',
-        title: 'Landscape',
+        title: 'Landscape 3',
         category: 'Landscape Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
         photographer: 'Danson67',
+        price: '100€'
     },
     {
         img: '../../src/img/stock-img/wedding.jpg',
-        title: 'Wedding',
+        title: 'Wedding 4',
         category: 'Wedding Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
-        photographer: 'Max Mustermann'
+        photographer: 'Max Mustermann',
+        price: '100€'
     },
     {
         img: '../../src/img/stock-img/portrait.jpg',
-        title: 'Portrait',
+        title: 'Portrait 4',
         category: 'Portrait Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
         photographer: 'pashminu',
+        price: '100€'
     },
     {
         img: '../../src/img/stock-img/landscape.jpg',
-        title: 'Landscape',
+        title: 'Landscape 4',
         category: 'Landscape Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
         photographer: 'Danson67',
+        price: '100€'
     }
 ];
 
 const SearchResult = () => (
     <Page>
         <SearchFields/>
-        <div style={styles.root}>
-            <div className="card-columns">
-                {data.map((tile, key) => ( <SearchResultItem tile={tile} key={key}/> ))}
+        <div className="search-container">
+            <div className="row">
+                {data.map((tile, i) => (<SearchResultItem tile={tile} key={i}/>))}
             </div>
             <PaginationNav/>
         </div>

@@ -2,9 +2,12 @@ html {
     background: #ffffff;
 }
 
-body {
-    margin: 0;
-    font-family: Lato !important;
+html, body, p, button, input, textarea {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+
+h3, h4, h5, h6 {
     font-weight: 400;
 }
 
@@ -81,6 +84,7 @@ nav {
     color: #212529;
     text-decoration: none;
 }
+
 #footer a:hover {
     opacity: 0.5;
 }
@@ -102,4 +106,39 @@ nav {
     margin-top: 25px;
 }
 
+/* Rating */
+.lm-stars-rating {
+    float: right;
+}
 
+.lm-star label {
+    height: 10px;
+}
+
+.search-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.pagination {
+    margin: 25px 0 20px;
+}
+
+.search-container .card {
+    margin: 10px 5px 0;
+}
+
+@media (min-width: 768px) {
+    .search-container .card {
+        display: inline-block;
+        width: 48%;
+    }
+}
+
+@media (min-width: 992px) {
+    .search-container .card {
+        display: inline-block;
+        width: 32%;
+    }
+}
