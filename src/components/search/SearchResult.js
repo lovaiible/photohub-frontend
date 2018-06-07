@@ -1,9 +1,9 @@
 "use strict"
 
 import React from 'react';
-import Page from './Page';
+import Page from '../Page';
 import SearchFields from "./SearchFields";
-import PaginationNav from "./Pagination";
+import PaginationNav from "../Pagination";
 import {SearchResultItem} from "./SearchResultItem";
 
 const data = [
