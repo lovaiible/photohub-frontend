@@ -4,10 +4,10 @@ import React from 'react';
 import {Autocomplete, Button, DatePicker, SelectField} from 'react-md';
 import NodeGeocoder from 'node-geocoder';
 
-//TODO import cities from db
+// TODO import cities from db
 const cities = ['Berlin', 'Munich', 'Paris'];
 
-//TODO import categories from db
+// TODO import categories from db
 const categories = ['All', 'Wedding Photography', 'Portrait Photography', 'Event Photography'];
 
 class SearchFields extends React.Component {
@@ -43,7 +43,7 @@ class SearchFields extends React.Component {
 
 
     handleSearch() {
-
+        // TODO filter search results
     }
 
     render() {

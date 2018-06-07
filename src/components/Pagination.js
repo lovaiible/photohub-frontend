@@ -3,6 +3,7 @@
 import React from 'react';
 import {Pagination} from "react-bootstrap";
 
+// TODO: create pagination logic
 var items = [];
 for (let number = 1; number <= 10; number++) {
     items.push(
