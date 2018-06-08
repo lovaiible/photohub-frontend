@@ -23,8 +23,8 @@ import PayPal from '../../src/img/payments/Paypal Logo.jpg'
 import Sofort from '../../src/img/payments/Sofort.png'
 
 
-const style = {
-    root: {
+const style = {maxWidth: 1000};
+   /* root: {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
@@ -37,7 +37,7 @@ const style = {
     titleStyle: {
         color: 'rgb(0, 188, 212)',
     },
-};
+}; */
 
 
 export class Confirm extends React.Component {
