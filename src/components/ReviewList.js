@@ -20,6 +20,7 @@ export const ReviewList = ({data, onDelete}) => (
                     <TableColumn>Date</TableColumn>
                     <TableColumn>Text</TableColumn>
                     <TableColumn>Rating</TableColumn>
+                    <TableColumn>pID</TableColumn>
                     <TableColumn>Edit</TableColumn>
                     <TableColumn>Delete</TableColumn>
                 </TableRow>

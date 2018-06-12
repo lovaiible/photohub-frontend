@@ -2,33 +2,45 @@
 
 import React from 'react';
 
-
 import ReviewService from '../services/ReviewService';
-import ReviewItemList from '../components/ReviewItemList';
+
 import ReviewListItem from '../components/ReviewListItem';
-import Page from '../components/Page'
+import ReviewAverageValue from '../components/ReviewAverageValue';
+import ReviewUpperBody from '../components/ReviewUpperBody';
+import Page from '../components/Page';
 import ReactPaginate from 'react-paginate';
+import ReactStars from 'react-stars';
 
 import { Table, Pagination } from 'react-bootstrap';
+import { TableRow, TableColumn, FontIcon, Button, Grid, Cell, SVGIcon } from 'react-md';
+
 
 const countRowStyles = {
     margin: 'auto',
-    width: '80%',
-    border: '1px solid black',
+    width: '70%',
+    border: '0px solid black',
     marginTop: '10px',
     padding: '5px'
 };
 
+const lineStyle = {
+    width: '70%'
+};
+
+const fontStyleReviews = {
+  fontSize: '18px'
+};
+
+const pId = `1z`;
+var avgValue = 0;
+
 export class ReviewItemListView extends React.Component {
   constructor(props) {
       super(props);
-
       this.state = {
           loading: false,
-          data: [],
-          activePage: 1,
-          count: 0,
-          mean: 0
+          avg: [],
+          data: []
       };
   }
 
@@ -37,7 +49,7 @@ export class ReviewItemListView extends React.Component {
           loading: true
       });
 
-      ReviewService.getReviews().then((data) => {
+      ReviewService.getReviews(pId).then((data) => {
           this.setState({
               data: [...data],
               loading: false
@@ -45,14 +57,17 @@ export class ReviewItemListView extends React.Component {
       }).catch((e) => {
           console.error(e);
       });
-  }
 
-  handlePageChange(pageNumber) {
-    console.log(`active page is ${pageNumber}`);
+      ReviewService.getAvgRating(pId).then((data) => {
+          this.setState({
+              avg: [...data],
+              loading: false
+          });
+          avgValue = data[0].avgRating;
 
-    this.state = {
-      activePage: pageNumber
-    };
+      }).catch((e) => {
+          console.error(e);
+      });
   }
 
   render(){
@@ -63,36 +78,28 @@ export class ReviewItemListView extends React.Component {
     return(
       <Page>
         <ul>
-          <div style={countRowStyles}>
-            <b>{this.state.data.length}</b> Reviews
+          <div>
+            <ReviewUpperBody pId={pId}></ReviewUpperBody>
           </div>
+          <div style={countRowStyles}>
+            <Grid>
+              <Cell size={2} style={fontStyleReviews}>
+                <b>{this.state.data.length}</b> Reviews with
+              </Cell>
+              <Cell size={9} style={fontStyleReviews}>
+                {this.state.avg.map((avg) => <ReviewAverageValue avg={avg} key={avg._id}/>)}
+              </Cell>
+              <Cell size={1}>
+                <Button floating primary swapTheming onClick={() => this.props.history.push('/addReview/' + pId)} disabled={false}>add</Button>
+              </Cell>
+            </Grid>
+          </div>
+          <hr style={lineStyle}/>
         </ul>
         <ul>
           {this.state.data.map((review) => <ReviewListItem review={review} key={review._id}/>)}
         </ul>
-        <ReactPaginate previousLabel={"previous"}
-                       nextLabel={"next"}
-                       breakLabel={<a href="">...</a>}
-                       breakClassName={"break-me"}
-                       pageCount={this.state.pageCount}
-                       marginPagesDisplayed={2}
-                       pageRangeDisplayed={5}
-                       onPageChange={this.handlePageClick}
-                       containerClassName={"pagination"}
-                       subContainerClassName={"pages pagination"}
-                       activeClassName={"active"} />
-         <Pagination
-           activePage={this.state.activePage}
-           itemsCountPerPage={5}
-           totalItemsCount={450}
-           pageRangeDisplayed={5}
-           onChange={this.handlePageChange}
-         />
       </Page>
     );
   }
-  changePage(page) {
-    this.props.dispatch(push('/?page=' + page));
-  }
-
 }

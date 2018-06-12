@@ -9,9 +9,9 @@ export default class ReviewService {
 
     static baseURL() {return "http://localhost:3000/reviews" }
 
-    static getReviews(){
+    static getReviews(id){
        return new Promise((resolve, reject) => {
-           HttpService.get(this.baseURL(), function(data) {
+           HttpService.get(`${ReviewService.baseURL()}/${id}`, function(data) {
                resolve(data);
            }, function(textStatus) {
                reject(textStatus);
@@ -51,7 +51,7 @@ export default class ReviewService {
 
     static updateReview(review) {
         return new Promise((resolve, reject) => {
-            HttpService.put(`${this.baseURL()}/${review._id}`, review, function(data) {
+            HttpService.put(`${ReviewService.baseURL()}/${review._id}`, review, function(data) {
                 resolve(data);
             }, function(textStatus) {
                reject(textStatus);
@@ -69,5 +69,20 @@ export default class ReviewService {
                 reject(textStatus);
             });
         });
+    }
+
+    static getAvgRating(id) {
+      return new Promise((resolve, reject) => {
+          HttpService.get(`${ReviewService.baseURL()}/getAvgRating/${id}`, function(data) {
+              if(data != undefined || Object.keys(data).length !== 0) {
+                  resolve(data);
+              }
+              else {
+                  reject('Error while retrieving review');
+              }
+          }, function(textStatus) {
+              reject(textStatus);
+          });
+      });
     }
 }

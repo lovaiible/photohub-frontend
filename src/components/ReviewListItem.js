@@ -11,8 +11,8 @@ import ReactStars from 'react-stars'
 
 const itemWrapperStyle = {
     margin: 'auto',
-    width: '80%',
-    border: '1px solid black',
+    width: '68%',
+    border: '0px solid black',
     marginTop: '10px',
     padding: '5px'
 };
@@ -34,15 +34,15 @@ export default class ReviewListItem extends React.Component {
                   <ReactStars count={5} size={20} value={this.props.review.rating} edit={false} color2={'#ffd700'} />
                 </div>
                 <div className="reviewDateAndStars">
-                  By <b>{this.props.review.name}</b> in <b>{this.props.review.date}</b>
+                  By <b>{this.props.review.name}</b> on <b>{this.props.review.date}</b> (Photographer: {this.props.review.photographerId})
                 </div>
               </Cell>
           </Grid>
           <div className="reviewText">
             {this.props.review.text}
+            {this.props.review.avgRating}
           </div>
         </div>
     )
   }
-
 }
