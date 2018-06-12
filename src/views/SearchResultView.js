@@ -1,7 +1,7 @@
 "use strict"
 
 import React from 'react';
-import SearchResult from '../components/SearchResult'
+import SearchResult from '../components/search/SearchResult'
 
 export class SearchResultView extends React.Component {
 

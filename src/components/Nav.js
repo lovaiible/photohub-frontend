@@ -3,6 +3,7 @@
 import React from 'react';
 import {Avatar, List, ListItem} from "react-md";
 import img from '../img/logo/logo.png';
+import {Link} from "react-router-dom";
 
 const flexContainer = {
     display: 'inline-flex',
@@ -16,7 +17,7 @@ class Nav extends React.Component {
         return (
             <nav>
                 <div>
-                    <img src={img} className='logo float-left'/>
+                    <Link to="/"><img src={img} className='logo float-left'/></Link>
                 </div>
                 <div>
                     <List style={flexContainer}>

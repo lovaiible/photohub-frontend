@@ -7,9 +7,7 @@ export default class ConfirmService {
     constructor() {
     }
 
-    static baseURL() {
-        return "http://localhost:3000/movies"
-    }
+    static baseURL() {return "http://localhost:3000/bookings"}
 
     static getBookings() {
         return new Promise((resolve, reject) => {

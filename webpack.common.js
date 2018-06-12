@@ -16,7 +16,9 @@ module.exports = {
         filename: 'scripts/[name].js'
     },
     node: {
-        fs: 'empty'
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty'
     },
     module: {
         rules: [
@@ -72,7 +74,7 @@ module.exports = {
             filename: 'index.html',
             inject: 'body'
         }),
-        new ExtractTextPlugin("styles/app.css")
+        new ExtractTextPlugin("app.css")
     ]
 
 };
