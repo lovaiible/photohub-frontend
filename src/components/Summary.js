@@ -7,7 +7,8 @@ import {
     Card,
     CardTitle,
     CardText,
-} from 'react-md';'
+} from 'react-md';
+import {Confirm} from "./Confirm";
 
 const style = {maxWidth: 1000};
 
@@ -27,10 +28,24 @@ export class Summary extends React.Component {
                     Photographer:
                 </CardText>
                 <CardText>
+                    Category:
+                </CardText>
+                <CardText>
+                    Date:
+                </CardText>
+                <CardText>
                     Price:
                 </CardText>
+                <CardText>
+                    Used Payment Method:
+                </CardText>
+                <CardText>
+                    Additional Information:
+                </CardText>
+
             </Card>
         </Page>
             ;
     }
 }
+export default withRouter(Summary);

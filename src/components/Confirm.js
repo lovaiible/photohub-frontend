@@ -53,7 +53,9 @@ export class Confirm extends React.Component {
             payment: '',
             date: '',
             addInfo: '',
-            bookingID: ''
+            bookingID: '',
+            photographer: '',
+
         };
 
         this.handleChangePayment = this.handleChangePayment.bind(this);

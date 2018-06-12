@@ -11,6 +11,7 @@ import { UserSignupView } from "./views/UserSignupView";
 
 import UserService from "./services/UserService";
 import {SearchResultView} from "./views/SearchResultView";
+import {ConfirmView} from "./views/ConfirmView";
 
 
 export default class App extends React.Component {
@@ -23,6 +24,7 @@ export default class App extends React.Component {
             routes: [
                 { component: SearchResultView , path: '/', exact: true},
                 { component: MovieDetailView , path: '/show/:id'},
+                { component: ConfirmView , path: '/show/:bookingID'},
                 { render: (props) => {
                         if(UserService.isAuthenticated()) {
                             return (<MovieFormView {... props} />)

@@ -3,11 +3,7 @@
 import React from 'react';
 
 import Confirm from './../components/Confirm';
-
 import ConfirmService from '../services/ConfirmService';
-import MovieService from "../services/MovieService";
-
-
 
 export class ConfirmView extends React.Component {
 
@@ -38,7 +34,7 @@ export class ConfirmView extends React.Component {
 
             let bookingId = this.props.match.params.bookingID;
 
-            BookingService.getBooking(bookingId).then((data) => {
+            ConfirmService.getBooking(bookingId).then((data) => {
                 this.setState({
                     booking: data,
                     loading: false,
@@ -52,14 +48,14 @@ export class ConfirmView extends React.Component {
 
     updateBooking(booking) {
         if(this.state.bookingID == undefined) {
-            BookingService.createBooking(bookingID).then((data) => {
+            ConfirmService.createBooking(bookingID).then((data) => {
                 this.props.history.push('/');
             }).catch((e) => {
                 console.error(e);
                 this.setState(Object.assign({}, this.state, {error: 'Error while creating booking'}));
             });
         } else {
-            BookingService.updateBooking(bookingID).then((data) => {
+            ConfirmService.updateBooking(bookingID).then((data) => {
                 this.props.history.goBack();
             }).catch((e) => {
                 console.error(e);
@@ -73,6 +69,6 @@ export class ConfirmView extends React.Component {
             return (<h2>Loading...</h2>);
         }
 
-        return (<Confirm bookingID={this.state.bookingID} onSubmit={(bookingID) => this.updateMovie(bookingID)} error={this.state.error} />);
+        return (<Confirm bookingID={this.state.bookingID} onSubmit={(bookingID) => this.updateBooking(bookingID)} error={this.state.error} />);
     }
 }
