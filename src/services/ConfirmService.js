@@ -35,11 +35,11 @@ export default class ConfirmService {
     }
 
     static createBooking(booking) {
-        var randomstring2 = randomString({
+        /* var randomstring2 = randomString({
             length: 18,
             numeric: true
         });
-        booking.bookingId = randomstring2;
+        booking.bookingId = randomstring2; */
 
         return new Promise((resolve, reject) => {
             HttpService.post(ConfirmService.baseURL(), booking, function (data) {

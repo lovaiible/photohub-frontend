@@ -23,7 +23,7 @@ import PayPal from '../../src/img/payments/Paypal Logo.jpg'
 import Sofort from '../../src/img/payments/Sofort.png'
 import {withRouter} from "react-router-dom";
 
-var randomString = require("random-string");
+//var randomString = require("random-string");
 
 
 
@@ -53,7 +53,6 @@ export class Confirm extends React.Component {
             payment: '',
             date: '',
             addInfo: '',
-            bookingID: '',
             photographer: '',
 
         };
@@ -61,7 +60,6 @@ export class Confirm extends React.Component {
         this.handleChangePayment = this.handleChangePayment.bind(this);
         this.handleChangeDate = this.handleChangeDate.bind(this);
         this.handleChangeAddInfo = this.handleChangeAddInfo.bind(this);
-        this.onConfirm=this.onConfirm.bind(this);
         this.handleSubmit=this.handleSubmit(this);
         //    this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -80,16 +78,6 @@ export class Confirm extends React.Component {
         this.setState({addInfo: event});
     }
 
-    onConfirm(event){
-
-        var randomstring = randomString({
-            length: 8,
-            numeric: true
-        });
-
-        this.setState({bookingID: randomstring});
-    }
-
     handleSubmit(event) {
         //event.preventDefault();
 
@@ -98,12 +86,11 @@ export class Confirm extends React.Component {
             booking = {};
         }
 
-        booking.bookingID = this.state.bookingID;
         booking.date = this.state.date;
         booking.payment = this.state.payment;
         booking.addInfo = this.state.addInfo;
 
-        //this.props.onSubmit(booking);
+        this.props.onSubmit(booking);
     }
 
     render() {
@@ -229,7 +216,8 @@ export class Confirm extends React.Component {
                     <Grid style={{display: 'flex', justifyContent: 'center'}}>
                         <Cell size={2}>
                             <div>
-                                <Button flat primary swapTheming onClick={this.onConfirm} type="submit" id="submit">
+                                <Button flat primary swapTheming
+                                        type="submit" id="submit">
                                     Submit
                                 </Button>
                             </div>
