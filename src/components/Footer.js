@@ -25,10 +25,10 @@ export class Footer extends React.Component {
                     </ul>
                 </div>
                 <div className="social">
-                    <a href="http://www.facebook.com"><i className="fab fa-facebook-f"></i><span>Facebook</span></a>
-                    <a href="http://www.twitter.com"><i className="fab fa-twitter"></i><span>Twitter</span></a>
-                    <a href="mailto:anh.nguyen@tum.de"><i className="fas fa-envelope"></i><span>Mail</span></a>
-                    <a href="tel:+491731511778"><i className="fas fa-phone"></i><span>Support</span></a>
+                    <a href="http://www.facebook.com"><i className="fab fa-facebook-f"> </i><span>Facebook</span></a>
+                    <a href="http://www.twitter.com"><i className="fab fa-twitter"> </i><span>Twitter</span></a>
+                    <a href="mailto:anh.nguyen@tum.de"><i className="fas fa-envelope"> </i><span>Mail</span></a>
+                    <a href="tel:+491731511778"><i className="fas fa-phone"> </i><span>Support</span></a>
                 </div>
                 <div className="copyright">
                     Copyright © 2018 <a href="/">Photohub</a>. All rights reserved.

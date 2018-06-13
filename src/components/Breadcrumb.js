@@ -5,9 +5,13 @@ import { withRouter } from 'react-router-dom';
 
 class Breadcrumb extends React.Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
-            <div id='breadcrumb'>'Home > Search Result (tbd.)'</div>
+            <div id='breadcrumb'>...</div>
         );
     }
 };

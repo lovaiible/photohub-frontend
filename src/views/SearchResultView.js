@@ -2,6 +2,8 @@
 
 import React from 'react';
 import SearchResult from '../components/search/SearchResult'
+import {SearchFieldView} from "./SearchFieldView";
+import Page from "../components/Page";
 
 export class SearchResultView extends React.Component {
 
@@ -20,7 +22,10 @@ export class SearchResultView extends React.Component {
         }
 
         return (
-            <SearchResult data={this.state.data} />
+            <Page>
+                <SearchFieldView />
+                <SearchResult data={this.state.data} />
+            </Page>
         );
     }
 }
