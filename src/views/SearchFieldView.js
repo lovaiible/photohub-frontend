@@ -23,7 +23,7 @@ export class SearchFieldView extends React.Component {
         this.setState({
             loading: true
         });
-
+/*
         LocationService.getLocations().then((data) => {
             var locations = [];
             for(var index in data) {
@@ -37,7 +37,7 @@ export class SearchFieldView extends React.Component {
         }).catch((e) => {
             console.error(e);
         });
-
+*/
         CategoryService.getCategories().then((data) => {
             var categories = [];
             for(var index in data) {

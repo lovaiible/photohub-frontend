@@ -4,8 +4,6 @@ import React from 'react';
 
 import Header from './Header';
 import {Footer} from './Footer';
-import Breadcrumb from "./Breadcrumb";
-
 
 export default class Page extends React.Component {
 

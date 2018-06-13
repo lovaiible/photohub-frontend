@@ -5,8 +5,6 @@ import React from 'react';
 import {CategoryList} from '../components/CategoryList';
 import CategoryService from '../services/CategoryService';
 import LandingPage from "../components/LandingPage";
-import SearchFields from "../components/search/SearchFields";
-import {SearchFieldView} from "./SearchFieldView";
 
 
 export class CategoryListView extends React.Component {
@@ -42,7 +40,6 @@ export class CategoryListView extends React.Component {
 
         return (
             <LandingPage>
-                <SearchFieldsView />
                 <CategoryList data={this.state.data}/>
             </LandingPage>
         );
