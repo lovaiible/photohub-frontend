@@ -28,7 +28,7 @@ export default class App extends React.Component {
                 { component: ReviewListView , path: '/review'},
                 { component: MovieDetailView , path: '/show/:id'},
                 { component: ReviewDetailView , path: '/showReview/:id'},
-                { component: ReviewItemListView , path: '/reviewItemList'},
+                { component: ReviewItemListView , path: '/reviewItemList/:id'},
                 { render: (props) => {
                         if(UserService.isAuthenticated()) {
                             return (<MovieFormView {... props} />)

@@ -1,7 +1,7 @@
 "use strict";
 
 import React from 'react';
-import { Card, Button, FontIcon, TextField, DatePicker } from 'react-md';
+import { Card, Button, FontIcon, TextField, DatePicker, Grid, Cell } from 'react-md';
 import { withRouter } from 'react-router-dom'
 
 import { AlertMessage } from './AlertMessage';
@@ -9,8 +9,17 @@ import Page from './Page';
 
 import ReactStars from 'react-stars'
 
-const style = { maxWidth: 500 };
+const style = { maxWidth: 700 };
 
+const textBoxStyle = {
+  marginLeft: '15px'
+};
+
+const bottomStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+   alignItems: 'center'
+};
 
 class ReviewForm extends React.Component {
 
@@ -22,7 +31,7 @@ class ReviewForm extends React.Component {
         let id = this.props.match.params.id;
 
         this.state = {
-            name : 'PhotographerName',
+            name : this.props.uName,
             date : MyDateString,
             rating : 0,
             text: '',
@@ -33,7 +42,7 @@ class ReviewForm extends React.Component {
         this.handleChangeDate = this.handleChangeDate.bind(this);
         this.handleChangeRating = this.handleChangeRating.bind(this);
         this.handleChangeText = this.handleChangeText.bind(this);
-        this.handleChangePhotographerId = this.handleChangePhotographerId.bind(this);
+        this.handleChangephotographerId = this.handleChangephotographerId.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -50,7 +59,7 @@ class ReviewForm extends React.Component {
     handleChangeText(value) {
         this.setState(Object.assign({}, this.state, {text: value}));
     }
-    handleChangePhotographerId(value) {
+    handleChangephotographerId(value) {
         this.setState(Object.assign({}, this.state, {photographerId: value}));
     }
 
@@ -75,56 +84,72 @@ class ReviewForm extends React.Component {
         return (
             <Page>
                 <Card style={style} className="md-block-centered">
-                    <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
-                        <label>Select number of stars:</label>
-                        <div className="md-row">
+                    <form onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
+                    <h3 style={textBoxStyle}> Create a new Review</h3>
+                      <Grid>
+                        <Cell size={1}>
+                          <label>Rating:</label>
+                        </Cell>
+                        <Cell size={3}>
                           <ReactStars count={5} size={24} value={this.state.rating} edit={true}
-                          color2={'#ffd700'} onChange={this.handleChangeRating} className="md-row"/>
-                        </div>
+                          color2={'#ffd700'} onChange={this.handleChangeRating}/>
+                        </Cell>
+                      </Grid>
                         <TextField
                             label="Name"
                             id="NameField"
                             type="text"
-                            className="md-row"
                             required={true}
                             value={this.state.name}
                             onChange={this.handleChangeName}
-                            errorText="Name is required"/>
+                            errorText="Name is required"
+                            style={textBoxStyle}/>
                         <TextField
                             label="Date"
                             id="DateField"
                             type="text"
-                            className="md-row"
                             required={false}
                             value={this.state.date}
                             onChange={this.handleChangeDate}
                             errorText="Date is required"
-                            disabled={false}/>
-
+                            disabled={false}
+                            style={textBoxStyle}/>
                         <TextField
                             label="Text"
                             id="TextField"
                             type="text"
-                            className="md-row"
                             rows={5}
                             required={true}
                             value={this.state.text}
                             onChange={this.handleChangeText}
-                            errorText="Text is required"/>
+                            errorText="Text is required"
+                            style={textBoxStyle}/>
                         <TextField
                             label="Photographer"
-                            id="PhotographerIdField"
+                            id="photographerIdField"
                             type="text"
-                            className="md-row"
                             required={false}
                             value={this.state.photographerId}
-                            onChange={this.handleChangePhotographerId}/>
-
-                        <Button id="submit" type="submit"
-                                disabled={this.state.date.toString().length < 5 || this.state.name == undefined || this.state.name == '' || this.state.date == undefined || this.state.date == '' || this.state.text == undefined || this.state.text == '' || this.state.photographerId == undefined || this.state.photographerId == '' || this.state.rating > 5 || this.state.rating <= 0}
-                                raised primary className="md-cell md-cell--2">Save</Button>
-                        <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
-                        <AlertMessage className="md-row md-full-width" >{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
+                            onChange={this.handleChangephotographerId}
+                            style={textBoxStyle}/>
+                        <Grid>
+                          <Cell size={4}></Cell>
+                          <Cell size={1}>
+                          <Button id="submit" type="submit"
+                                  disabled={this.state.date.toString().length < 5 || this.state.name == undefined || this.state.name == '' || this.state.date == undefined || this.state.date == '' || this.state.text == undefined || this.state.text == '' || this.state.photographerId == undefined || this.state.photographerId == '' || this.state.rating > 5 || this.state.rating <= 0}
+                                  raised primary className="md-cell md-cell--2">Save</Button>
+                          </Cell>
+                          <Cell size={1}></Cell>
+                          <Cell size={1}>
+                            <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
+                          </Cell>
+                        </Grid>
+                        <Grid>
+                          <Cell size={4}></Cell>
+                          <Cell size={3}>
+                            <AlertMessage className="md-row md-full-width" >{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
+                          </Cell>
+                        </Grid>
                     </form>
                 </Card>
             </Page>

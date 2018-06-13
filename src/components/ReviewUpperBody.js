@@ -8,7 +8,6 @@ import Page from './Page'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import ReactStars from 'react-stars'
-//import PhotographerPicture from  '../img/PhotographerPicture.jpg'
 
 const itemUpperBodyWrapperStyle = {
     margin: 'auto',
@@ -19,7 +18,7 @@ const itemUpperBodyWrapperStyle = {
 };
 
 const photographerNameStyle = {
-  fontSize: '20px',
+  fontSize: '30px',
   marginBottom: '5px'
 };
 
@@ -40,19 +39,18 @@ export default class ReviewUpperBody extends React.Component {
           Breadcrumbs
           <Grid className="grid-example">
             <Cell size={2}>
-
-
+  
             </Cell>
             <Cell size={10}>
                 <div style={photographerNameStyle}>
-                  <b>Max Mustermann</b>
+                  <b>{this.props.pName}</b>
                 </div>
                 <div>
                   <FontIcon>location_on</FontIcon>
-                  Munich, Germany
+                  {this.props.location}
                 </div>
                 <div style={reviewUpperBodyTextStyle}>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+                  {this.props.pInfoText}
                 </div>
               </Cell>
           </Grid>

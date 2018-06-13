@@ -42,7 +42,7 @@ class KebabMenu extends React.Component {
                     <ListItem key={3} primaryText="Logout" onClick={() => this.logout()}/>,
                     <ListItem key={4} primaryText="Review" onClick={() => this.props.history.push('/review')}/>,
                     <ListItem key={5} leftAvatar={<Avatar icon={<FontIcon>add</FontIcon>}/>} primaryText="Add Review" onClick={() => this.props.history.push('/addReview/1z')}/>,
-                    <ListItem key={6} primaryText="Review List" onClick={() => this.props.history.push('/reviewItemList')}/>
+                    <ListItem key={6} primaryText="Review List" onClick={() => this.props.history.push('/reviewItemList/1z')}/>
                 ]: [<ListItem key={1} primaryText="Login" onClick={() => this.props.history.push('/login')}/>]}
             >
                 more_vert
