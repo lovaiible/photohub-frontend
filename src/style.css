@@ -1,0 +1,166 @@
+html {
+    background: #ffffff;
+}
+
+html, body, p, button, input, textarea {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+
+h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
+.margin-5 {
+    margin: 5px;
+}
+
+.bottom-30 {
+    margin-bottom: 30px;
+}
+
+.center {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+/* Header */
+
+header {
+    box-shadow: 0px 2px 0px #f0f0f0 !important;
+    margin: 20px 0;
+}
+
+nav {
+    height: 50px;
+    margin: 0 auto;
+    width: 95%;
+}
+
+.logo {
+    width: auto;
+    height: 50px;
+}
+
+/* Footer */
+#footer {
+    background: #f0f0f0;
+    font-weight: 300;
+    line-height: 0.8;
+    margin: 0;
+}
+
+#footer ul {
+    margin: 0;
+}
+
+#footer ul li {
+    display: inline;
+}
+
+#footer ul li a {
+    padding: 0 25px;
+}
+
+#footer img {
+    width: 30px;
+    height: auto;
+    padding-right: 5px;
+}
+
+#footer div {
+    padding: 25px 0;
+}
+
+#footer a {
+    color: #212529;
+    text-decoration: none;
+}
+
+#footer a:hover {
+    opacity: 0.5;
+}
+
+#footer .social a {
+    padding-right: 25px;
+}
+
+#footer .social i {
+    padding-right: 10px;
+}
+
+#breadcrumb {
+    margin-bottom: 30px;
+}
+
+/* Search */
+.search-button {
+    margin-top: 25px;
+}
+
+/* Rating */
+.lm-stars-rating {
+    float: right;
+}
+
+.lm-star label {
+    height: 10px;
+}
+
+.search-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.pagination {
+    margin: 25px 0 20px;
+}
+
+.search-container .card, .categories .card {
+    margin: 10px 5px 0;
+}
+
+.categories {
+    margin-bottom: 25px;
+}
+
+.categories .card a {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%; width: 100%;
+}
+
+@media (min-width: 768px) {
+    .search-container .card, .categories .card {
+        display: inline-block;
+        width: 48%;
+    }
+}
+
+@media (min-width: 992px) {
+    .search-container .card, .categories .card {
+        display: inline-block;
+        width: 32%;
+    }
+}
+
+/* Background images are set within the HTML using inline CSS, not here */
+
+.fill {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
