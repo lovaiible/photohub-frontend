@@ -5,6 +5,7 @@ import Page from '../Page';
 import SearchFields from "./SearchFields";
 import PaginationNav from "../Pagination";
 import {SearchResultItem} from "./SearchResultItem";
+import {SearchFieldView} from "../../views/SearchFieldView";
 
 const data = [
     {
@@ -107,7 +108,7 @@ const data = [
 
 const SearchResult = () => (
     <Page>
-        <SearchFields/>
+        <SearchFieldView/>
         <div className="search-container">
             <div className="row">
                 {data.map((tile, i) => (<SearchResultItem tile={tile} key={i}/>))}

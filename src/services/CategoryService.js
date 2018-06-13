@@ -1,6 +1,7 @@
 "use strict";
 
 import HttpService from './HttpService';
+import LocationService from "./LocationService";
 
 export default class CategoryService {
 
@@ -13,7 +14,6 @@ export default class CategoryService {
        return new Promise((resolve, reject) => {
            HttpService.get(this.baseURL(), function(data) {
                resolve(data);
-               console.log("data: " + data);
            }, function(textStatus) {
                reject(textStatus);
            });
@@ -22,7 +22,7 @@ export default class CategoryService {
 
     static getCategory(id) {
         return new Promise((resolve, reject) => {
-            HttpService.get(`${MovieService.baseURL()}/${id}`, function(data) {
+            HttpService.get(`${CategoryService.baseURL()}/${id}`, function(data) {
                 if(data != undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 }
@@ -37,7 +37,7 @@ export default class CategoryService {
 
     static deleteCategory(id) {
         return new Promise((resolve, reject) => {
-            HttpService.remove(`${MovieService.baseURL()}/${id}`, function(data) {
+            HttpService.remove(`${CategoryService.baseURL()}/${id}`, function(data) {
                 if(data.message != undefined) {
                     resolve(data.message);
                 }
@@ -50,9 +50,9 @@ export default class CategoryService {
         });
     }
 
-    static updateCategory(movie) {
+    static updateCategory(category) {
         return new Promise((resolve, reject) => {
-            HttpService.put(`${this.baseURL()}/${movie._id}`, movie, function(data) {
+            HttpService.put(`${this.baseURL()}/${category._id}`, category, function(data) {
                 resolve(data);
             }, function(textStatus) {
                reject(textStatus);
@@ -63,7 +63,7 @@ export default class CategoryService {
     static createCategory(category) {
         category.id = Math.floor((Math.random() * 100000000) + 1).toString();
         return new Promise((resolve, reject) => {
-            HttpService.post(MovieService.baseURL(), movie, function(data) {
+            HttpService.post(CategoryService.baseURL(), category, function(data) {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);

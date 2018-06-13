@@ -4,6 +4,7 @@ import React from 'react';
 
 import {CategoryList} from '../components/CategoryList';
 import CategoryService from '../services/CategoryService';
+import LandingPage from "../components/LandingPage";
 
 
 export class CategoryListView extends React.Component {
@@ -32,35 +33,15 @@ export class CategoryListView extends React.Component {
         });
     }
 
-    /*
-    deleteMovie(id) {
-
-        this.setState({
-            data: [...this.state.data],
-            loading: true
-        });
-        MovieService.deleteMovie(id).then((message) => {
-
-            let movieIndex = this.state.data.map(movie => movie['_id']).indexOf(id);
-            let movies = this.state.data;
-            movies.splice(movieIndex, 1);
-            this.setState({
-               data: [...movies],
-               loading: false
-            });
-        }).catch((e) => {
-            console.error(e);
-        });
-    }
-    */
-
     render() {
         if (this.state.loading) {
             return (<h2>Loading...</h2>);
         }
 
         return (
-            <CategoryList data={this.state.data} /* onDelete={(id) => this.deleteMovie(id)}*//>
+            <LandingPage>
+                <CategoryList data={this.state.data}/>
+            </LandingPage>
         );
     }
 }

@@ -12,7 +12,6 @@ class Header extends React.Component {
             <Toolbar
                 nav={<Nav/>}
                 fixed={false}
-                /*actions={<KebabMenu id="toolbar-transparent-kebab-menu" />}*/
             />
         );
     }
