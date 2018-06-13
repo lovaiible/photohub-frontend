@@ -1,7 +1,6 @@
 "use strict";
 
 import HttpService from './HttpService';
-import LocationService from "./LocationService";
 
 export default class CategoryService {
 

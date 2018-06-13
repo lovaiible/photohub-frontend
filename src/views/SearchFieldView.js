@@ -8,7 +8,6 @@ import LocationService from "../services/LocationService";
 
 
 export class SearchFieldView extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -23,33 +22,32 @@ export class SearchFieldView extends React.Component {
         this.setState({
             loading: true
         });
-/*
-        LocationService.getLocations().then((data) => {
-            var locations = [];
-            for(var index in data) {
-                locations.push(data[index].city);
-            }
+    }
 
-            this.setState({
-                locations: locations.sort(),
-                loading: false
-            });
-        }).catch((e) => {
-            console.error(e);
-        });
-*/
+    componentDidMount() {
+        var categories = [];
+        var locations = [];
+        
         CategoryService.getCategories().then((data) => {
-            var categories = [];
             for(var index in data) {
                 categories.push(data[index].title);
             }
-
-            this.setState({
-                categories: categories.sort(),
-                loading: false
-            });
         }).catch((e) => {
             console.error(e);
+        });
+
+        LocationService.getLocations().then((data) => {
+            for(var index in data) {
+                locations.push(data[index].city);
+            }
+        }).catch((e) => {
+            console.error(e);
+        });
+
+        this.setState({
+            categories: categories.sort(),
+            locations: locations.sort(),
+            loading: false
         });
     }
 
