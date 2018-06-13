@@ -8,7 +8,6 @@ import ReviewListItem from '../components/ReviewListItem';
 import ReviewAverageValue from '../components/ReviewAverageValue';
 import ReviewUpperBody from '../components/ReviewUpperBody';
 import Page from '../components/Page';
-import ReactPaginate from 'react-paginate';
 import ReactStars from 'react-stars';
 
 import { Table, Pagination } from 'react-bootstrap';
@@ -24,7 +23,8 @@ const countRowStyles = {
 };
 
 const lineStyle = {
-    width: '70%'
+    width: '75%',
+    size: '2px'
 };
 
 const fontStyleReviews = {
@@ -77,7 +77,7 @@ export class ReviewItemListView extends React.Component {
     if (this.state.loading) {
         return (<h2>Loading...</h2>);
     }
-    
+
     return(
       <Page>
         <ul>

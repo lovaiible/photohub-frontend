@@ -36,10 +36,9 @@ export default class ReviewUpperBody extends React.Component {
   render(){
     return(
         <div className="reviewUpperBodyWrapper" style={itemUpperBodyWrapperStyle}>
-          Breadcrumbs
           <Grid className="grid-example">
             <Cell size={2}>
-  
+              <p>success</p>
             </Cell>
             <Cell size={10}>
                 <div style={photographerNameStyle}>

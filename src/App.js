@@ -12,7 +12,8 @@ import { UserSignupView } from "./views/UserSignupView";
 import UserService from "./services/UserService";
 import {SearchResultView} from "./views/SearchResultView";
 import {CategoryListView} from "./views/CategoryListView";
-
+import { ReviewItemListView }   from './views/ReviewItemListView';
+import { ReviewFormView } from "./views/ReviewFormView";
 
 export default class App extends React.Component {
 
@@ -31,7 +32,7 @@ export default class App extends React.Component {
                     component: SearchResultView,
                     path: '/results',
                 },
-
+                { component: ReviewItemListView , path: '/viewReviews/:id'},
                 // TODO
                 { component: MovieDetailView , path: '/show/:id'},
                 { render: (props) => {
@@ -48,6 +49,13 @@ export default class App extends React.Component {
                     else {
                         return (<Redirect to={'/login'}/>)
                     }}, path: '/add',},
+                  { render: (props) => {
+                          if(UserService.isAuthenticated()) {
+                              return (<ReviewFormView {... props} />)
+                          }
+                          else {
+                              return (<Redirect to={'/login'}/>)
+                          }}, path: '/addReview/:id',},
                 { component: UserLoginView, path: '/login'},
                 { component: UserSignupView, path: '/register'}
             ]
@@ -70,4 +78,3 @@ export default class App extends React.Component {
         );
     }
 }
-
