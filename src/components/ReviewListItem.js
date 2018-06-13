@@ -1,7 +1,7 @@
 "use strict";
 
 import React from 'react';
-import { DataTable, TableHeader, TableBody, TableRow, TableColumn, Button, TextField, FontIcon, Grid, Cell} from 'react-md';
+import { DataTable, TableHeader, TableBody, TableRow, TableColumn, Button, TextField, FontIcon, Grid, Cell, Avatar} from 'react-md';
 
 import Page from './Page'
 
@@ -20,6 +20,9 @@ const itemWrapperStyle = {
 export default class ReviewListItem extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      firstLetter: (this.props.review.name.slice(0,1))
+    };
   }
 
   render(){
@@ -27,7 +30,7 @@ export default class ReviewListItem extends React.Component {
         <div className="reviewItemWrapper" style={itemWrapperStyle}>
           <Grid className="grid-example">
             <Cell size={1}>
-                <FontIcon>image</FontIcon>
+                <Avatar random>{this.state.firstLetter}</Avatar>
             </Cell>
             <Cell size={11}>
                 <div className="reviewHeader">
