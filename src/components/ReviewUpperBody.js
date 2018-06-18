@@ -11,7 +11,7 @@ import ReactStars from 'react-stars'
 
 const itemUpperBodyWrapperStyle = {
     margin: 'auto',
-    width: '70%',
+    width: '80%',
     border: '0px solid black',
     marginTop: '10px',
     padding: '5px'

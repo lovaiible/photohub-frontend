@@ -112,7 +112,7 @@ export class ReviewItemListView extends React.Component {
         <div style={breadcrumbStyle}>
           Home > Search > Profile > <b>Reviews</b>
         </div>
-        <ul>
+        <div>
           <div>
             <ReviewUpperBody pId={this.state.pId} location={'Munich, Germany'} pName={'Max Mustermann'} pInfoText={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At'}></ReviewUpperBody>
           </div>
@@ -127,7 +127,7 @@ export class ReviewItemListView extends React.Component {
             </Grid>
           </div>
           <hr style={lineStyle}/>
-        </ul>
+        </div>
         <ul id="review-list">
           {
             this.state.renderedReviews.map((review) =>
