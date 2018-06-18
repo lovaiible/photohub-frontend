@@ -5,10 +5,8 @@ import { Card, Button, FontIcon, TextField, DatePicker, Grid, Cell } from 'react
 import { withRouter } from 'react-router-dom'
 
 import { AlertMessage } from './AlertMessage';
-import Page from './Page';
 
 import ReactStars from 'react-stars'
-import { SimpleLink } from './SimpleLink';
 
 const style = { maxWidth: 700, marginTop: '20px' };
 
@@ -20,11 +18,6 @@ const bottomStyle = {
   display: 'flex',
   justifyContent: 'center',
    alignItems: 'center'
-};
-
-const breadcrumbStyle ={
-  fontSize: '14px',
-  marginTop: '10px'
 };
 
 class ReviewForm extends React.Component {
@@ -41,8 +34,7 @@ class ReviewForm extends React.Component {
             date : MyDateString,
             rating : 0,
             text: '',
-            photographerId: id,
-            reviewsLink: 'http://localhost:8000/#/viewReviews/' + id
+            photographerId: id
         };
 
         this.handleChangeName = this.handleChangeName.bind(this);
@@ -89,11 +81,6 @@ class ReviewForm extends React.Component {
 
     render() {
         return (
-            <Page>
-            <div style={breadcrumbStyle}>
-            Home > Search > Profile > <SimpleLink to={'/viewReviews/' + this.state.photographerId}>Reviews</SimpleLink> > <b>Create</b>
-
-            </div>
                 <Card style={style} className="md-block-centered">
                     <form onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
                     <h3 style={textBoxStyle}> Create a new Review</h3>
@@ -163,7 +150,6 @@ class ReviewForm extends React.Component {
                         </Grid>
                     </form>
                 </Card>
-            </Page>
         );
     }
 }

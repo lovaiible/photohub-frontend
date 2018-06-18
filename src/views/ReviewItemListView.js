@@ -16,6 +16,8 @@ import { TableRow, TableColumn, FontIcon, Button, Grid, Cell, SVGIcon } from 're
 
 import Pagination from '../components/PaginationNew';
 
+import { Link } from 'react-router-dom';
+
 const countRowStyles = {
     margin: 'auto',
     width: '70%',
@@ -39,8 +41,10 @@ const lineItemStyle = {
 
 const breadcrumbStyle ={
   fontSize: '14px',
-  fontColor: 'black',
   marginTop: '10px'
+};
+const linkStyle = {
+  color: 'black'
 };
 
 const pId = `2z`;
@@ -106,7 +110,7 @@ export class ReviewItemListView extends React.Component {
     return(
       <Page>
         <div style={breadcrumbStyle}>
-        Home > Search > Profile > <b>Reviews</b>
+          Home > Search > Profile > <b>Reviews</b>
         </div>
         <ul>
           <div>
