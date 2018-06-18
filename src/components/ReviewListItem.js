@@ -11,11 +11,12 @@ import ReactStars from 'react-stars'
 
 const itemWrapperStyle = {
     margin: 'auto',
-    width: '68%',
+    width: '75%',
     border: '0px solid black',
     marginTop: '10px',
     padding: '5px'
 };
+
 
 export default class ReviewListItem extends React.Component {
   constructor(props){

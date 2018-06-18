@@ -21,7 +21,7 @@ export class ReviewFormView extends React.Component {
 
     createReview(review) {
       ReviewService.createReview(review).then((data) => {
-          this.props.history.push('/reviewItemList/' + review.photographerId);
+          this.props.history.push('/viewReviews/' + review.photographerId);
       }).catch((e) => {
           console.error(e);
           this.setState(Object.assign({}, this.state, {error: 'Error while creating review'}));

@@ -15,6 +15,10 @@ import {CategoryListView} from "./views/CategoryListView";
 import { ReviewItemListView }   from './views/ReviewItemListView';
 import { ReviewFormView } from "./views/ReviewFormView";
 
+
+import {ThroughProvider} from 'react-through'
+
+
 export default class App extends React.Component {
 
     constructor(props) {
@@ -26,13 +30,15 @@ export default class App extends React.Component {
                 {
                     component: CategoryListView,
                     path: '/',
-                    exact: true
+                    exact: true,
+                    name: "Home"
                 },
                 {
                     component: SearchResultView,
                     path: '/results',
+                    name: "Search results"
                 },
-                { component: ReviewItemListView , path: '/viewReviews/:id'},
+                { component: ReviewItemListView , path: '/viewReviews/:id', name: "Review"},
                 // TODO
                 { component: MovieDetailView , path: '/show/:id'},
                 { render: (props) => {

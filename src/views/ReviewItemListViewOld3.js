@@ -6,15 +6,14 @@ import ReviewService from '../services/ReviewService';
 
 import ReviewListItem from '../components/ReviewListItem';
 import ReviewAverageValue from '../components/ReviewAverageValue';
-import ReviewAverageValueOnlyStars from '../components/ReviewAverageValueOnlyStars';
 import ReviewUpperBody from '../components/ReviewUpperBody';
 import Page from '../components/Page';
 import ReactStars from 'react-stars';
 
-import { Table } from 'react-bootstrap';
+import { Table, Pagination } from 'react-bootstrap';
 import { TableRow, TableColumn, FontIcon, Button, Grid, Cell, SVGIcon } from 'react-md';
 
-import Pagination from '../components/PaginationNew';
+import Pagination2 from '../components/Pagination';
 
 const countRowStyles = {
     margin: 'auto',
@@ -37,16 +36,8 @@ const lineItemStyle = {
   listStyleType: 'none'
 };
 
-const breadcrumbStyle ={
-  fontSize: '14px',
-  fontColor: 'black',
-  marginTop: '10px'
-};
-
 const pId = `2z`;
-const itemsPerPage = 5;
 var avgValue = 0;
-const baseURL = '';
 
 export class ReviewItemListView extends React.Component {
   constructor(props) {
@@ -58,14 +49,15 @@ export class ReviewItemListView extends React.Component {
           data: [],
           renderedReviews: [],
           pId: pId,
-          page: 1,
-          total: 0
+          photographer: [],
+          page: 1
       };
       this.handlePageChange = this.handlePageChange.bind(this);
   }
 
   handlePageChange(page) {
-    const renderedReviews = this.state.data.slice((page - 1) * itemsPerPage, (page - 1) * itemsPerPage + itemsPerPage);
+    const renderedReviews = this.state.data.slice((page - 1) * 2, (page - 1) * 2 + 2);
+    // in a real app you could query the specific page from a server user list
     this.setState({ page, renderedReviews });
   }
 
@@ -77,8 +69,6 @@ export class ReviewItemListView extends React.Component {
       ReviewService.getReviews(this.state.pId).then((data) => {
           this.setState({
               data: [...data],
-              renderedReviews: data.slice(0, itemsPerPage),
-              total: data.length,
               loading: false
           });
       }).catch((e) => {
@@ -97,17 +87,14 @@ export class ReviewItemListView extends React.Component {
       });
   }
 
-
   render(){
+    const { page, total, renderedReviews } = this.state;
     if (this.state.loading) {
         return (<h2>Loading...</h2>);
     }
 
     return(
       <Page>
-        <div style={breadcrumbStyle}>
-        Home > Search > Profile > <b>Reviews</b>
-        </div>
         <ul>
           <div>
             <ReviewUpperBody pId={this.state.pId} location={'Munich, Germany'} pName={'Max Mustermann'} pInfoText={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At'}></ReviewUpperBody>
@@ -126,18 +113,13 @@ export class ReviewItemListView extends React.Component {
         </ul>
         <ul id="review-list">
           {
-            this.state.renderedReviews.map((review) =>
+            this.state.data.map((review) =>
             <li key={review._id} id="review-list" style={lineItemStyle}>
               <ReviewListItem review={review}/>
             </li>)
           }
         </ul>
-        <Pagination
-          margin={2}
-          page={this.state.page}
-          count={Math.ceil(this.state.total / itemsPerPage)}
-          onPageChange={this.handlePageChange}x
-        />
+        <Pagination2></Pagination2>
       </Page>
     );
   }
