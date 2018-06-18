@@ -8,6 +8,10 @@ import ReviewService from '../services/ReviewService';
 
 import { Link } from 'react-router-dom';
 
+import Button from 'react-md'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const breadcrumbStyle ={
   fontSize: '14px',
   marginTop: '10px'
@@ -29,10 +33,13 @@ export class ReviewFormView extends React.Component {
             photographerId: id
         }
     }
-
+    notify() {
+      toast("Wow so easy !");
+    }
     createReview(review) {
       ReviewService.createReview(review).then((data) => {
-          this.props.history.push('/viewReviews/' + review.photographerId);
+          this.notify();
+          this.props.history.push('/viewReviews/' + review.photographerId + '/success');
       }).catch((e) => {
           console.error(e);
           this.setState(Object.assign({}, this.state, {error: 'Error while creating review'}));
@@ -46,6 +53,9 @@ export class ReviewFormView extends React.Component {
 
         return (
           <Page>
+          <div>
+        <button onClick={this.notify}>Notify !</button>
+        </div>
             <div style={breadcrumbStyle}>
               Home > Search > Profile > <Link to={'/viewReviews/' + this.state.photographerId} style={linkStyle}>Reviews</Link> > <b>Create</b>
             </div>

@@ -39,7 +39,7 @@ export default class App extends React.Component {
                     name: "Search results"
                 },
                 { component: ReviewItemListView , path: '/viewReviews/:id', name: "Review"},
-                // TODO
+                { component: ReviewItemListView , path: '/viewReviews/:id/notification', name: "Review"},
                 { component: MovieDetailView , path: '/show/:id'},
                 { render: (props) => {
                         if(UserService.isAuthenticated()) {

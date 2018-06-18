@@ -11,6 +11,9 @@ import ReviewUpperBody from '../components/ReviewUpperBody';
 import Page from '../components/Page';
 import ReactStars from 'react-stars';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Table } from 'react-bootstrap';
 import { TableRow, TableColumn, FontIcon, Button, Grid, Cell, SVGIcon } from 'react-md';
 
@@ -47,10 +50,8 @@ const linkStyle = {
   color: 'black'
 };
 
-const pId = `2z`;
 const itemsPerPage = 5;
 var avgValue = 0;
-const baseURL = '';
 
 export class ReviewItemListView extends React.Component {
   constructor(props) {
@@ -71,6 +72,14 @@ export class ReviewItemListView extends React.Component {
   handlePageChange(page) {
     const renderedReviews = this.state.data.slice((page - 1) * itemsPerPage, (page - 1) * itemsPerPage + itemsPerPage);
     this.setState({ page, renderedReviews });
+    this.notify();
+  }
+
+  notifySuccess() {
+    toast.success("Thank you!Your review could successfully be added!");
+  }
+  notifyError() {
+    toast.error("Something went wrong! Your review couldn't be added!");
   }
 
   componentWillMount(){
@@ -99,6 +108,12 @@ export class ReviewItemListView extends React.Component {
       }).catch((e) => {
           console.error(e);
       });
+
+      if (window.location.href.indexOf('success') !== -1) {
+        this.notifySuccess();
+      } else if (window.location.href.indexOf('error') !== -1) {
+        this.notifyError();
+      }
   }
 
 
