@@ -165,6 +165,14 @@ nav {
     color: #ffffff;
 }
 
+@media (max-width: 1000px) {
+    .footer-links ul li {
+        list-style-type: none;
+        display: block !important;
+        padding: 5px 0;
+    }
+}
+
 @media (min-width: 768px) {
     .search-container .card, .categories .card {
         display: inline-block;
