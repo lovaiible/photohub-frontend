@@ -27,7 +27,7 @@ export default class LandingPage extends React.Component {
         return (
             <section>
                 <Header title={this.state.title}/>
-                <Slider />
+                <Slider/>
                 <main id='content' className="container">
                     {this.props.children}
                 </main>
