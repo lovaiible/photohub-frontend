@@ -10,9 +10,15 @@ export class ConfirmView extends React.Component {
     constructor(props) {
         super(props);
 
+        let pId = this.props.match.params.id;
+        let price = this.props.match.params.price;
+
         this.state = {
             loading: false,
-            data: []
+            data: [],
+            booking: undefined,
+            pId: pId,
+            price: price
         };
     }
 
@@ -30,27 +36,38 @@ export class ConfirmView extends React.Component {
         }).catch((e) => {
             console.error(e);
         });
+    }
 
-
-
-        /* let bookingId = this.props.match.params.bookingID;
-
-        ConfirmService.getBooking(bookingId).then((data) => {
-            this.setState({
-                data: bookingId,
-                loading: false,
-                error: undefined
+    createBooking(booking) {
+        if (this.state.date !== undefined) {
+            ConfirmService.createBooking(booking).then((data) => {
+                this.props.history.push('/showSummary/:_id');
+            }).catch((e) => {
+                console.error(e);
+                this.setState(Object.assign({}, this.state, {error: 'Error while creating movie'}));
             });
+        }
+
+    }
+
+    updateBooking(booking) {
+
+        ConfirmService.createBooking(booking).then((data) => {
+            this.props.history.push('/showSummary/'+ booking._id);
         }).catch((e) => {
             console.error(e);
-        }); */
+            this.setState(Object.assign({}, this.state, {error: 'Error while creating booking'}));
+        });
+        console.log(booking._id);
     }
+
 
     render() {
         if (this.state.loading) {
             return (<h2>Loading...</h2>);
         }
 
-        return (<Confirm data={this.state.data} />);
+        return (<Confirm booking={this.state.booking} onSubmit={(booking) => this.updateBooking(booking)} error={this.state.error}
+                         pId={this.state.pId} price={this.state.price} />);
     }
 }

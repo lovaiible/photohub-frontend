@@ -53,14 +53,16 @@ export class Confirm extends React.Component {
             payment: '',
             date: '',
             addInfo: '',
-            photographer: '',
+            photographer: this.props.pId,
+            price: this.props.price,
+            category: this.props.category
 
         };
 
         this.handleChangePayment = this.handleChangePayment.bind(this);
         this.handleChangeDate = this.handleChangeDate.bind(this);
         this.handleChangeAddInfo = this.handleChangeAddInfo.bind(this);
-        this.handleSubmit=this.handleSubmit(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         //    this.handleSubmit = this.handleSubmit.bind(this);
 
     }
@@ -79,7 +81,7 @@ export class Confirm extends React.Component {
     }
 
     handleSubmit(event) {
-        //event.preventDefault();
+        event.preventDefault();
 
         let booking = this.props.booking;
         if(booking == undefined) {
@@ -89,23 +91,27 @@ export class Confirm extends React.Component {
         booking.date = this.state.date;
         booking.payment = this.state.payment;
         booking.addInfo = this.state.addInfo;
+        booking.photographer = this.state.photographer;
+        console.log(booking.date);
+        console.log(booking.payment);
+        console.log(booking.addInfo);
+        console.log(booking.photographer);
 
         this.props.onSubmit(booking);
+
     }
 
     render() {
         return <Page>
             <Card style={style} className="md-block-centered">
-                <form onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
+                <form onSubmit={this.handleSubmit}>
                     <CardTitle title="Confirm and Pay"
                                subtitle="Please confirm your booking details and select a payment method below."/>
 
-                    <Grid className="grid-example"
-                        //onSubmit={this.handleSubmit()}
-                    >
+                    <Grid className="grid-example">
                         <Cell size={3}>
                             <Media aspectRatio="1-1">
-                                <img src={this.props.movie.posters.detailed} alt={this.props.movie.title}/>
+
                             </Media>
                         </Cell>
                         <Cell size={7}>
@@ -210,17 +216,19 @@ export class Confirm extends React.Component {
 
                     <CardText>
                         <h3>Cancellation Policy</h3>
-                        <div>Here stands the cancellation policy of PhotoHub</div>
+                        <div>It isn't possible to cancel an already created booking.
+                            You won't get the money back you already payed unless you don't make an agreement with the photographer.</div>
+
                     </CardText>
 
                     <Grid style={{display: 'flex', justifyContent: 'center'}}>
                         <Cell size={2}>
-                            <div>
-                                <Button flat primary swapTheming
-                                        type="submit" id="submit">
-                                    Submit
+                             <Button  id="submit" type="submit"
+                                      className="md-cell md-cell--2"
+                                     flat primary swapTheming>
+                                        Submit
                                 </Button>
-                            </div>
+
                         </Cell>
                         <Cell size={2}>
                             <div>

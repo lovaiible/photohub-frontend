@@ -25,22 +25,25 @@ export class Summary extends React.Component {
                            subtitle="This is the summary of your order:"/>
 
                 <CardText>
-                    Photographer:
+                    Bookingnumber: {this.props.booking._id}
+                </CardText>
+                <CardText>
+                    Photographer: {this.props.booking.pId}
                 </CardText>
                 <CardText>
                     Category:
                 </CardText>
                 <CardText>
-                    Date:
+                    Date: {this.props.booking.date}
                 </CardText>
                 <CardText>
-                    Price:
+                    Price: {this.props.booking.price}
                 </CardText>
                 <CardText>
-                    Used Payment Method:
+                    Used Payment Method: {this.props.booking.payment}
                 </CardText>
                 <CardText>
-                    Additional Information:
+                    Additional Information: {this.props.booking.addInfo}
                 </CardText>
 
             </Card>

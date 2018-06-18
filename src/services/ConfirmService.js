@@ -1,6 +1,7 @@
 "use strict";
 
 import HttpService from './HttpService';
+import MovieService from "./MovieService";
 
 export default class ConfirmService {
 
@@ -34,17 +35,24 @@ export default class ConfirmService {
         });
     }
 
-    static createBooking(booking) {
-        /* var randomstring2 = randomString({
-            length: 18,
-            numeric: true
+    static updateBooking(booking) {
+        return new Promise((resolve, reject) => {
+            HttpService.put(`${this.baseURL()}/${booking._id}`, booking, function(data) {
+                resolve(data);
+            }, function(textStatus) {
+                reject(textStatus);
+            });
         });
-        booking.bookingId = randomstring2; */
+    }
+
+    static createBooking(booking) {
+
+        //booking.id = Math.floor((Math.random() * 100000000) + 1).toString();
 
         return new Promise((resolve, reject) => {
-            HttpService.post(ConfirmService.baseURL(), booking, function (data) {
+            HttpService.post(ConfirmService.baseURL(), booking, function(data) {
                 resolve(data);
-            }, function (textStatus) {
+            }, function(textStatus) {
                 reject(textStatus);
             });
         });
