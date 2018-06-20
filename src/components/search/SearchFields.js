@@ -58,6 +58,7 @@ class SearchFields extends React.Component {
                             sameWidth={true}
                             defaultValue={this.state.city}
                             required={true}
+                            errorText="Location is required"
                         />
                         <SelectField
                             name="category"
@@ -75,6 +76,7 @@ class SearchFields extends React.Component {
                             simplifiedMenu={false}
                             defaultValue={this.state.category}
                             required={true}
+                            errorText="Category is required"
                         />
                         <DatePicker
                             name="date"
@@ -90,6 +92,7 @@ class SearchFields extends React.Component {
                             onChange={this.handleDate}
                             autoOk={true}
                             required={true}
+                            errorText="Date is required"
                         />
                         <Button raised primary className='search-button md-cell--3 margin-5'
                                 disabled={this.state.city === '' || this.state.date === ''}

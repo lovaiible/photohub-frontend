@@ -52,7 +52,6 @@ class UserLogin extends React.Component {
                             label="Login"
                             id="LoginField"
                             placeholder="Please enter your username"
-                            passwordInitiallyVisible={false}
                             className="md-row"
                             required={true}
                             value={this.state.username}
