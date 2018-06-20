@@ -105,16 +105,20 @@ const data = [
     }
 ];
 
-const SearchResult = () => (
-    <Page>
-        <SearchFieldView/>
-        <div className="search-container">
-            <div className="row">
-                {data.map((tile, i) => (<SearchResultItem tile={tile} key={i}/>))}
-            </div>
-            <PaginationNav/>
-        </div>
-    </Page>
-);
+class SearchResult extends React.Component {
+    render() {
+        return (
+            <Page>
+                <SearchFieldView/>
+                <div className="search-container">
+                    <div className="row">
+                        {data.map((tile, i) => (<SearchResultItem tile={tile} key={i}/>))}
+                    </div>
+                    <PaginationNav/>
+                </div>
+            </Page>
+        )
+    }
+};
 
 export default SearchResult;
