@@ -50,7 +50,7 @@ export class ConfirmView extends React.Component {
     updateBooking(booking) {
 
         ConfirmService.createBooking(booking).then((data) => {
-            this.props.history.push('/showSummary/' + booking.bookingID + '/'+ this.state.pId + '/' + booking.date + '/' + booking.payment + '/' + booking.payment );
+            this.props.history.push('/showSummary/' + booking.bookingID + '/'+ this.state.pId + '/' + booking.date + '/' + booking.payment + '/' + booking.addInfo );
         }).catch((e) => {
             console.error(e);
             this.setState(Object.assign({}, this.state, {error: 'Error while creating booking'}));

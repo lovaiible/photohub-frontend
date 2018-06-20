@@ -25,21 +25,6 @@ import {withRouter, Link} from "react-router-dom";
 
 
 const style = {maxWidth: 1000};
-   /* root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        padding: '15px'
-    },
-    gridList: {
-        overflowY: 'auto',
-        width: '100%'
-    },
-    titleStyle: {
-        color: 'rgb(0, 188, 212)',
-    },
-}; */
-
 
 export class Confirm extends React.Component {
 
@@ -50,6 +35,8 @@ export class Confirm extends React.Component {
             payment: '',
             date: '',
             addInfo: '',
+            pId: this.props.pId,
+
         };
 
         this.handleChangePayment = this.handleChangePayment.bind(this);
@@ -86,7 +73,7 @@ export class Confirm extends React.Component {
         booking.date = this.state.date;
         booking.payment = this.state.payment;
         booking.addInfo = this.state.addInfo;
-        booking.photographer = this.state.photographer;
+        booking.pId = this.state.pId;
 
 
         this.props.onSubmit(booking);
