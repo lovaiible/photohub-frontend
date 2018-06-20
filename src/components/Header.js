@@ -10,7 +10,7 @@ class Header extends React.Component {
     render() {
         return (
             <Toolbar
-                nav={<Nav/>}
+                nav={<Nav />}
                 fixed={false}
             />
         );
