@@ -8,7 +8,7 @@ import ReviewListItem from '../components/ReviewListItem';
 import ReviewAverageValue from '../components/ReviewAverageValue';
 import ReviewAverageValueOnlyStars from '../components/ReviewAverageValueOnlyStars';
 import ReviewUpperBody from '../components/ReviewUpperBody';
-import Page from '../components/Page';
+import Page from '../components/page/Page';
 import ReactStars from 'react-stars';
 
 import { ToastContainer, toast } from 'react-toastify';

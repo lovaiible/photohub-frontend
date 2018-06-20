@@ -3,8 +3,6 @@
 import React from 'react';
 import { DataTable, TableHeader, TableBody, TableRow, TableColumn, Button, TextField } from 'react-md';
 
-import Page from './Page'
-
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
