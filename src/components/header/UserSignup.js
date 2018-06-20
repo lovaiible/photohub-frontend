@@ -3,8 +3,8 @@
 import React from 'react';
 import {Button, Card, TextField} from 'react-md';
 import {withRouter} from 'react-router-dom';
-import {AlertMessage} from './AlertMessage';
-import Page from './Page';
+import {AlertMessage} from '../AlertMessage';
+import Page from '../page/Page';
 
 
 class UserSignup extends React.Component {

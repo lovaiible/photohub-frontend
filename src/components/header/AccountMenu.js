@@ -1,7 +1,7 @@
 import { AccessibleFakeButton, Avatar, DropdownMenu, FontIcon, IconSeparator, ListItem } from "react-md";
 import React from "react";
 import { withRouter } from "react-router-dom";
-import UserService from "../services/UserService";
+import UserService from "../../services/UserService";
 
 class AccountMenu extends React.Component {
 

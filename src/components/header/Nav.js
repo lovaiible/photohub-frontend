@@ -2,9 +2,9 @@
 
 import React from 'react';
 import {AccessibleFakeButton, Avatar, FontIcon, List, ListItem, DropdownMenu, IconSeparator} from "react-md";
-import img from '../img/logo/logo.png';
+import img from '../../img/logo/logo.png';
 import {Link} from "react-router-dom";
-import UserService from "../services/UserService";
+import UserService from "../../services/UserService";
 import {withRouter} from "react-router-dom";
 import AccountMenu from "./AccountMenu";
 

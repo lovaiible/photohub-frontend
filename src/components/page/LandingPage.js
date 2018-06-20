@@ -2,16 +2,18 @@
 
 import React from 'react';
 
-import Header from './Header';
-import {Footer} from './Footer';
+import Header from '../header/Header';
+import {Footer} from '../Footer';
+import {Slider} from "../Slider";
 
-export default class Page extends React.Component {
+
+export default class LandingPage extends React.Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            title: ''
+
         }
     }
 
@@ -25,6 +27,7 @@ export default class Page extends React.Component {
         return (
             <section>
                 <Header title={this.state.title}/>
+                <Slider/>
                 <main id='content' className="container">
                     {this.props.children}
                 </main>

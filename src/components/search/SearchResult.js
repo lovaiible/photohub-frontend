@@ -1,7 +1,7 @@
 "use strict"
 
 import React from 'react';
-import Page from '../Page';
+import Page from '../page/Page';
 import PaginationNav from "../Pagination";
 import {SearchResultItem} from "./SearchResultItem";
 import {SearchFieldView} from "../../views/SearchFieldView";
