@@ -1,7 +1,6 @@
 "use strict";
 
 import HttpService from './HttpService';
-import MovieService from "./MovieService";
 
 export default class ConfirmService {
 
@@ -47,11 +46,10 @@ export default class ConfirmService {
 
     static createBooking(booking) {
 
-        //booking.id = Math.floor((Math.random() * 100000000) + 1).toString();
-
         return new Promise((resolve, reject) => {
             HttpService.post(ConfirmService.baseURL(), booking, function(data) {
                 resolve(data);
+                console.log(data);
             }, function(textStatus) {
                 reject(textStatus);
             });

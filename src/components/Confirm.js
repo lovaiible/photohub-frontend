@@ -21,10 +21,7 @@ import Visa from '../../src/img/payments/Visa Logo.jpg'
 import MasterCard from '../../src/img/payments/MasterCard Logo.png'
 import PayPal from '../../src/img/payments/Paypal Logo.jpg'
 import Sofort from '../../src/img/payments/Sofort.png'
-import {withRouter} from "react-router-dom";
-
-//var randomString = require("random-string");
-
+import {withRouter, Link} from "react-router-dom";
 
 
 const style = {maxWidth: 1000};
@@ -53,17 +50,12 @@ export class Confirm extends React.Component {
             payment: '',
             date: '',
             addInfo: '',
-            photographer: this.props.pId,
-            price: this.props.price,
-            category: this.props.category
-
         };
 
         this.handleChangePayment = this.handleChangePayment.bind(this);
         this.handleChangeDate = this.handleChangeDate.bind(this);
         this.handleChangeAddInfo = this.handleChangeAddInfo.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        //    this.handleSubmit = this.handleSubmit.bind(this);
 
     }
 
@@ -88,14 +80,14 @@ export class Confirm extends React.Component {
             booking = {};
         }
 
+        booking.bookingID = Math.floor((Math.random() * 100000000) + 1).toString();
+
+
         booking.date = this.state.date;
         booking.payment = this.state.payment;
         booking.addInfo = this.state.addInfo;
         booking.photographer = this.state.photographer;
-        console.log(booking.date);
-        console.log(booking.payment);
-        console.log(booking.addInfo);
-        console.log(booking.photographer);
+
 
         this.props.onSubmit(booking);
 
@@ -227,6 +219,7 @@ export class Confirm extends React.Component {
                                       className="md-cell md-cell--2"
                                      flat primary swapTheming>
                                         Submit
+                                    <Link to={'/showSummary/'}/>
                                 </Button>
 
                         </Cell>

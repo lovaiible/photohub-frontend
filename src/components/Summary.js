@@ -2,13 +2,13 @@
 
 import React from 'react';
 import {withRouter} from "react-router-dom";
+import Page from './Page';
 
 import {
     Card,
     CardTitle,
     CardText,
 } from 'react-md';
-import {Confirm} from "./Confirm";
 
 const style = {maxWidth: 1000};
 
@@ -19,36 +19,38 @@ export class Summary extends React.Component {
     }
 
     render() {
-        return <Page>
-            <Card style={style} className="md-block-centered">
-                <CardTitle title="Thank you for using Photohub. "
-                           subtitle="This is the summary of your order:"/>
+        return (
+            <Page>
+                <Card style={style} className="md-block-centered">
+                    <CardTitle title="Thank you for using Photohub. "
+                               subtitle="This is the summary of your order:"/>
 
-                <CardText>
-                    Bookingnumber: {this.props.booking._id}
-                </CardText>
-                <CardText>
-                    Photographer: {this.props.booking.pId}
-                </CardText>
-                <CardText>
-                    Category:
-                </CardText>
-                <CardText>
-                    Date: {this.props.booking.date}
-                </CardText>
-                <CardText>
-                    Price: {this.props.booking.price}
-                </CardText>
-                <CardText>
-                    Used Payment Method: {this.props.booking.payment}
-                </CardText>
-                <CardText>
-                    Additional Information: {this.props.booking.addInfo}
-                </CardText>
+                    <CardText>
+                        Bookingnumber: {this.props.bookingID}
+                    </CardText>
+                    <CardText>
+                        Photographer: {this.props.pId}
+                    </CardText>
+                    <CardText>
+                        Category:
+                    </CardText>
+                    <CardText>
+                        Date: {this.props.date}
+                    </CardText>
+                    <CardText>
+                        Price:
+                    </CardText>
+                    <CardText>
+                        Used Payment Method: {this.props.payment}
+                    </CardText>
+                    <CardText>
+                        Additional Information:
+                    </CardText>
 
-            </Card>
-        </Page>
-            ;
+                </Card>
+            </Page>
+        );
     }
 }
+
 export default withRouter(Summary);

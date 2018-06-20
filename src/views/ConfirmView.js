@@ -11,14 +11,12 @@ export class ConfirmView extends React.Component {
         super(props);
 
         let pId = this.props.match.params.id;
-        let price = this.props.match.params.price;
 
         this.state = {
             loading: false,
             data: [],
             booking: undefined,
             pId: pId,
-            price: price
         };
     }
 
@@ -44,16 +42,15 @@ export class ConfirmView extends React.Component {
                 this.props.history.push('/showSummary/:_id');
             }).catch((e) => {
                 console.error(e);
-                this.setState(Object.assign({}, this.state, {error: 'Error while creating movie'}));
+                this.setState(Object.assign({}, this.state, {error: 'Error while creating booking'}));
             });
         }
-
     }
 
     updateBooking(booking) {
 
         ConfirmService.createBooking(booking).then((data) => {
-            this.props.history.push('/showSummary/'+ booking._id);
+            this.props.history.push('/showSummary/' + booking.bookingID + '/'+ this.state.pId + '/' + booking.date + '/' + booking.payment);
         }).catch((e) => {
             console.error(e);
             this.setState(Object.assign({}, this.state, {error: 'Error while creating booking'}));
@@ -68,6 +65,6 @@ export class ConfirmView extends React.Component {
         }
 
         return (<Confirm booking={this.state.booking} onSubmit={(booking) => this.updateBooking(booking)} error={this.state.error}
-                         pId={this.state.pId} price={this.state.price} />);
+                         pId={this.state.pId} />);
     }
 }

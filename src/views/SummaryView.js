@@ -5,21 +5,26 @@ import React from 'react';
 import Summary from './../components/Summary';
 import SummaryService from '../services/SummaryService';
 
-export class ConfirmView extends React.Component {
+export class SummaryView extends React.Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
             loading: false,
-            data: []
+            data: [],
+            id: '',
+            bookingID: this.props.match.params.bookingID,
+            pId: this.props.match.params.pId,
+            payment: this.props.match.params.payment,
+            date: this.props.match.params.date
         };
     }
 
     componentWillMount() {
-        SummaryService.getBooking(id).then((data) => {
+        SummaryService.getBooking(this.state.id).then((data) => {
             this.setState({
-                data: id,
+                data: data,
                 loading: false,
                 error: undefined
             });
@@ -33,6 +38,6 @@ export class ConfirmView extends React.Component {
             return (<h2>Loading...</h2>);
         }
 
-        return (<Summary data={this.state.data}/>);
+        return (<Summary data={this.state.data} pId={this.state.pId} date={this.state.date}  payment={this.state.payment} bookingID={this.state.bookingID} />);
     }
 }
