@@ -8,9 +8,6 @@ import { AlertMessage } from './AlertMessage';
 import Page from './Page';
 
 
-const style = { maxWidth: 500 };
-
-
 class UserLogin extends React.Component {
 
     constructor(props) {
@@ -49,7 +46,7 @@ class UserLogin extends React.Component {
     render() {
         return (
             <Page>
-                <Card style={style} className="md-block-centered">
+                <Card className="md-block-centered login">
                     <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
                         <TextField
                             label="Login"

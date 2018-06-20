@@ -1,10 +1,12 @@
 html {
     background: #ffffff;
+    height: 100%;
 }
 
-html, body, p, button, input, textarea {
+html, body, button, input, textarea {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
+    height: 100%;
 }
 
 h3, h4, h5, h6 {
@@ -36,7 +38,7 @@ h3, h4, h5, h6 {
 
 header {
     box-shadow: 0px 2px 0px #f0f0f0 !important;
-    margin: 20px 0;
+    margin: 20px 0 0;
 }
 
 nav {
@@ -139,6 +141,55 @@ nav {
     height: 100%; width: 100%;
 }
 
+#slider {
+    position: relative;
+    background-size: 100% 100%;
+    background: url("https://i.imgur.com/5YBZEAp.jpg") no-repeat fixed center;
+    height: 100vh;
+    margin-bottom: 50px;
+
+}
+.overlay {
+    background-color: #ffffff;
+    margin-top: 50px;
+}
+
+#slider .container {
+    padding-top: 150px;
+    height: 100%;
+}
+
+#slider h1, #slider .container > h4 {
+    text-align: center;
+    color: #ffffff;
+}
+
+.login {
+    margin: 100px 0;
+}
+
+@media (max-width: 900px) {
+    #slider .container {
+        padding-top: 80px;
+        height: 100%;
+    }
+    .col-3 {
+        flex: auto;
+        max-width: 100% !important;
+    }
+    #slider .container form button {
+        margin: 20px auto 15px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .footer-links ul li {
+        list-style-type: none;
+        display: block !important;
+        padding: 5px 0;
+    }
+}
+
 @media (min-width: 768px) {
     .search-container .card, .categories .card {
         display: inline-block;
@@ -151,16 +202,4 @@ nav {
         display: inline-block;
         width: 32%;
     }
-}
-
-/* Background images are set within the HTML using inline CSS, not here */
-
-.fill {
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
 }
