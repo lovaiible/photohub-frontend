@@ -3,7 +3,7 @@ html {
     height: 100%;
 }
 
-html, body, p, button, input, textarea {
+html, body, button, input, textarea {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     height: 100%;
