@@ -1,10 +1,9 @@
 "use strict";
 
 import React from 'react';
-import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import { MovieDetailView }   from './views/MovieDetailView';
 import { UserLoginView } from "./views/UserLoginView";
 import { UserSignupView } from "./views/UserSignupView";
 import {SearchResultView} from "./views/SearchResultView";
@@ -43,7 +42,6 @@ export default class App extends React.Component {
 
                 { component: CategoryListView, path: '/', exact: true },
                 { component: SearchResultView, path: '/results',},
-                { component: MovieDetailView , path: '/show/:id'},
                 { component: ConfirmView , path: '/showConfirm/:id'},
                 { component: SummaryView, path: '/showSummary/:bookingID/:pId/:date/:payment/:addInfo'},
                 { component: UserLoginView, path: '/login'},
