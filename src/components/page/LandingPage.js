@@ -2,9 +2,9 @@
 
 import React from 'react';
 
-import Header from './Header';
-import {Footer} from './Footer';
-import {Slider} from "./Slider";
+import Header from '../header/Header';
+import {Footer} from '../Footer';
+import {Slider} from "../Slider";
 
 
 export default class LandingPage extends React.Component {

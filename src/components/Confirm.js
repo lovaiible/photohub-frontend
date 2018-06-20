@@ -16,7 +16,7 @@ import ReactStars from 'react-stars'
 import {RadioGroup, RadioButton} from 'react-radio-buttons';
 
 
-import Page from './Page';
+import Page from './page/Page';
 import Visa from '../../src/img/payments/Visa Logo.jpg'
 import MasterCard from '../../src/img/payments/MasterCard Logo.png'
 import PayPal from '../../src/img/payments/Paypal Logo.jpg'

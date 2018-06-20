@@ -2,7 +2,7 @@
 
 import React from 'react';
 import CategoryListItem from "./CategoryListItem";
-import Page from "./Page";
+import Page from "../page/Page";
 
 export const CategoryList = ({data}) => (
         <div className="categories container">
