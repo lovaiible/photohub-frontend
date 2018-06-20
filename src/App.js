@@ -11,7 +11,10 @@ import { UserSignupView } from "./views/UserSignupView";
 
 import UserService from "./services/UserService";
 import {SearchResultView} from "./views/SearchResultView";
+import {ConfirmView} from "./views/ConfirmView";
 import {CategoryListView} from "./views/CategoryListView";
+import {SummaryView} from "./views/SummaryView";
+
 
 
 export default class App extends React.Component {
