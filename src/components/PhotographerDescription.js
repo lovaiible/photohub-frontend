@@ -1,8 +1,9 @@
 "use strict";
 import React from 'react';
 import {Avatar} from 'react-md';
+import Link from "react-router-dom";
 import ava from '../img/avatar/ava.png';
-import Page from './Page';
+
 
 class PhotographerDescription extends React.Component {
     constructor(props) {
@@ -14,8 +15,8 @@ class PhotographerDescription extends React.Component {
         const tagStyle = {
             transform: "rotate(-5deg)"
         }
-
-        const descriptionText = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+        const location = this.props.profile.location.city;
+        const descriptionText = this.props.profile.description;
 
         return (
             <div className="w3-container w3-row">
@@ -26,7 +27,8 @@ class PhotographerDescription extends React.Component {
                         <p className="w3-cell w3-center w3-border-right"><i className="material-icons">place</i>
                             Location: {location}</p>
                         <p className="w3-cell w3-center w3-border-right">100 successful order</p>
-                        <p className="w3-cell w3-center"> 100 Reviews</p>
+                        <p className="w3-cell w3-center"> successful order</p>
+                        {/*//<Link to={`/reviews/${this.props.pID}`}>*/}
                     </div>
                     <div className="descriptionText w3-opacity">{descriptionText}</div>
                 </div>

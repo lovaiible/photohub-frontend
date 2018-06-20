@@ -22,8 +22,7 @@ export default class App extends React.Component {
         this.state = {
             title: 'Photohub',
             routes: [
-                { component: PhotographerProfileView , path: '/', exact: true},
-                { component: MovieDetailView , path: '/show/:id'},
+                { component: PhotographerProfileView , path: '/profile/:id', exact: true},
                 { render: (props) => {
                         if(UserService.isAuthenticated()) {
                             return (<MovieFormView {... props} />)
