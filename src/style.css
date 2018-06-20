@@ -151,7 +151,6 @@ nav {
 }
 .overlay {
     background-color: #ffffff;
-    opacity: 0.8;
     margin-top: 50px;
 }
 
@@ -160,9 +159,23 @@ nav {
     height: 100%;
 }
 
-#slider h1, #slider h4 {
+#slider h1, #slider .container > h4 {
     text-align: center;
     color: #ffffff;
+}
+
+@media (max-width: 900px) {
+    #slider .container {
+        padding-top: 80px;
+        height: 100%;
+    }
+    .col-3 {
+        flex: auto;
+        max-width: 100% !important;
+    }
+    #slider .container form button {
+        margin: 20px auto 15px;
+    }
 }
 
 @media (max-width: 1000px) {

@@ -2,14 +2,13 @@
 
 import React from 'react';
 import Page from '../Page';
-import SearchFields from "./SearchFields";
 import PaginationNav from "../Pagination";
 import {SearchResultItem} from "./SearchResultItem";
 import {SearchFieldView} from "../../views/SearchFieldView";
 
 const data = [
     {
-        img: '../../src/img/stock-img/wedding.jpg',
+        img: 'https://i.imgur.com/HiAvwdZ.jpg',
         title: 'Wedding 1',
         category: 'Wedding Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
@@ -17,7 +16,7 @@ const data = [
         price: '100€'
     },
     {
-        img: '../../src/img/stock-img/portrait.jpg',
+        img: 'https://i.imgur.com/SDOhQji.jpg',
         title: 'Portrait 1',
         category: 'Portrait Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
@@ -25,7 +24,7 @@ const data = [
         price: '100€'
     },
     {
-        img: '../../src/img/stock-img/landscape.jpg',
+        img: 'https://i.imgur.com/vthid0n.jpg',
         title: 'Landscape 1',
         category: 'Landscape Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
@@ -33,7 +32,7 @@ const data = [
         price: '100€'
     },
     {
-        img: '../../src/img/stock-img/wedding.jpg',
+        img: 'https://i.imgur.com/HiAvwdZ.jpg',
         title: 'Wedding 2',
         category: 'Wedding Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
@@ -41,7 +40,7 @@ const data = [
         price: '100€'
     },
     {
-        img: '../../src/img/stock-img/portrait.jpg',
+        img: 'https://i.imgur.com/SDOhQji.jpg',
         title: 'Portrait 2',
         category: 'Portrait Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
@@ -49,7 +48,7 @@ const data = [
         price: '100€'
     },
     {
-        img: '../../src/img/stock-img/landscape.jpg',
+        img: 'https://i.imgur.com/vthid0n.jpg',
         title: 'Landscape 2',
         category: 'Landscape Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
@@ -57,7 +56,7 @@ const data = [
         price: '100€'
     },
     {
-        img: '../../src/img/stock-img/wedding.jpg',
+        img: 'https://i.imgur.com/HiAvwdZ.jpg',
         title: 'Wedding 3',
         category: 'Wedding Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
@@ -65,7 +64,7 @@ const data = [
         price: '100€'
     },
     {
-        img: '../../src/img/stock-img/portrait.jpg',
+        img: 'https://i.imgur.com/SDOhQji.jpg',
         title: 'Portrait 3',
         category: 'Portrait Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
@@ -73,7 +72,7 @@ const data = [
         price: '100€'
     },
     {
-        img: '../../src/img/stock-img/landscape.jpg',
+        img: 'https://i.imgur.com/vthid0n.jpg',
         title: 'Landscape 3',
         category: 'Landscape Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
@@ -81,7 +80,7 @@ const data = [
         price: '100€'
     },
     {
-        img: '../../src/img/stock-img/wedding.jpg',
+        img: 'https://i.imgur.com/HiAvwdZ.jpg',
         title: 'Wedding 4',
         category: 'Wedding Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
@@ -89,7 +88,7 @@ const data = [
         price: '100€'
     },
     {
-        img: '../../src/img/stock-img/portrait.jpg',
+        img: 'https://i.imgur.com/SDOhQji.jpg',
         title: 'Portrait 4',
         category: 'Portrait Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
@@ -97,7 +96,7 @@ const data = [
         price: '100€'
     },
     {
-        img: '../../src/img/stock-img/landscape.jpg',
+        img: 'https://i.imgur.com/vthid0n.jpg',
         title: 'Landscape 4',
         category: 'Landscape Photography',
         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
