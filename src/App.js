@@ -12,7 +12,7 @@ import {ConfirmView} from "./views/ConfirmView";
 import {CategoryListView} from "./views/CategoryListView";
 import { ReviewItemListView }   from './views/ReviewItemListView';
 import { ReviewFormView } from "./views/ReviewFormView";
-
+import UserService from "./services/UserService";
 
 import {ThroughProvider} from 'react-through'
 import {SummaryView} from "./views/SummaryView";
@@ -39,13 +39,8 @@ export default class App extends React.Component {
                 },
                 { component: ReviewItemListView , path: '/viewReviews/:id', name: "ReviewList"},
                 { component: ReviewItemListView , path: '/viewReviews/:id/notification', name: "ReviewList"},
-                { render: (props) => {
-                    if(UserService.isAuthenticated()) {
-                        return (<ReviewFormView {... props} />)
-                    }
-                    else {
-                        return (<Redirect to={'/login'}/>)
-                    }}, path: '/addReview/:id',},
+                { component: ReviewFormView , path: '/addReview/:id', name: "ReviewCreation"},
+
                 { component: CategoryListView, path: '/', exact: true },
                 { component: SearchResultView, path: '/results',},
                 { component: MovieDetailView , path: '/show/:id'},
