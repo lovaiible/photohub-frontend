@@ -1,7 +1,7 @@
 "use strict";
 
 import React from 'react';
-import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { MovieDetailView }   from './views/MovieDetailView';
