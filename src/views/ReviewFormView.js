@@ -3,7 +3,7 @@
 import React from 'react';
 
 import ReviewForm from '../components/ReviewForm';
-import Page from '../components/Page';
+import Page from '../components/page/Page';
 import ReviewService from '../services/ReviewService';
 
 import { Link } from 'react-router-dom';

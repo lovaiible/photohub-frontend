@@ -8,7 +8,6 @@ import ReviewListItem from '../components/ReviewListItem';
 import ReviewAverageValue from '../components/ReviewAverageValue';
 import ReviewAverageValueOnlyStars from '../components/ReviewAverageValueOnlyStars';
 import ReviewUpperBody from '../components/ReviewUpperBody';
-import Page from '../components/Page';
 import ReactStars from 'react-stars';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -20,6 +19,7 @@ import { TableRow, TableColumn, FontIcon, Button, Grid, Cell, SVGIcon } from 're
 import Pagination from '../components/PaginationNew';
 
 import { Link } from 'react-router-dom';
+import Page from "../components/page/Page";
 
 const countRowStyles = {
     margin: 'auto',
