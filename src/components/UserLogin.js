@@ -1,10 +1,9 @@
 "use strict";
 
 import React from 'react';
-import { Card, Button, TextField } from 'react-md';
-import { withRouter, Link } from 'react-router-dom';
-
-import { AlertMessage } from './AlertMessage';
+import {Button, Card, TextField} from 'react-md';
+import {Link, withRouter} from 'react-router-dom';
+import {AlertMessage} from './AlertMessage';
 import Page from './Page';
 
 
@@ -14,8 +13,8 @@ class UserLogin extends React.Component {
         super(props);
 
         this.state = {
-            username : '',
-            password : ''
+            username: '',
+            password: ''
         };
 
         this.handleChangeUsername = this.handleChangeUsername.bind(this);
@@ -47,32 +46,43 @@ class UserLogin extends React.Component {
         return (
             <Page>
                 <Card className="md-block-centered login">
-                    <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
+                    <form className="md-grid--stacked" onSubmit={this.handleSubmit}
+                          onReset={() => this.props.history.goBack()}>
                         <TextField
                             label="Login"
                             id="LoginField"
-                            type="text"
+                            placeholder="Please enter your username"
+                            passwordInitiallyVisible={false}
                             className="md-row"
                             required={true}
                             value={this.state.username}
                             onChange={this.handleChangeUsername}
-                            errorText="Login is required"/>
+                            errorText="Username is required"
+                        />
                         <TextField
                             label="Password"
                             id="PasswordField"
                             type="password"
+                            defaultValue=""
+                            placeholder="Please enter your password"
                             className="md-row"
                             required={true}
                             value={this.state.password}
                             onChange={this.handleChangePassword}
-                            errorText="Password is required"/>
-
-                        <Button id="submit" type="submit"
-                                disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
-                                raised primary className="md-cell md-cell--2">Login</Button>
-                        <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
-                        <Link to={'/register'} className="md-cell">Not registered yet?</Link>
-                        <AlertMessage className="md-row md-full-width" >{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
+                            errorText="Password is required"
+                        />
+                        <div>
+                            <Button id="submit" type="submit"
+                                    disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
+                                    raised primary className="md-cell md-cell--2 margin-5">Username</Button>
+                            <Button id="reset" type="reset" raised secondary
+                                    className="md-cell md-cell--2 margin-5">Dismiss</Button>
+                        </div>
+                        <div>
+                            <Link to={'/register'} className="md-cell">Not registered yet?</Link>
+                        </div>
+                        <AlertMessage
+                            className="md-row md-full-width">{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
                     </form>
                 </Card>
             </Page>

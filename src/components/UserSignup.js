@@ -1,14 +1,10 @@
 "use strict";
 
 import React from 'react';
-import { Card, Button, TextField } from 'react-md';
-import { withRouter } from 'react-router-dom';
-
-import { AlertMessage } from './AlertMessage';
+import {Button, Card, TextField} from 'react-md';
+import {withRouter} from 'react-router-dom';
+import {AlertMessage} from './AlertMessage';
 import Page from './Page';
-
-
-const style = { maxWidth: 500 };
 
 
 class UserSignup extends React.Component {
@@ -17,8 +13,8 @@ class UserSignup extends React.Component {
         super(props);
 
         this.state = {
-            username : '',
-            password : ''
+            username: '',
+            password: ''
         };
 
         this.handleChangeUsername = this.handleChangeUsername.bind(this);
@@ -49,13 +45,14 @@ class UserSignup extends React.Component {
     render() {
         return (
             <Page>
-                <Card style={style} className="md-block-centered">
-                    <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
+                <Card className="md-block-centered signup">
+                    <form className="md-grid--stacked" onSubmit={this.handleSubmit}
+                          onReset={() => this.props.history.goBack()}>
                         <TextField
                             label="Username"
                             id="UsernameField"
-                            type="text"
                             className="md-row"
+                            defaultValue=""
                             required={true}
                             value={this.state.username}
                             onChange={this.handleChangeUsername}
@@ -64,17 +61,21 @@ class UserSignup extends React.Component {
                             label="Password"
                             id="PasswordField"
                             type="password"
+                            defaultValue=""
                             className="md-row"
                             required={true}
                             value={this.state.password}
                             onChange={this.handleChangePassword}
                             errorText="Password is required"/>
-
-                        <Button id="submit" type="submit"
-                                disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
-                                raised primary className="md-cell md-cell--2">Register</Button>
-                        <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
-                        <AlertMessage className="md-row md-full-width" >{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
+                        <div>
+                            <Button id="submit" type="submit"
+                                    disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
+                                    raised primary className="md-cell md-cell--2 margin-5">Register</Button>
+                            <Button id="reset" type="reset" raised secondary
+                                    className="md-cell md-cell--2 margin-5">Dismiss</Button>
+                        </div>
+                        <AlertMessage
+                            className="md-row md-full-width">{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
                     </form>
                 </Card>
             </Page>

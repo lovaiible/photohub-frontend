@@ -33,7 +33,7 @@ class SearchFields extends React.Component {
     }
 
     handleDate(input) {
-        // TODO: format date
+        // TODO format date
         this.setState({date: input});
     }
 

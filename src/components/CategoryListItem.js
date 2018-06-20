@@ -2,8 +2,6 @@
 
 import React from 'react';
 
-// import UserService from '../services/UserService';
-
 
 export default class CategoryListItem extends React.Component {
 
