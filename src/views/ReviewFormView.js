@@ -33,12 +33,9 @@ export class ReviewFormView extends React.Component {
             photographerId: id
         }
     }
-    notify() {
-      toast("Wow so easy !");
-    }
+
     createReview(review) {
       ReviewService.createReview(review).then((data) => {
-          this.notify();
           this.props.history.push('/viewReviews/' + review.photographerId + '/success');
       }).catch((e) => {
           console.error(e);
@@ -53,9 +50,6 @@ export class ReviewFormView extends React.Component {
 
         return (
           <Page>
-          <div>
-        <button onClick={this.notify}>Notify !</button>
-        </div>
             <div style={breadcrumbStyle}>
               Home > Search > Profile > <Link to={'/viewReviews/' + this.state.photographerId} style={linkStyle}>Reviews</Link> > <b>Create</b>
             </div>

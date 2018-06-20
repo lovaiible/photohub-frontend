@@ -64,7 +64,8 @@ export class ReviewItemListView extends React.Component {
           renderedReviews: [],
           pId: pId,
           page: 1,
-          total: 0
+          total: 0,
+          count: 0
       };
       this.handlePageChange = this.handlePageChange.bind(this);
   }
@@ -76,7 +77,7 @@ export class ReviewItemListView extends React.Component {
   }
 
   notifySuccess() {
-    toast.success("Thank you!Your review could successfully be added!");
+    toast.success("Thank you! Your review could successfully be added!");
   }
   notifyError() {
     toast.error("Something went wrong! Your review couldn't be added!");
@@ -108,14 +109,18 @@ export class ReviewItemListView extends React.Component {
       }).catch((e) => {
           console.error(e);
       });
-
-      if (window.location.href.indexOf('success') !== -1) {
-        this.notifySuccess();
-      } else if (window.location.href.indexOf('error') !== -1) {
-        this.notifyError();
-      }
   }
 
+componentDidUpdate() {
+  if(this.state.count == 0){
+    if (window.location.href.indexOf('success') > -1) {
+      this.notifySuccess();
+    } else if (window.location.href.indexOf('error') > -1) {
+      this.notifyError();
+    }
+    this.setState({count: 1});
+  }
+}
 
   render(){
     if (this.state.loading) {

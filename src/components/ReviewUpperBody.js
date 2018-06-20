@@ -30,7 +30,6 @@ const reviewUpperBodyTextStyle = {
 export default class ReviewUpperBody extends React.Component {
   constructor(props){
     super(props);
-    console.log('PhotographerID in upper body: ' + this.props.pId);
   }
 
   render(){

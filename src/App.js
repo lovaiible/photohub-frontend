@@ -38,8 +38,8 @@ export default class App extends React.Component {
                     path: '/results',
                     name: "Search results"
                 },
-                { component: ReviewItemListView , path: '/viewReviews/:id', name: "Review"},
-                { component: ReviewItemListView , path: '/viewReviews/:id/notification', name: "Review"},
+                { component: ReviewItemListView , path: '/viewReviews/:id', name: "ReviewList"},
+                { component: ReviewItemListView , path: '/viewReviews/:id/notification', name: "ReviewList"},
                 { component: MovieDetailView , path: '/show/:id'},
                 { render: (props) => {
                         if(UserService.isAuthenticated()) {

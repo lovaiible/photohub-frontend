@@ -82,7 +82,7 @@ class ReviewForm extends React.Component {
     render() {
         return (
                 <Card style={style} className="md-block-centered">
-                    <form onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
+                    <form onSubmit={this.handleSubmit} onReset={() => this.props.history.push('/viewReviews/' + this.state.photographerId)}>
                     <h3 style={textBoxStyle}> Create a new Review</h3>
                       <Grid>
                         <Cell size={1}>
