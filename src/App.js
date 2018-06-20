@@ -22,18 +22,10 @@ export default class App extends React.Component {
         this.state = {
             title: 'Photohub',
             routes: [
-                {
-                    component: CategoryListView,
-                    path: '/',
-                    exact: true
-                },
-                {
-                    component: SearchResultView,
-                    path: '/results',
-                },
-
-                // TODO
+                { component: CategoryListView, path: '/', exact: true },
+                { component: SearchResultView, path: '/results',},
                 { component: MovieDetailView , path: '/show/:id'},
+
                 { render: (props) => {
                         if(UserService.isAuthenticated()) {
                             return (<MovieFormView {... props} />)
@@ -41,6 +33,7 @@ export default class App extends React.Component {
                         else {
                             return (<Redirect to={'/login'}/>)
                         }} , path: '/edit/:id'},
+
                 { render: (props) => {
                     if(UserService.isAuthenticated()) {
                         return (<MovieFormView {... props} />)
