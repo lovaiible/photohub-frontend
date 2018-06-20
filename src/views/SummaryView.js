@@ -17,7 +17,8 @@ export class SummaryView extends React.Component {
             bookingID: this.props.match.params.bookingID,
             pId: this.props.match.params.pId,
             payment: this.props.match.params.payment,
-            date: this.props.match.params.date
+            date: this.props.match.params.date,
+            addInfo: this.props.match.params.addInfo
         };
     }
 
@@ -38,6 +39,6 @@ export class SummaryView extends React.Component {
             return (<h2>Loading...</h2>);
         }
 
-        return (<Summary data={this.state.data} pId={this.state.pId} date={this.state.date}  payment={this.state.payment} bookingID={this.state.bookingID} />);
+        return (<Summary data={this.state.data} pId={this.state.pId} date={this.state.date}  payment={this.state.payment} bookingID={this.state.bookingID} addInfo={this.state.addInfo} />);
     }
 }

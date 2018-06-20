@@ -38,7 +38,7 @@ export default class App extends React.Component {
                 // TODO
                 //{ component: MovieDetailView , path: '/show/:id'},
                 { component: ConfirmView , path: '/showConfirm/:id'},
-                { component: SummaryView, path: '/showSummary/:bookingID/:pId/:date/:payment'},
+                { component: SummaryView, path: '/showSummary/:bookingID/:pId/:date/:payment/:addInfo'},
                 { component: UserLoginView, path: '/login'},
                 { component: UserSignupView, path: '/register'}
             ]

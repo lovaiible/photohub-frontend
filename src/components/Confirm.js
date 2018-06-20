@@ -93,10 +93,23 @@ export class Confirm extends React.Component {
 
     }
 
+    handleReset(event){
+        event.preventDefault()
+
+        let booking = this.props.booking;
+        if(booking == undefined) {
+            booking = {};
+        }
+
+        booking.date = undefined;
+        booking.payment = undefined;
+        booking.addInfo = undefined;
+    }
+
     render() {
         return <Page>
             <Card style={style} className="md-block-centered">
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} onReset={this.handleReset}>
                     <CardTitle title="Confirm and Pay"
                                subtitle="Please confirm your booking details and select a payment method below."/>
 
