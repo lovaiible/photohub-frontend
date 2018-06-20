@@ -5,7 +5,7 @@ import CategoryListItem from "./CategoryListItem";
 import Page from "../page/Page";
 
 export const CategoryList = ({data}) => (
-        <div className="categories container">
+        <div className="categories">
             <div>
                 <h2>Explore our categories</h2>
             </div>

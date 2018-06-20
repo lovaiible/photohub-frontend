@@ -13,7 +13,7 @@ export class SearchFieldView extends React.Component {
 
         this.state = {
             loading: false,
-            categories: [],
+            categories: ['All'],
             locations: []
         };
     }
@@ -25,7 +25,7 @@ export class SearchFieldView extends React.Component {
     }
 
     componentDidMount() {
-        var categories = [];
+        var categories = ['All'];
         var locations = [];
         
         CategoryService.getCategories().then((data) => {
@@ -61,3 +61,4 @@ export class SearchFieldView extends React.Component {
         );
     }
 }
+

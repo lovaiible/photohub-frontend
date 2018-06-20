@@ -35,6 +35,7 @@ class AccountMenu extends React.Component {
                     y: DropdownMenu.VerticalAnchors.BOTTOM,
                 }}
                 position={DropdownMenu.Positions.BELOW}
+                fullWidth={true}
             >
                 <AccessibleFakeButton
                     component={IconSeparator}
