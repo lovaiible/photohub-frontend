@@ -59,7 +59,7 @@ header nav .logo {
 /* ==== Content ==== */
 
 main .container,  div .container {
-    margin-top: 65px;
+    margin-top: 100px;
 }
 
 /* ==== Slider ==== */
@@ -131,7 +131,7 @@ main .container,  div .container {
 .md-card.login, .md-card.signup  {
     text-align: center;
     max-width: 700px;
-    margin: 150px auto 60px !important;
+    margin: 100px auto 60px !important;
     padding: 20px;
 }
 
