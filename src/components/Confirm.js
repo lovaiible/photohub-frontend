@@ -14,8 +14,8 @@ import {
 } from 'react-md';
 import ReactStars from 'react-stars'
 import {RadioGroup, RadioButton} from 'react-radio-buttons';
+import Page from './page/Page';
 
-import Page from './Page';
 import {withRouter, Link} from "react-router-dom";
 
 const style = {

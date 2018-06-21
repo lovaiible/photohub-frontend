@@ -12,7 +12,7 @@ export default class HttpService {
         if(token) {
             header.append('Authorization', `JWT ${token}`);
         }
-
+        //debugger;
         fetch(url, {
             method: 'GET',
             headers: header

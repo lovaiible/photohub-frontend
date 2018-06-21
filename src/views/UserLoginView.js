@@ -2,8 +2,7 @@
 
 import React from 'react';
 
-import UserLogin from '../components/UserLogin';
-
+import UserLogin from '../components/header/UserLogin';
 import UserService from '../services/UserService';
 
 
@@ -27,7 +26,7 @@ export class UserLoginView extends React.Component {
 
     render() {
         return (
-          <UserLogin onSubmit={(user) => this.login(user)} error={this.state.error}></UserLogin>
+          <UserLogin onSubmit={(user) => this.login(user)} error={this.state.error}> </UserLogin>
         );
     }
 }
