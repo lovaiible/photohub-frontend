@@ -13,6 +13,7 @@ import {ReviewItemListView} from './views/ReviewItemListView';
 import {ReviewFormView} from "./views/ReviewFormView";
 import {SummaryView} from "./views/SummaryView";
 import UserService from "./services/UserService";
+import Error from "./components/page/Error";
 
 
 export default class App extends React.Component {
@@ -40,7 +41,8 @@ export default class App extends React.Component {
                 {component: ConfirmView, path: '/showConfirm/:id'},
                 {component: SummaryView, path: '/showSummary/:bookingID/:pId/:date/:payment/:addInfo'},
                 {component: UserLoginView, path: '/login'},
-                {component: UserSignupView, path: '/register'}
+                {component: UserSignupView, path: '/register'},
+                {component: Error, path: '*'}
             ]
         };
     }

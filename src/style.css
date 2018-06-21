@@ -179,6 +179,25 @@ nav {
     width: 100% !important;
 }
 
+#error {
+    background-size: 100% 100%;
+    background: url("https://i.imgur.com/rIxWRO1.jpg") no-repeat fixed center;
+    height: 100%;
+    overflow: hidden;
+}
+
+#error .container {
+    height: 450px;
+    justify-content: center;
+    text-align: center;
+    padding-top: 120px;
+}
+
+#error .container .md-card {
+    padding: 30px;
+    opacity: 0.9;
+}
+
 @media (max-width: 900px) {
     #slider .container {
         padding-top: 80px;

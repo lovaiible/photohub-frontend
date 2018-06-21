@@ -49,7 +49,7 @@ class UserLogin extends React.Component {
                     <form className="md-grid--stacked" onSubmit={this.handleSubmit}
                           onReset={() => this.props.history.goBack()}>
                         <TextField
-                            label="Login"
+                            label="Username"
                             id="LoginField"
                             placeholder="Please enter your username"
                             className="md-row"
@@ -73,7 +73,7 @@ class UserLogin extends React.Component {
                         <div>
                             <Button id="submit" type="submit"
                                     disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
-                                    raised primary className="md-cell md-cell--2 margin-5">Username</Button>
+                                    raised primary className="md-cell md-cell--2 margin-5">Login</Button>
                             <Button id="reset" type="reset" raised secondary
                                     className="md-cell md-cell--2 margin-5">Dismiss</Button>
                         </div>
