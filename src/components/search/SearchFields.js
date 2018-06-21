@@ -4,6 +4,7 @@ import React from 'react';
 import {Autocomplete, Button, DatePicker, SelectField} from 'react-md';
 import NodeGeocoder from 'node-geocoder';
 import {withRouter} from "react-router-dom";
+import moment from 'moment';
 
 class SearchFields extends React.Component {
 
@@ -12,16 +13,13 @@ class SearchFields extends React.Component {
 
         let city = '';
         let category = 'All';
-        //TODO set date to today
-        let date = '';
+        let date = moment().format('MM/DD/YYYY');
 
         if (this.props.location.search !== '') {
             let params = new URLSearchParams(this.props.location.search);
             city = params.get('city');
             category = params.get('category');
-            console.log('category: ' + category);
             date = params.get('date');
-            console.log('date: ' + date);
         }
 
         this.state = {
@@ -36,7 +34,6 @@ class SearchFields extends React.Component {
         this.handleCity = this.handleCity.bind(this);
         this.handleCategory = this.handleCategory.bind(this);
         this.handleDate = this.handleDate.bind(this);
-
     }
 
     handleCity(input) {
@@ -103,10 +100,11 @@ class SearchFields extends React.Component {
                             label="Date"
                             firstDayOfWeek={1}
                             disableOuterDates={true}
-                            disabledDays={{before: Date.now()}}
                             placeholder="Choose your date"
                             className="col-3"
                             displayMode="portrait"
+                            minDate={moment().toDate()}
+                            locales="en-US"
                             defaultValue={this.state.date}
                             onChange={this.handleDate}
                             autoOk={true}
