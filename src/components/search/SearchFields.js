@@ -3,15 +3,30 @@
 import React from 'react';
 import {Autocomplete, Button, DatePicker, SelectField} from 'react-md';
 import NodeGeocoder from 'node-geocoder';
+import {withRouter} from "react-router-dom";
+import moment from 'moment';
 
 class SearchFields extends React.Component {
 
     constructor(props) {
         super(props);
+
+        let currentDate = moment().format('MM/DD/YYYY');
+        let city = '';
+        let category = 'All';
+        let date = currentDate;
+
+        if (this.props.location.search !== '') {
+            let params = new URLSearchParams(this.props.location.search);
+            city = params.get('city') !== ('' || undefined) ? params.get('city') : '';
+            category = params.get('category') !== ('' || undefined) ? params.get('category') : 'All';
+            date = params.get('date') !== ('' || undefined) ? params.get('date') : currentDate;
+        }
+
         this.state = {
-            city: '',
-            category: 'All',
-            date: '',
+            city: city,
+            category: category,
+            date: date,
             categories: this.props.categories,
             cities: this.props.locations
         };
@@ -20,7 +35,6 @@ class SearchFields extends React.Component {
         this.handleCity = this.handleCity.bind(this);
         this.handleCategory = this.handleCategory.bind(this);
         this.handleDate = this.handleDate.bind(this);
-
     }
 
     handleCity(input) {
@@ -33,13 +47,15 @@ class SearchFields extends React.Component {
     }
 
     handleDate(input) {
-        // TODO: format date
-        this.setState({date: input});
+        this.setState({date: encodeURI(input)});
     }
 
-
     handleSearch() {
-        // TODO filter search results
+        if (this.props.location.pathname !== "/") {
+            window.location.reload();
+        }
+        window.location = '#/results?city=' + this.state.city + '&category=' + this.state.category + '&date=' + this.state.date;
+
     }
 
     render() {
@@ -58,6 +74,8 @@ class SearchFields extends React.Component {
                             sameWidth={true}
                             defaultValue={this.state.city}
                             required={true}
+                            focusInputOnAutocomplete={true}
+                            errorText="Location is required"
                         />
                         <SelectField
                             name="category"
@@ -75,6 +93,7 @@ class SearchFields extends React.Component {
                             simplifiedMenu={false}
                             defaultValue={this.state.category}
                             required={true}
+                            errorText="Category is required"
                         />
                         <DatePicker
                             name="date"
@@ -82,18 +101,20 @@ class SearchFields extends React.Component {
                             label="Date"
                             firstDayOfWeek={1}
                             disableOuterDates={true}
-                            disabledDays={{before: Date.now()}}
                             placeholder="Choose your date"
                             className="col-3"
                             displayMode="portrait"
+                            minDate={moment().toDate()}
+                            locales="en-US"
                             defaultValue={this.state.date}
                             onChange={this.handleDate}
                             autoOk={true}
                             required={true}
+                            errorText="Date is required"
                         />
                         <Button raised primary className='search-button md-cell--3 margin-5'
-                                disabled={this.state.city === '' || this.state.date === ''}
-                                onClick={this.handleSearch()}>Search</Button>
+                                disabled={this.state.city === ('' || null) || this.state.category === ('' || null) || this.state.date === ('' || null)}
+                                onClick={() => this.handleSearch()}>Search</Button>
                     </div>
                 </form>
             </div>
@@ -111,7 +132,6 @@ class SearchFields extends React.Component {
 
         var geocoder = NodeGeocoder(options);
         geocoder.reverse({lat: latitude, lon: longitude}, function (err, res) {
-            console.log('location: ' + res);
             return res;
         });
     }
@@ -132,4 +152,4 @@ class SearchFields extends React.Component {
 
 }
 
-export default SearchFields;
+export default withRouter(SearchFields);

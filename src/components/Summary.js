@@ -2,17 +2,32 @@
 
 import React from 'react';
 import {withRouter} from "react-router-dom";
-import Page from './Page';
+import Page from './page/Page';
 
 import {
     Card,
     CardTitle,
     CardText,
     Cell,
-    Grid
+    Grid,
+    DatePicker
 } from 'react-md';
 
-const style = {maxWidth: 1000};
+const style = {
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        padding: '15px'
+    },
+    gridList: {
+        overflowY: 'auto',
+        width: '100%'
+    },
+    titleStyle: {
+        color: 'rgb(0, 188, 212)',
+    },
+};
 
 export class Summary extends React.Component {
 

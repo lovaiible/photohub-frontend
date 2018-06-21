@@ -17,6 +17,13 @@ export default class ReviewService {
                 reject(textStatus);
             });
         });
+       return new Promise((resolve, reject) => {
+           HttpService.get(`${ReviewService.baseURL()}/${id}`, function(data) {
+               resolve(data);
+           }, function(textStatus) {
+               reject(textStatus);
+           });
+       });
     }
 
     static getReview(id) {
@@ -55,6 +62,7 @@ export default class ReviewService {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);
+               reject(textStatus);
             });
         });
     }
@@ -84,5 +92,17 @@ export default class ReviewService {
                 reject(textStatus);
             });
         });
+      return new Promise((resolve, reject) => {
+          HttpService.get(`${ReviewService.baseURL()}/getAvgRating/${id}`, function(data) {
+              if(data != undefined || Object.keys(data).length !== 0) {
+                  resolve(data);
+              }
+              else {
+                  reject('Error while retrieving review');
+              }
+          }, function(textStatus) {
+              reject(textStatus);
+          });
+      });
     }
 }
