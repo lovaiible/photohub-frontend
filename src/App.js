@@ -11,6 +11,7 @@ import {SearchResultView} from "./views/SearchResultView";
 import {ConfirmView} from "./views/ConfirmView";
 import {CategoryListView} from "./views/CategoryListView";
 import {SummaryView} from "./views/SummaryView";
+import { PhotographerProfileView } from './views/PhotographerProfileView';
 
 
 
@@ -27,6 +28,21 @@ export default class App extends React.Component {
                 { component: MovieDetailView , path: '/show/:id'},
                 { component: ConfirmView , path: '/showConfirm/:id'},
                 { component: SummaryView, path: '/showSummary/:bookingID/:pId/:date/:payment/:addInfo'},
+                { component: PhotographerProfileView , path: '/profile/:id', exact: true},
+                { render: (props) => {
+                        if(UserService.isAuthenticated()) {
+                            return (<MovieFormView {... props} />)
+                        }
+                        else {
+                            return (<Redirect to={'/login'}/>)
+                        }} , path: '/edit/:id'},
+                { render: (props) => {
+                    if(UserService.isAuthenticated()) {
+                        return (<MovieFormView {... props} />)
+                    }
+                    else {
+                        return (<Redirect to={'/login'}/>)
+                    }}, path: '/add',},
                 { component: UserLoginView, path: '/login'},
                 { component: UserSignupView, path: '/register'}
             ]
