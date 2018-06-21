@@ -113,7 +113,9 @@ class SearchFields extends React.Component {
                             errorText="Date is required"
                         />
                         <Button raised primary className='search-button md-cell--3 margin-5'
-                                disabled={this.state.city === ('' || null) || this.state.category === ('' || null) || this.state.date === ('' || null)}
+                                disabled={this.state.city === '' || this.state.city === null ||
+                                          this.state.category === '' || this.state.category === null ||
+                                          this.state.date === '' || this.state.date ===  null}
                                 onClick={() => this.handleSearch()}>Search</Button>
                     </div>
                 </form>
