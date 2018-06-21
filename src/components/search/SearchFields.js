@@ -14,7 +14,7 @@ class SearchFields extends React.Component {
         let category = 'All';
         let date = '';
 
-        if(this.props.location.search !== '') {
+        if (this.props.location.search !== '') {
             let params = new URLSearchParams(this.props.location.search);
             city = params.get('city');
             category = params.get('category');
@@ -51,7 +51,9 @@ class SearchFields extends React.Component {
     }
 
     handleSearch() {
+        window.location.reload();
         window.location = '#/results?city=' + this.state.city + '&category=' + this.state.category + '&date=' + this.state.date;
+
     }
 
     render() {
@@ -126,7 +128,6 @@ class SearchFields extends React.Component {
 
         var geocoder = NodeGeocoder(options);
         geocoder.reverse({lat: latitude, lon: longitude}, function (err, res) {
-            console.log('location: ' + res);
             return res;
         });
     }

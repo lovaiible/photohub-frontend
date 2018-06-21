@@ -46,7 +46,7 @@ class AccountMenu extends React.Component {
                         </IconSeparator>
                     }
                 >
-                    <Avatar suffix="pink">{(this.state.user.username).substr(0, 1)}</Avatar>
+                    <Avatar suffix="pink">{(this.state.user.username).substr(0, 1).toUpperCase()}</Avatar>
                 </AccessibleFakeButton>
             </DropdownMenu>
         )
