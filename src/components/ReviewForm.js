@@ -11,7 +11,8 @@ import ReactStars from 'react-stars'
 const style = { maxWidth: 700, marginTop: '20px' };
 
 const textBoxStyle = {
-  marginLeft: '15px'
+  marginLeft: '15px',
+  maxWidth: '500'
 };
 
 const bottomStyle = {

@@ -42,10 +42,6 @@ const lineItemStyle = {
   listStyleType: 'none'
 };
 
-const breadcrumbStyle ={
-  fontSize: '14px',
-  marginTop: '10px'
-};
 const linkStyle = {
   color: 'black'
 };
@@ -129,7 +125,7 @@ componentDidUpdate() {
 
     return(
       <Page>
-        <div style={breadcrumbStyle}>
+        <div className="breadcrumbs">
           Home > Search > Profile > <b>Reviews</b>
         </div>
         <div>
