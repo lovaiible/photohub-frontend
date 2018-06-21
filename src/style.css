@@ -95,6 +95,10 @@ main .container,  div .container {
     justify-content: space-around;
 }
 
+.search-container .row {
+    margin-bottom: 50px;
+}
+
 .search-container .card, .categories .card {
     margin: 10px 7px 0;
 }

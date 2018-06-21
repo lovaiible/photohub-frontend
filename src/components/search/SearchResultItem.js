@@ -3,8 +3,6 @@
 import React from 'react';
 import StarsRating from 'react-stars-rating';
 
-// import UserService from '../services/UserService';
-
 
 export class SearchResultItem extends React.Component {
 
@@ -21,7 +19,7 @@ export class SearchResultItem extends React.Component {
                     <div className="card-body">
                         <h5 className="card-title">
                             <span>{this.props.description ? this.props.description : ''}</span>
-                            <span className="float-right">{this.props.price}</span>
+                            <span className="float-right">{this.props.price} €</span>
                         </h5>
                         <p className="card-text">
                             <span>{this.props.title}</span>

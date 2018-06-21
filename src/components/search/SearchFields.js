@@ -11,15 +11,16 @@ class SearchFields extends React.Component {
     constructor(props) {
         super(props);
 
+        let currentDate = moment().format('MM/DD/YYYY');
         let city = '';
         let category = 'All';
-        let date = moment().format('MM/DD/YYYY');
+        let date = currentDate;
 
         if (this.props.location.search !== '') {
             let params = new URLSearchParams(this.props.location.search);
-            city = params.get('city');
-            category = params.get('category');
-            date = params.get('date');
+            city = params.get('city') !== ('' || undefined) ? params.get('city') : '';
+            category = params.get('category') !== ('' || undefined) ? params.get('category') : 'All';
+            date = params.get('date') !== ('' || undefined) ? params.get('date') : currentDate;
         }
 
         this.state = {
@@ -50,7 +51,7 @@ class SearchFields extends React.Component {
     }
 
     handleSearch() {
-        if(this.props.location.pathname !== "/") {
+        if (this.props.location.pathname !== "/") {
             window.location.reload();
         }
         window.location = '#/results?city=' + this.state.city + '&category=' + this.state.category + '&date=' + this.state.date;
@@ -112,7 +113,7 @@ class SearchFields extends React.Component {
                             errorText="Date is required"
                         />
                         <Button raised primary className='search-button md-cell--3 margin-5'
-                                disabled={this.state.city === '' || this.state.date === ''}
+                                disabled={this.state.city === ('' || null) || this.state.category === ('' || null) || this.state.date === ('' || null)}
                                 onClick={() => this.handleSearch()}>Search</Button>
                     </div>
                 </form>
