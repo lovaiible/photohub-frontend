@@ -59,7 +59,7 @@ header nav .logo {
 /* ==== Content ==== */
 
 main .container,  div .container {
-    margin-top: 80px;
+    margin-top: 65px;
 }
 
 /* ==== Slider ==== */
@@ -86,7 +86,7 @@ main .container,  div .container {
 /* ==== Search ==== */
 
 .search-button {
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 .search-container {
