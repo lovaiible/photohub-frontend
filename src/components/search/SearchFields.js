@@ -12,6 +12,7 @@ class SearchFields extends React.Component {
 
         let city = '';
         let category = 'All';
+        //TODO set date to today
         let date = '';
 
         if (this.props.location.search !== '') {
@@ -75,6 +76,7 @@ class SearchFields extends React.Component {
                             sameWidth={true}
                             defaultValue={this.state.city}
                             required={true}
+                            focusInputOnAutocomplete={true}
                             errorText="Location is required"
                         />
                         <SelectField

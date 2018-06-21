@@ -1,3 +1,5 @@
+/* ==== General ==== */
+
 html {
     background: #ffffff;
     height: 100%;
@@ -8,21 +10,11 @@ html, body, button, p, input, textarea {
     font-weight: 300;
 }
 
-.container {
-    margin-top: 100px;
-}
-
 h3, h4, h5, h6 {
     font-weight: 400;
 }
 
-.margin-5 {
-    margin: 5px;
-}
-
-.bottom-30 {
-    margin-bottom: 30px;
-}
+/* ==== Helper ==== */
 
 .center {
     text-align: center;
@@ -37,112 +29,40 @@ h3, h4, h5, h6 {
     float: left;
 }
 
-/* Header */
+.margin-5 {
+    margin: 5px;
+}
+
+.overlay {
+    background-color: #ffffff;
+    margin-top: 50px;
+}
+
+/* ==== Header ==== */
 
 header {
-    box-shadow: 0px 2px 0px #f0f0f0 !important;
+    box-shadow: 0 2px 0 #f0f0f0 !important;
     background: #ffffff;
 }
 
-nav {
+header nav {
     height: 50px;
     margin: auto;
     width: 95%;
 }
 
-.logo {
+header nav .logo {
     width: auto;
     height: 50px;
 }
 
-/* Footer */
-#footer {
-    background: #f0f0f0;
-    font-weight: 300;
-    line-height: 0.8;
-    margin: 0;
+/* ==== Content ==== */
+
+main .container,  div .container {
+    margin-top: 80px;
 }
 
-#footer ul {
-    margin: 0;
-}
-
-#footer ul li {
-    display: inline;
-}
-
-#footer ul li a {
-    padding: 0 25px;
-}
-
-#footer img {
-    width: 30px;
-    height: auto;
-    padding-right: 5px;
-}
-
-#footer div {
-    padding: 25px 0;
-}
-
-#footer a {
-    color: #212529;
-    text-decoration: none;
-}
-
-#footer a:hover {
-    opacity: 0.5;
-}
-
-#footer .social a {
-    padding-right: 25px;
-}
-
-#footer .social i {
-    padding-right: 10px;
-}
-
-#breadcrumb {
-    margin-bottom: 30px;
-}
-
-/* Search */
-.search-button {
-    margin-top: 25px;
-}
-
-/* Rating */
-.lm-stars-rating {
-    float: right;
-}
-
-.lm-star label {
-    height: 10px;
-}
-
-.search-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.pagination {
-    margin: 25px 0 20px;
-}
-
-.search-container .card, .categories .card {
-    margin: 10px 7px 0;
-}
-
-.categories {
-    margin-bottom: 25px;
-}
-
-.categories .card a {
-    position: absolute;
-    top: 0; left: 0;
-    height: 100%; width: 100%;
-}
+/* ==== Slider ==== */
 
 #slider {
     position: relative;
@@ -150,11 +70,6 @@ nav {
     background: url("https://i.imgur.com/5YBZEAp.jpg") no-repeat fixed center;
     height: 100vh;
     margin-bottom: 50px;
-
-}
-.overlay {
-    background-color: #ffffff;
-    margin-top: 50px;
 }
 
 #slider .container {
@@ -168,7 +83,52 @@ nav {
     color: #ffffff;
 }
 
-.md-background--card.login, .md-background--card.signup  {
+/* ==== Search ==== */
+
+.search-button {
+    margin-top: 25px;
+}
+
+.search-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.search-container .card, .categories .card {
+    margin: 10px 7px 0;
+}
+
+.search-container h3.search-error {
+    height: 250px;
+    padding-top: 50px;
+}
+
+/* ==== Categories ==== */
+
+.categories {
+    margin-bottom: 25px;
+}
+
+.categories .card a {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%; width: 100%;
+}
+
+/* ==== Star Rating ==== */
+
+.lm-stars-rating {
+    float: right;
+}
+
+.lm-star label {
+    height: 10px;
+}
+
+/* ==== Login / Register ==== */
+
+.md-card.login, .md-card.signup  {
     text-align: center;
     max-width: 700px;
     margin: 150px auto 60px !important;
@@ -179,10 +139,7 @@ nav {
     width: 100% !important;
 }
 
-.search-error {
-    height: 250px;
-    padding-top: 50px;
-}
+/* ==== 404 Error Page ==== */
 
 #error {
     background-size: 100% 100%;
@@ -202,6 +159,56 @@ nav {
     padding: 30px;
     opacity: 0.9;
 }
+
+/* ==== Footer ==== */
+
+#footer {
+    background: #f0f0f0;
+    font-weight: 300;
+    line-height: 0.8;
+    margin: 0;
+}
+
+#footer div {
+    padding: 25px 0;
+}
+
+#footer ul {
+    margin: 0;
+}
+
+#footer ul li {
+    display: inline;
+}
+
+#footer ul li a {
+    padding: 0 25px;
+}
+
+#footer ul li a img {
+    width: 30px;
+    height: auto;
+    padding-right: 5px;
+}
+
+#footer a {
+    color: #212529;
+    text-decoration: none;
+}
+
+#footer a:hover {
+    opacity: 0.5;
+}
+
+#footer .social a {
+    padding-right: 25px;
+}
+
+#footer .social i {
+    padding-right: 10px;
+}
+
+/* ==== Responsive ==== */
 
 @media (max-width: 900px) {
     #slider .container {
