@@ -15,16 +15,24 @@ import {
 import ReactStars from 'react-stars'
 import {RadioGroup, RadioButton} from 'react-radio-buttons';
 
-
 import Page from './Page';
-import Visa from '../../src/img/payments/Visa Logo.jpg'
-import MasterCard from '../../src/img/payments/MasterCard Logo.png'
-import PayPal from '../../src/img/payments/Paypal Logo.jpg'
-import Sofort from '../../src/img/payments/Sofort.png'
 import {withRouter, Link} from "react-router-dom";
 
-
-const style = {maxWidth: 1000};
+const style = {
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        padding: '15px'
+    },
+    gridList: {
+        overflowY: 'auto',
+        width: '100%'
+    },
+    titleStyle: {
+        color: 'rgb(0, 188, 212)',
+    },
+};
 
 export class Confirm extends React.Component {
 
@@ -36,6 +44,7 @@ export class Confirm extends React.Component {
             date: '',
             addInfo: '',
             pId: this.props.pId,
+            price: '',
 
         };
 
@@ -43,9 +52,9 @@ export class Confirm extends React.Component {
         this.handleChangeDate = this.handleChangeDate.bind(this);
         this.handleChangeAddInfo = this.handleChangeAddInfo.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleReset = this.handleReset.bind(this);
 
     }
-
 
     handleChangePayment(event) {
         this.setState({payment: event});
@@ -63,7 +72,7 @@ export class Confirm extends React.Component {
         event.preventDefault();
 
         let booking = this.props.booking;
-        if(booking == undefined) {
+        if (booking == undefined) {
             booking = {};
         }
 
@@ -80,17 +89,13 @@ export class Confirm extends React.Component {
 
     }
 
-    handleReset(event){
-        event.preventDefault()
+    handleReset(event) {
 
         let booking = this.props.booking;
-        if(booking == undefined) {
-            booking = {};
-        }
 
-        booking.date = undefined;
-        booking.payment = undefined;
-        booking.addInfo = undefined;
+        booking.payment=undefined;
+        booking.date=undefined;
+        booking.addInfo='';
     }
 
     render() {
@@ -150,45 +155,33 @@ export class Confirm extends React.Component {
 
                     <Grid>
                         <Cell size={3} style={{display: 'flex', justifyContent: 'center'}}>
-                            <a href="https://www.visa.com"
-                               title="Select Visa as your payment method">
-                                <img src={Visa}
-                                     alt="Visa"
-                                     width={150}
-                                     height={100}
-                                     align="middle"
-                                />
-                            </a>
+                            <img src="https://i.imgur.com/yLN9Xp5.jpg"
+                                 alt="Visa"
+                                 width={150}
+                                 height={100}
+                                 align="middle"
+                            />
                         </Cell>
                         <Cell size={3} style={{display: 'flex', justifyContent: 'center'}}>
-                            <a href="https://www.mastercard.com"
-                               title="Select MasterCard as your payment method">
-                                <img src={MasterCard}
-                                     alt="MasterCard"
-                                     width={150}
-                                     height={100}
-                                />
-                            </a>
+                            <img src="https://i.imgur.com/LtMahs7.png"
+                                 alt="MasterCard"
+                                 width={150}
+                                 height={100}
+                            />
                         </Cell>
                         <Cell size={3} style={{display: 'flex', justifyContent: 'center'}}>
-                            <a href="https://www.paypal.com"
-                               title="Select PayPal as your payment method">
-                                <img src={PayPal}
-                                     alt="PayPal"
-                                     width={150}
-                                     height={100}
-                                />
-                            </a>
+                            <img src="https://i.imgur.com/Hu8ZzsL.jpg"
+                                 alt="PayPal"
+                                 width={150}
+                                 height={100}
+                            />
                         </Cell>
                         <Cell size={3} style={{display: 'flex', justifyContent: 'center'}}>
-                            <a href={"https://www.klarna.com/sofort/"}
-                               title="Select 'Sofortueberweisung' as your payment method">
-                                <img src={Sofort}
-                                     alt="Sofortueberweisung"
-                                     width={150}
-                                     height={100}
-                                />
-                            </a>
+                            <img src="https://i.imgur.com/mgDfTFh.png"
+                                 alt="Sofortueberweisung"
+                                 width={150}
+                                 height={100}
+                            />
                         </Cell>
                     </Grid>
                     <RadioGroup horizontal onChange={this.handleChangePayment} required>
@@ -209,18 +202,20 @@ export class Confirm extends React.Component {
                     <CardText>
                         <h3>Cancellation Policy</h3>
                         <div>It isn't possible to cancel an already created booking.
-                            You won't get the money back you already payed unless you don't make an agreement with the photographer.</div>
+                            You won't get the money back you already payed unless you don't make an agreement with the
+                            photographer.
+                        </div>
 
                     </CardText>
 
                     <Grid style={{display: 'flex', justifyContent: 'center'}}>
                         <Cell size={2}>
-                             <Button  id="submit" type="submit"
-                                      className="md-cell md-cell--2"
-                                     flat primary swapTheming>
-                                        Submit
-                                    <Link to={'/showSummary/'}/>
-                                </Button>
+                            <Button id="submit" type="submit"
+                                    className="md-cell md-cell--2"
+                                    flat primary swapTheming>
+                                Submit
+                                <Link to={'/showSummary/'}/>
+                            </Button>
 
                         </Cell>
                         <Cell size={2}>
