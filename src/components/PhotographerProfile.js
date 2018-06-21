@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import Page from './Page';
-import ImageGallery from 'react-image-gallery';
-import {Avatar, Button } from 'react-md';
-import ava from '../img/avatar/ava.png';
+import Page from './page/Page.js';
+import { Button } from 'react-md';
 import InfiniteCalendar from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
 import PhotographerDescription from './PhotographerDescription';

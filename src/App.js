@@ -20,37 +20,17 @@ import Error from "./components/page/Error";
 
 export default class App extends React.Component {
 
+
     constructor(props) {
         super(props);
 
         this.state = {
             title: 'Photohub',
             routes: [
-                { component: CategoryListView, path: '/', exact: true },
-                { component: SearchResultView, path: '/results',},
-                { component: MovieDetailView , path: '/show/:id'},
-                { component: ConfirmView , path: '/showConfirm/:id'},
-                { component: SummaryView, path: '/showSummary/:bookingID/:pId/:date/:payment/:addInfo'},
-                { component: PhotographerProfileView , path: '/profile/:id', exact: true},
-                { render: (props) => {
-                        if(UserService.isAuthenticated()) {
-                            return (<MovieFormView {... props} />)
-                        }
-                        else {
-                            return (<Redirect to={'/login'}/>)
-                        }} , path: '/edit/:id'},
-                { render: (props) => {
-                    if(UserService.isAuthenticated()) {
-                        return (<MovieFormView {... props} />)
-                    }
-                    else {
-                        return (<Redirect to={'/login'}/>)
-                    }}, path: '/add',},
-                { component: UserLoginView, path: '/login'},
-                { component: UserSignupView, path: '/register'}
                 {component: CategoryListView, path: '/', exact: true},
                 {component: SearchResultView, path: '/results'},
                 {component: ReviewItemListView, path: '/viewReviews/:id', name: "ReviewList"},
+                {component: PhotographerProfileView , path: '/profile/:id', exact: true},
                 {component: ReviewItemListView, path: '/viewReviews/:id/notification', name: "ReviewList"},
                 {
                     render: (props) => {
