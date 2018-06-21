@@ -18,7 +18,9 @@ class SearchFields extends React.Component {
             let params = new URLSearchParams(this.props.location.search);
             city = params.get('city');
             category = params.get('category');
+            console.log('category: ' + category);
             date = params.get('date');
+            console.log('date: ' + date);
         }
 
         this.state = {
@@ -46,12 +48,13 @@ class SearchFields extends React.Component {
     }
 
     handleDate(input) {
-        // TODO format date
         this.setState({date: encodeURI(input)});
     }
 
     handleSearch() {
-        window.location.reload();
+        if(this.props.location.pathname !== "/") {
+            window.location.reload();
+        }
         window.location = '#/results?city=' + this.state.city + '&category=' + this.state.category + '&date=' + this.state.date;
 
     }

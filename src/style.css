@@ -3,14 +3,13 @@ html {
     height: 100%;
 }
 
-html, body, button, input, textarea {
+html, body, button, p, input, textarea {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
-    height: 100%;
 }
 
 .container {
-    margin-top: 64px;
+    margin-top: 100px;
 }
 
 h3, h4, h5, h6 {
@@ -159,6 +158,7 @@ nav {
 }
 
 #slider .container {
+    margin-top: 64px !important;
     padding-top: 150px;
     height: 100%;
 }
@@ -177,6 +177,11 @@ nav {
 
 .md-text-field--inline-indicator {
     width: 100% !important;
+}
+
+.search-error {
+    height: 250px;
+    padding-top: 50px;
 }
 
 #error {
@@ -227,7 +232,7 @@ nav {
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     .search-container .card, .categories .card {
         display: inline-block;
         width: 32%;

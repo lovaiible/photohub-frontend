@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Page from '../page/Page';
-import PaginationNav from "../Pagination";
 import {SearchResultItem} from "./SearchResultItem";
 import {SearchFieldView} from "../../views/SearchFieldView";
 
@@ -18,12 +17,19 @@ class SearchResult extends React.Component {
     render() {
         return (
             <Page>
+                {this.state.data.length === 1 ?
+                    [ <h1>{this.state.data.length} result</h1>] :
+                    [ <h1>{this.state.data.length} results</h1> ]
+                }
                 <SearchFieldView/>
                 <div className="search-container">
-                    <div className="row">
-                        {(this.state.data).map((item, i) => <SearchResultItem {...item} key={i}/>)}
-                    </div>
-                    <PaginationNav/>
+                    {this.state.data.length !== 0 ? [
+                        <div className="row">
+                            {(this.state.data).map((item, i) => <SearchResultItem {...item} key={i}/>)}
+                        </div>
+                    ] : [
+                        <h3 className="search-error">No results found. Please try another search.</h3>
+                    ]}
                 </div>
             </Page>
         )
