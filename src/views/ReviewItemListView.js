@@ -126,7 +126,7 @@ componentDidUpdate() {
     return(
       <Page>
         <div className="breadcrumbs">
-          Home > Search > Profile > <b>Reviews</b>
+          <Link to={'/'} className="breadcrumbLink">Home</Link> > Search > Profile > <b>Reviews</b>
         </div>
         <div>
           <div>
