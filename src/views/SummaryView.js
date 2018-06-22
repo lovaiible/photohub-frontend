@@ -39,6 +39,10 @@ export class SummaryView extends React.Component {
             return (<h2>Loading...</h2>);
         }
 
-        return (<Summary data={this.state.data} pId={this.state.pId} date={this.state.date}  payment={this.state.payment} bookingID={this.state.bookingID} addInfo={this.state.addInfo} />);
+        return (
+          <div>
+            <Summary data={this.state.data} pId={this.state.pId} date={this.state.date}  payment={this.state.payment} bookingID={this.state.bookingID} addInfo={this.state.addInfo} />
+          </div>
+        );
     }
 }

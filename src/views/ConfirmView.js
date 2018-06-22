@@ -64,7 +64,13 @@ export class ConfirmView extends React.Component {
             return (<h2>Loading...</h2>);
         }
 
-        return (<Confirm booking={this.state.booking} onSubmit={(booking) => this.updateBooking(booking)} error={this.state.error}
-                         pId={this.state.pId} />);
+        return (
+          <div>
+
+            
+            <Confirm booking={this.state.booking} onSubmit={(booking) => this.updateBooking(booking)} error={this.state.error}
+                           pId={this.state.pId} />
+          </div>
+        );
     }
 }

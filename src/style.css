@@ -249,3 +249,12 @@ main .container,  div .container {
         width: 32%;
     }
 }
+
+.breadcrumbs{
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.breadcrumbLink {
+  color: black;
+}
