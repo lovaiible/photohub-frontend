@@ -3,6 +3,7 @@
 import React from 'react';
 
 import ReviewService from '../services/ReviewService';
+import ProfileService from '../services/ProfileService';
 
 import ReviewListItem from '../components/ReviewListItem';
 import ReviewAverageValue from '../components/ReviewAverageValue';
@@ -40,14 +41,6 @@ const fontStyleReviews = {
 
 const lineItemStyle = {
   listStyleType: 'none'
-};
-
-const breadcrumbStyle ={
-  fontSize: '14px',
-  marginTop: '10px'
-};
-const linkStyle = {
-  color: 'black'
 };
 
 const itemsPerPage = 5;
@@ -109,6 +102,15 @@ export class ReviewItemListView extends React.Component {
       }).catch((e) => {
           console.error(e);
       });
+
+      ProfileService.getProfile(this.state.pId).then((data)=> {
+          this.setState({
+              loading: false,
+              profile: data
+          });
+      }).catch((e) => {
+          console.error(e);
+      });
   }
 
 componentDidUpdate() {
@@ -129,8 +131,8 @@ componentDidUpdate() {
 
     return(
       <Page>
-        <div style={breadcrumbStyle}>
-          Home > Search > Profile > <b>Reviews</b>
+        <div className="breadcrumbs">
+          <Link to={'/'} className="breadcrumbLink">Home</Link> > Search > Profile > <b>Reviews</b>
         </div>
         <div>
           <div>

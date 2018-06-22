@@ -12,14 +12,6 @@ import Button from 'react-md'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const breadcrumbStyle ={
-  fontSize: '14px',
-  marginTop: '10px'
-};
-const linkStyle = {
-  color: 'black'
-};
-
 export class ReviewFormView extends React.Component {
 
     constructor(props) {
@@ -50,8 +42,8 @@ export class ReviewFormView extends React.Component {
 
         return (
           <Page>
-            <div style={breadcrumbStyle}>
-              Home > Search > Profile > <Link to={'/viewReviews/' + this.state.photographerId} style={linkStyle}>Reviews</Link> > <b>Create</b>
+            <div className="breadcrumbs">
+              <Link to={'/'} className="breadcrumbLink">Home</Link> > Search > Profile > <Link to={'/viewReviews/' + this.state.photographerId} className="breadcrumbLink">Reviews</Link> > <b>Create</b>
             </div>
             <ReviewForm review={this.state.review} onSubmit={(review) => this.createReview(review)} error={this.state.error} uName={this.state.uName}/>
           </Page>

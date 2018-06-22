@@ -7,6 +7,7 @@ import PhotographerDescription from './PhotographerDescription';
 import format from 'date-fns/format';
 import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
 import axios from "axios";
+import ImageGallery from "react-image-gallery";
 
 
 export class PhotographerProfile extends Component {
@@ -19,44 +20,49 @@ export class PhotographerProfile extends Component {
             gallery: []
         };
         this.handleDate = this.handleDate.bind(this);
-        /*this.handleInputChange = this.handleInputChange.bind(this);*/
     }
 
-    //TODO: get and set min,maxDate
     handleDate(e) {
         const newDate = format(e, "DD.MM.YYYY");
         this.setState({date: newDate});
     }
-    //TODO: Fix manually input change
-    /*
-    handleInputChange(e) {
-        console.log(e);
-        this.setState({date: e});
-    }*/
-    // create profileID in order to call image.
 
-    componentDidMount() {
-        // Request for images tagged xmas
+
+    // use profileID in order to call image.
+    componentWillMount() {
+        // Request for images tagged with profile (show be changed to pID)
         axios.get('https://res.cloudinary.com/dn0x8apyr/image/list/profile.json')
             .then(res => {
-                console.log(res.data.resources);
-                this.setState({gallery: res.data.resources});
+                const imageSet = res.data.resources.map(data => {
+                    var obj = {};
+                    obj.original = `https://res.cloudinary.com/dn0x8apyr/image/upload/s--yn3N40Sf--/c_fit,e_improve,h_600,r_0,w_900/${data.public_id}.jpg`;
+                    obj.thumbnail = `https://res.cloudinary.com/dn0x8apyr/image/upload/s--i-yjKOLx--/c_scale,e_improve,h_150,r_0,w_250/${data.public_id}.jpg`;
+                    return obj;
+                });
+                console.log(imageSet);
+                this.setState({gallery: imageSet});
             });
+
     }
 
     uploadWidget() {
-        window.cloudinary.openUploadWidget({ cloud_name: 'dn0x8apyr', upload_preset: 'qyoaprdm', tags:["profile"]},
-            function(error, result) {
+        window.cloudinary.openUploadWidget({ cloud_name: 'dn0x8apyr', upload_preset: 'qyoaprdm', tags:["profile"], theme: "white", sign_url: false},
+            (error, result) => {
+                //Update gallery
                 console.log(result);
+                const currentGallery = this.state.gallery;
+                const newImage = result.map(data => {
+                    console.log(data);
+                    var obj = {};
+                    obj.original = `${data.url}`;
+                    obj.thumbnail = `${data.thumbnail_url}`;
+                    return obj;
+                });
+                currentGallery.concat(newImage);
+                this.setState({gallery: currentGallery});
+
             });
     }
-
-/*<div className="w3-container gallery w3-center col-md-6 col-md-offset-3" style={styles.galleryStyle}>
-<ImageGallery
-items={images}
-className="w3-center"
-/>
-</div>*/
 
     render() {
 
@@ -77,58 +83,19 @@ className="w3-center"
         var lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
 
 
-       /* const images = [
-            {
-                original: 'https://lorempixel.com/1000/600/nature/1/',
-                thumbnail: 'https://lorempixel.com/250/150/nature/1/',
-            },
-            {
-                original: 'https://lorempixel.com/1000/600/nature/2/',
-                thumbnail: 'https://lorempixel.com/250/150/nature/2/'
-            },
-            {
-                original: 'https://lorempixel.com/1000/600/nature/3/',
-                thumbnail: 'https://lorempixel.com/250/150/nature/3/'
-            }
-        ]*/
-
         return (
             <Page>
                 <div id="content">
                     <div> <PhotographerDescription  profile={this.props.profile}  pID={this.props.pID}></PhotographerDescription></div>
 
-
-
-                    <div className="w3-container gallery w3-center col-md-6 col-md-offset-3" style={styles.galleryStyle}>
-                    <CloudinaryContext cloudName="dn0x8apyr">
-                        {
-                            this.state.gallery.map(data => {
-                                return (
-                                    <div className="responsive" key={data.public_id}>
-                                        <div className="img">
-                                            <a target="_blank" href={`https://res.cloudinary.com/dn0x8apyr/image/upload/${data.public_id}.jpg`}>
-                                                <Image publicId={data.public_id}>
-                                                    <Transformation
-                                                        crop="scale"
-                                                        width="300"
-                                                        height="200"
-                                                        dpr="auto"
-                                                        responsive_placeholder="blank"
-                                                    />
-                                                </Image>
-                                            </a>
-                                            <div className="desc">Created at {data.created_at}</div>
-                                        </div>
-                                    </div>
-                                )
-                            })
-                        }
-                    </CloudinaryContext>
+                    <div className="w3-container w3-mobile w3-center w3-padding-48">
+                        <ImageGallery items={this.state.gallery}/>
                     </div>
+
 
                     <div className="upload w3-container w3-center">
                         <Button flat primary onClick={this.uploadWidget.bind(this)} className="upload-button">
-                            Add Image
+                            Add more images
                         </Button>
 
                     </div>
