@@ -4,6 +4,7 @@ import React from 'react';
 
 import ReviewService from '../services/ReviewService';
 import ProfileService from '../services/ProfileService';
+import UserService from '../services/UserService';
 
 import ReviewListItem from '../components/ReviewListItem';
 import ReviewAverageValue from '../components/ReviewAverageValue';
@@ -117,6 +118,8 @@ export class ReviewItemListView extends React.Component {
       }).catch((e) => {
           console.error(e);
       });
+
+      this.setState({user: UserService.getCurrentUser()});
   }
 
 componentDidUpdate() {
@@ -151,7 +154,7 @@ componentDidUpdate() {
                 {this.state.avg.map((avg) => <ReviewAverageValue avg={avg} key={avg._id} length={this.state.data.length}/>)}
               </Cell>
               <Cell size={1}>
-                <Button floating primary swapTheming onClick={() => this.props.history.push('/addReview/' + this.state.pId)} disabled={false}>add</Button>
+                <Button floating primary swapTheming onClick={() => this.props.history.push('/addReview/' + this.state.pId + '/' + this.state.user.id)} disabled={false}>add</Button>
               </Cell>
             </Grid>
           </div>
@@ -161,7 +164,7 @@ componentDidUpdate() {
           {
             this.state.renderedReviews.map((review) =>
             <li key={review._id} id="review-list" style={lineItemStyle}>
-              <ReviewListItem review={review}/>
+              <ReviewListItem review={review} user={this.state.user}/>
             </li>)
           }
         </ul>

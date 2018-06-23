@@ -27,14 +27,16 @@ class ReviewForm extends React.Component {
 
         var MyDate = new Date();
         var MyDateString = MyDate.getFullYear()+ '-' + ('0' + (MyDate.getMonth() + 1)).slice(-2) + '-' + ('0' + MyDate.getDate()).slice(-2);
-        let id = this.props.match.params.id;
+
 
         this.state = {
             name : this.props.uName,
             date : MyDateString,
             rating : 0,
             text: '',
-            photographerId: id
+            photographerId: this.props.pId,
+            userId: this.props.userId,
+            name: this.props.userName
         };
 
         this.handleChangeName = this.handleChangeName.bind(this);
@@ -75,6 +77,8 @@ class ReviewForm extends React.Component {
         review.date = this.state.date;
         review.text = this.state.text;
         review.photographerId = this.state.photographerId;
+        review.userId = this.state.userId;
+        review.name = this.state.name;
 
         this.props.onSubmit(review);
     }

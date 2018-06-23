@@ -5,6 +5,7 @@ import React from 'react';
 import ReviewForm from '../components/ReviewForm';
 import Page from '../components/page/Page';
 import ReviewService from '../services/ReviewService';
+import UserService from '../services/UserService';
 
 import { Link } from 'react-router-dom';
 
@@ -16,13 +17,13 @@ export class ReviewFormView extends React.Component {
 
     constructor(props) {
         super(props);
-        let id = this.props.match.params.id;
+        let pId = this.props.match.params.id;
+
         this.state = {
             loading: false,
             review: undefined,
             error: undefined,
-            uName: 'Max Mustermann',
-            photographerId: id
+            pId: pId
         }
     }
 
@@ -34,7 +35,9 @@ export class ReviewFormView extends React.Component {
           this.setState(Object.assign({}, this.state, {error: 'Error while creating review'}));
       });
     }
-
+    componentWillMount() {
+      this.setState({user: UserService.getCurrentUser()});
+    }
     render() {
         if (this.state.loading) {
             return (<h2>Loading...</h2>);
@@ -45,7 +48,7 @@ export class ReviewFormView extends React.Component {
             <div className="breadcrumbs">
               <Link to={'/'} className="breadcrumbLink">Home</Link> > Search > Profile > <Link to={'/viewReviews/' + this.state.photographerId} className="breadcrumbLink">Reviews</Link> > <b>Create</b>
             </div>
-            <ReviewForm review={this.state.review} onSubmit={(review) => this.createReview(review)} error={this.state.error} uName={this.state.uName}/>
+            <ReviewForm review={this.state.review} onSubmit={(review) => this.createReview(review)} error={this.state.error} userId={this.state.user.id} userName={this.state.user.username} pId={this.state.pId}/>
           </Page>
         );
     }
