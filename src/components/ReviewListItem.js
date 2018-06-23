@@ -49,7 +49,7 @@ export default class ReviewListItem extends React.Component {
             </Cell>
             <Cell size={2}>
               <ReviewEditAndDelete pId={this.props.pId} userId={this.props.user.id} reviewUserId={this.props.review.userId}
-              reviewId={this.props.review._id} history={this.props.history}/>
+              reviewId={this.props.review._id} history={this.props.history} review={this.props.review}/>
             </Cell>
           </Grid>
           <div className="reviewText">

@@ -78,7 +78,6 @@ class ReviewForm extends React.Component {
         review.text = this.state.text;
         review.photographerId = this.state.photographerId;
         review.userId = this.state.userId;
-        review.name = this.state.name;
 
         this.props.onSubmit(review);
     }

@@ -80,8 +80,14 @@ export class ReviewItemListView extends React.Component {
   notifyDeleted() {
     toast.success("Your review could successfully be deleted!");
   }
+  notifyUpdated() {
+    toast.success("Your review could successfully be updated!");
+  }
   notifyError() {
     toast.error("Something went wrong! Your review couldn't be added!");
+  }
+  notifyAborted() {
+    toast.info("The review creation was aborted!");
   }
 
   componentWillMount(){
@@ -134,6 +140,12 @@ componentDidUpdate() {
       localStorage.removeItem('notification');
     } else if (localStorage.getItem('notification') == 'deleted') {
       this.notifyDeleted();
+      localStorage.removeItem('notification');
+    } else if (localStorage.getItem('notification') == 'aborted') {
+      this.notifyDeleted();
+      localStorage.removeItem('notification');
+    }else if (localStorage.getItem('notification') == 'successUpdated') {
+      this.notifyUpdated();
       localStorage.removeItem('notification');
     }
     this.setState({count: 1});
