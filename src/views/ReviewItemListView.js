@@ -33,8 +33,7 @@ const countRowStyles = {
 };
 
 const lineStyle = {
-    width: '75%',
-    size: '2px'
+    width: '100%',
 };
 
 const fontStyleReviews = {
@@ -77,6 +76,9 @@ export class ReviewItemListView extends React.Component {
 
   notifySuccess() {
     toast.success("Thank you! Your review could successfully be added!");
+  }
+  notifyDeleted() {
+    toast.success("Your review could successfully be deleted!");
   }
   notifyError() {
     toast.error("Something went wrong! Your review couldn't be added!");
@@ -124,10 +126,15 @@ export class ReviewItemListView extends React.Component {
 
 componentDidUpdate() {
   if(this.state.count == 0){
-    if (window.location.href.indexOf('success') > -1) {
+    if (localStorage.getItem('notification') == 'success') {
       this.notifySuccess();
-    } else if (window.location.href.indexOf('error') > -1) {
+      localStorage.removeItem('notification');
+    } else if (localStorage.getItem('notification') == 'error') {
       this.notifyError();
+      localStorage.removeItem('notification');
+    } else if (localStorage.getItem('notification') == 'deleted') {
+      this.notifyDeleted();
+      localStorage.removeItem('notification');
     }
     this.setState({count: 1});
   }
@@ -158,13 +165,13 @@ componentDidUpdate() {
               </Cell>
             </Grid>
           </div>
-          <hr style={lineStyle}/>
+          <hr className="horizontalLine" style={lineStyle}/>
         </div>
         <ul id="review-list">
           {
             this.state.renderedReviews.map((review) =>
             <li key={review._id} id="review-list" style={lineItemStyle}>
-              <ReviewListItem review={review} user={this.state.user}/>
+              <ReviewListItem review={review} user={this.state.user} pId={this.state.pId} history={this.props.history}/>
             </li>)
           }
         </ul>

@@ -39,7 +39,7 @@ export default class ReviewListItem extends React.Component {
             <Cell size={1}>
                 <Avatar random>{this.state.firstLetter}</Avatar>
             </Cell>
-            <Cell size={10}>
+            <Cell size={9}>
               <div className="reviewHeader">
                 <ReactStars count={5} size={20} value={this.props.review.rating} edit={false} color2={'#ffd700'} />
               </div>
@@ -47,8 +47,9 @@ export default class ReviewListItem extends React.Component {
                 By <b>{this.props.review.name}</b> on <b>{this.props.review.date}</b>
               </div>
             </Cell>
-            <Cell size={1}>
-              <ReviewEditAndDelete userId={this.props.user.id} reviewUserId={this.props.review.userId}/>
+            <Cell size={2}>
+              <ReviewEditAndDelete pId={this.props.pId} userId={this.props.user.id} reviewUserId={this.props.review.userId}
+              reviewId={this.props.review._id} history={this.props.history}/>
             </Cell>
           </Grid>
           <div className="reviewText">

@@ -31,7 +31,6 @@ export default class App extends React.Component {
                 {component: SearchResultView, path: '/results'},
                 {component: ReviewItemListView, path: '/viewReviews/:id', name: "ReviewList"},
                 {component: PhotographerProfileView , path: '/profile/:id', exact: true},
-                {component: ReviewItemListView, path: '/viewReviews/:id/notification', name: "ReviewList"},
                 {
                     render: (props) => {
                         if (UserService.isAuthenticated()) {

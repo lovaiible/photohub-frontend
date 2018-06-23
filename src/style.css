@@ -258,3 +258,9 @@ main .container,  div .container {
 .breadcrumbLink {
   color: black;
 }
+
+.horizontalLine {
+  color: black;
+  size: 5;
+  
+}
