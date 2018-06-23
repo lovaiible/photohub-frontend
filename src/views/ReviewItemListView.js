@@ -10,6 +10,7 @@ import ReviewAverageValue from '../components/ReviewAverageValue';
 import ReviewAverageValueOnlyStars from '../components/ReviewAverageValueOnlyStars';
 import ReviewUpperBody from '../components/ReviewUpperBody';
 import ReactStars from 'react-stars';
+import PhotographerDescription from '../components/PhotographerDescription';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -58,7 +59,11 @@ export class ReviewItemListView extends React.Component {
           pId: pId,
           page: 1,
           total: 0,
-          count: 0
+          count: 0,
+          profile: [],
+          title:'',
+          description: '',
+          city: ''
       };
       this.handlePageChange = this.handlePageChange.bind(this);
   }
@@ -106,7 +111,8 @@ export class ReviewItemListView extends React.Component {
       ProfileService.getProfile(this.state.pId).then((data)=> {
           this.setState({
               loading: false,
-              profile: data
+              profile: data,
+              city: data.location.city
           });
       }).catch((e) => {
           console.error(e);
@@ -132,11 +138,12 @@ componentDidUpdate() {
     return(
       <Page>
         <div className="breadcrumbs">
-          <Link to={'/'} className="breadcrumbLink">Home</Link> > Search > Profile > <b>Reviews</b>
+          <Link to={'/'} className="breadcrumbLink">Home</Link> > Search > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">Profile</Link> > <b>Reviews</b>
         </div>
         <div>
           <div>
-            <ReviewUpperBody pId={this.state.pId} location={'Munich, Germany'} pName={'Max Mustermann'} pInfoText={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At'}></ReviewUpperBody>
+            <PhotographerDescription  profile={this.state.profile} title={this.state.profile.title} city={this.state.city}
+            description={this.state.profile.description} pID={this.state.pId} avg={this.state.avg}/>
           </div>
           <div style={countRowStyles}>
             <Grid>

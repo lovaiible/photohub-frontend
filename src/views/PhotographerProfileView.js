@@ -1,7 +1,7 @@
 import React from 'react';
 import {PhotographerProfile} from '../components/PhotographerProfile';
 import ProfileService from "../services/ProfileService";
-
+import ReviewService from '../services/ReviewService';
 
 export class PhotographerProfileView extends React.Component {
 
@@ -11,7 +11,11 @@ export class PhotographerProfileView extends React.Component {
         let id = this.props.match.params.id;
         this.state = {
             loading: true,
-            pID:id
+            pID:id,
+            avg: [],
+            title:'',
+            description: '',
+            city: ''
         };
     }
 
@@ -19,13 +23,21 @@ export class PhotographerProfileView extends React.Component {
         ProfileService.getProfile(this.state.pID).then((data)=> {
             this.setState({
                 loading: false,
-                profile: data
+                profile: data,
+                city: data.location.city
             });
         }).catch((e) => {
             console.error(e);
         });
 
-
+        ReviewService.getAvgRating(this.state.pID).then((data) => {
+            this.setState({
+                avg: [...data],
+                loading: false
+            });
+        }).catch((e) => {
+            console.error(e);
+        });
     }
 
 
@@ -35,7 +47,8 @@ export class PhotographerProfileView extends React.Component {
         }
 
         return (
-            <PhotographerProfile  profile={this.state.profile} pID={this.state.pID} />
+            <PhotographerProfile  profile={this.state.profile} pID={this.state.pID} avg={this.state.avg}
+            title={this.state.profile.title} city={this.state.city} description={this.state.profile.description}/>
         );
     }
 }
