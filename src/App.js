@@ -40,7 +40,7 @@ export default class App extends React.Component {
                         else {
                             return (<Redirect to={'/login'}/>)
                         }
-                    }, path: '/addReview/:id/:userId',
+                    }, path: '/addReview/:id',
                 },
                 {component: ConfirmView, path: '/showConfirm/:id'},
                 {component: SummaryView, path: '/showSummary/:bookingID/:pId/:date/:payment/:addInfo'},

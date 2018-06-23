@@ -154,7 +154,7 @@ componentDidUpdate() {
                 {this.state.avg.map((avg) => <ReviewAverageValue avg={avg} key={avg._id} length={this.state.data.length}/>)}
               </Cell>
               <Cell size={1}>
-                <Button floating primary swapTheming onClick={() => this.props.history.push('/addReview/' + this.state.pId + '/' + this.state.user.id)} disabled={false}>add</Button>
+                <Button floating primary swapTheming onClick={() => this.props.history.push('/addReview/' + this.state.pId)} disabled={false}>add</Button>
               </Cell>
             </Grid>
           </div>
