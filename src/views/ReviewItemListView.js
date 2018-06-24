@@ -68,7 +68,6 @@ export class ReviewItemListView extends React.Component {
           title:'',
           description: '',
           city: '',
-          requestCounter: 0,
           noReviews: true
       };
       this.handlePageChange = this.handlePageChange.bind(this);
@@ -106,7 +105,7 @@ export class ReviewItemListView extends React.Component {
               city: data.location.city,
               description: data.description,
               title: data.title,
-              requestCounter: this.state.requestCounter + 1
+              loading: false
           });
       }).catch((e) => {
           console.error(e);
@@ -117,23 +116,18 @@ export class ReviewItemListView extends React.Component {
               data: [...data],
               renderedReviews: data.slice(0, itemsPerPage),
               total: data.length,
-              requestCounter: this.state.requestCounter + 1
+              loading: false
           });
-          if(this.state.total > 0) {
-            ReviewService.getAvgRating(this.state.pId).then((data) => {
-                this.setState({
-                    avg: [...data],
-                    loading: false,
-                    noReviews: false,
-                    requestCounter: this.state.requestCounter + 1
-                });
-            }).catch((e) => {
-                console.error(e);
-            });
-          } else {
-            this.setState({loading: false,
-            requestCounter: this.state.requestCounter + 1});
-          }
+      }).catch((e) => {
+          console.error(e);
+      });
+
+      ReviewService.getAvgRating(this.state.pId).then((data) => {
+          this.setState({
+              avg: [...data],
+              loading: false,
+              noReviews: false
+          });
       }).catch((e) => {
           console.error(e);
       });
@@ -162,6 +156,7 @@ export class ReviewItemListView extends React.Component {
       this.setState({countForNoti: 1});
     }
   }
+
   render(){
     if (this.state.loading) {
         return (<h2>Loading...</h2>);
