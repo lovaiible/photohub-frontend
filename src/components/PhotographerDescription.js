@@ -3,9 +3,10 @@ import React from 'react';
 import {Avatar, Grid, Cell} from 'react-md';
 import Link from "react-router-dom";
 import ava from '../img/avatar/ava.png';
-import ReviewAverageValueOnlyStars from './ReviewAverageValueOnlyStars';
+import ReviewAverageValueSmall from './ReviewAverageValueSmall';
 import ProfileService from "../services/ProfileService";
 import ReviewService from "../services/ReviewService";
+import ReactStars from 'react-stars'
 
 class PhotographerDescription extends React.Component {
     constructor(props) {
@@ -50,8 +51,31 @@ class PhotographerDescription extends React.Component {
             avatar = <Avatar onClick={this.uploadWidget.bind(this)} suffix="pink">{(this.props.title).substr(0, 1).toUpperCase()}</Avatar>;
         }
         console.log(this.props.profile.avatar);
+        console.log(this.props.noReviews);
 
-        return (
+        if(this.props.noReviews == false ) {
+          return (
+              <div className="w3-container w3-row" style={marginTop}>
+                  <div className="w3-col m2 avatar float-left">{avatar}</div>
+                  <div className="w3-col m10"><h1 className="w3-left"> {this.props.title} <span
+                      className="w3-tag w3-small" style={tagStyle}>Premium</span></h1>
+                      <div className="w3-cell-row photographerAttr">
+                          <p className="w3-cell w3-center w3-border-right"><i className="material-icons">place</i>
+                              Location: {this.props.city}</p>
+                          <p className="w3-cell w3-center w3-border-right">100 successful order</p>
+
+                          <div>
+                              {this.props.avg.map((avg) => <ReviewAverageValueSmall avg={avg} key={avg._id} pId={this.props.pID} noReviews={this.props.noReviews}/>)}
+                          </div>
+
+                          {/*//<Link to={`/reviews/${this.props.pID}`}>*/}
+                      </div>
+                      <div className="descriptionText w3-opacity">{this.props.description}</div>
+                  </div>
+              </div>
+          );
+        } else {
+          return(
             <div className="w3-container w3-row" style={marginTop}>
                 <div className="w3-col m2 avatar float-left">{avatar}</div>
                 <div className="w3-col m10"><h1 className="w3-left"> {this.props.title} <span
@@ -62,7 +86,7 @@ class PhotographerDescription extends React.Component {
                         <p className="w3-cell w3-center w3-border-right">100 successful order</p>
 
                         <div>
-                            {this.props.avg.map((avg) => <ReviewAverageValueOnlyStars avg={avg} key={avg._id} pId={this.props.pID}/>)}
+                          <ReviewAverageValueSmall  pId={this.props.pID} noReviews={this.props.noReviews}/>
                         </div>
 
                         {/*//<Link to={`/reviews/${this.props.pID}`}>*/}
@@ -70,7 +94,8 @@ class PhotographerDescription extends React.Component {
                     <div className="descriptionText w3-opacity">{this.props.description}</div>
                 </div>
             </div>
-        );
+          );
+        }
     }
 
 

@@ -39,29 +39,16 @@ class ReviewForm extends React.Component {
             name: this.props.userName
         };
 
-        this.handleChangeName = this.handleChangeName.bind(this);
-        this.handleChangeDate = this.handleChangeDate.bind(this);
         this.handleChangeRating = this.handleChangeRating.bind(this);
         this.handleChangeText = this.handleChangeText.bind(this);
-        this.handleChangephotographerId = this.handleChangephotographerId.bind(this);
-
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChangeName(value) {
-        this.setState(Object.assign({}, this.state, {name: value}));
-    }
-    handleChangeDate(value) {
-        this.setState(Object.assign({}, this.state, {date: value}));
-    }
     handleChangeRating(value) {
         this.setState(Object.assign({}, this.state, {rating: value}));
     }
     handleChangeText(value) {
         this.setState(Object.assign({}, this.state, {text: value}));
-    }
-    handleChangephotographerId(value) {
-        this.setState(Object.assign({}, this.state, {photographerId: value}));
     }
 
     handleSubmit(event) {
@@ -97,25 +84,6 @@ class ReviewForm extends React.Component {
                         </Cell>
                       </Grid>
                         <TextField
-                            label="Name"
-                            id="NameField"
-                            type="text"
-                            required={true}
-                            value={this.state.name}
-                            onChange={this.handleChangeName}
-                            errorText="Name is required"
-                            style={textBoxStyle}/>
-                        <TextField
-                            label="Date"
-                            id="DateField"
-                            type="text"
-                            required={false}
-                            value={this.state.date}
-                            onChange={this.handleChangeDate}
-                            errorText="Date is required"
-                            disabled={false}
-                            style={textBoxStyle}/>
-                        <TextField
                             label="Text"
                             id="TextField"
                             type="text"
@@ -124,14 +92,6 @@ class ReviewForm extends React.Component {
                             value={this.state.text}
                             onChange={this.handleChangeText}
                             errorText="Text is required"
-                            style={textBoxStyle}/>
-                        <TextField
-                            label="Photographer"
-                            id="photographerIdField"
-                            type="text"
-                            required={false}
-                            value={this.state.photographerId}
-                            onChange={this.handleChangephotographerId}
                             style={textBoxStyle}/>
                         <Grid>
                           <Cell size={4}></Cell>

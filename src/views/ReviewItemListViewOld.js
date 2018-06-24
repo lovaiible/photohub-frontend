@@ -56,19 +56,18 @@ export class ReviewItemListView extends React.Component {
       super(props);
       let pId = this.props.match.params.id;
       this.state = {
-          loading: true,
+          loading: false,
           avg: [],
           data: [],
           renderedReviews: [],
           pId: pId,
           page: 1,
           total: 0,
-          countForNoti: 0,
+          count: 0,
           profile: [],
           title:'',
           description: '',
-          city: '',
-          requestCounter: 0
+          city: ''
       };
       this.handlePageChange = this.handlePageChange.bind(this);
   }
@@ -104,8 +103,7 @@ export class ReviewItemListView extends React.Component {
               profile: data,
               city: data.location.city,
               description: data.description,
-              title: data.title,
-              requestCounter: this.state.requestCounter + 1
+              title: data.title
           });
       }).catch((e) => {
           console.error(e);
@@ -116,21 +114,12 @@ export class ReviewItemListView extends React.Component {
               data: [...data],
               renderedReviews: data.slice(0, itemsPerPage),
               total: data.length,
-              requestCounter: this.state.requestCounter + 1
+              count: Math.ceil(data.length / itemsPerPage)
           });
           if(this.state.total > 0) {
-            ReviewService.getAvgRating(this.state.pId).then((data) => {
-                this.setState({
-                    avg: [...data],
-                    loading: false,
-                    requestCounter: this.state.requestCounter + 1
-                });
-            }).catch((e) => {
-                console.error(e);
-            });
+            this.getAverage();
           } else {
-            this.setState({loading: false,
-            requestCounter: this.state.requestCounter + 1});
+            this.setState({loading: false});
           }
       }).catch((e) => {
           console.error(e);
@@ -139,8 +128,19 @@ export class ReviewItemListView extends React.Component {
       this.setState({user: UserService.getCurrentUser()});
   }
 
+  getAverage() {
+    ReviewService.getAvgRating(this.state.pId).then((data) => {
+        this.setState({
+            avg: [...data],
+            loading: false
+        });
+    }).catch((e) => {
+        console.error(e);
+    });
+  }
+
   componentDidUpdate() {
-    if(this.state.countForNoti == 0){
+    if(this.state.count == 0){
       if (localStorage.getItem('notification') == 'success') {
         this.notifySuccess();
         localStorage.removeItem('notification');
@@ -157,15 +157,19 @@ export class ReviewItemListView extends React.Component {
         this.notifyUpdated();
         localStorage.removeItem('notification');
       }
-      this.setState({countForNoti: 1});
+      this.setState({count: 1});
     }
   }
+
   render(){
     if (this.state.loading) {
         return (<h2>Loading...</h2>);
     } else {
       if(this.state.data.length > 0){
-        if(this.state.data.length > itemsPerPage){
+        if(this.state.data.length > 5){
+          console.log(this.state.page);
+          console.log(this.state.total);
+          console.log(this.state.count);
           return(
             <Page>
               <div className="breadcrumbs">
@@ -197,9 +201,9 @@ export class ReviewItemListView extends React.Component {
                 }
               </ul>
               <Pagination
-                margin={2}
+                margin={1}
                 page={this.state.page}
-                count={Math.ceil(this.state.total / itemsPerPage)}
+                count={this.state.count}
                 onPageChange={this.handlePageChange}
               />
             </Page>

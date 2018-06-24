@@ -47,7 +47,7 @@ export class ReviewFormView extends React.Component {
         return (
           <Page>
             <div className="breadcrumbs">
-              <Link to={'/'} className="breadcrumbLink">Home</Link> > Search > Profile > <Link to={'/viewReviews/' + this.state.photographerId}
+              <Link to={'/'} className="breadcrumbLink">Home</Link> > Search > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">Profile</Link> > <Link to={'/viewReviews/' + this.state.pId}
               className="breadcrumbLink">Reviews</Link> > <b>Create</b>
             </div>
             <ReviewForm review={this.state.review} onSubmit={(review) => this.createReview(review)}

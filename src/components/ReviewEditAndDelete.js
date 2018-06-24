@@ -55,7 +55,6 @@ export default class ReviewEditAndDelete extends React.Component {
       review.photographerId = this.props.review.photographerId;
       review.userId = this.props.review.userId;
 
-      console.log(review.rating)
       ReviewService.updateReview(review).then((data) => {
           localStorage.setItem('notification', 'successUpdated');
           window.location.reload();

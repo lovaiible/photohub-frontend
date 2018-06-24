@@ -16,7 +16,7 @@ class PaginationNew extends Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps === this.props) return;
-   const { margin, page, count } = newProps;
+    const { margin, page, count } = newProps;
     const startPage = page > margin ? page - margin : 1;
     const endPage = page + margin > count ? count : page + margin;
     this.setState({ startPage, endPage, count });

@@ -88,7 +88,7 @@ export class PhotographerProfile extends Component {
             <Page>
                 <div id="content">
                     <div> <PhotographerDescription  profile={this.props.profile}  pID={this.props.pID} avg={this.props.avg}
-                    title={this.props.title} city={this.props.city} description={this.props.description}/>
+                    title={this.props.title} city={this.props.city} description={this.props.description} noReviews={this.props.noReviews}/>
                     </div>
                     <div className="w3-container w3-mobile w3-center w3-padding-48">
                         <ImageGallery items={this.state.gallery}/>
@@ -113,8 +113,8 @@ export class PhotographerProfile extends Component {
                                     selected={today}
                                     disabledDays={[0,6]}
 
-                                    minDate={new Date(this.props.profile.minDate)}
-                                    maxDate={new Date(this.props.profile.maxDate)}
+                                    minDate={new Date(this.props.minDate)}
+                                    maxDate={new Date(this.props.maxDate)}
 
                                     onSelect={this.handleDate}
                                 />
