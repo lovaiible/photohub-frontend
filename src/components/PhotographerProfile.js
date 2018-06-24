@@ -31,7 +31,7 @@ export class PhotographerProfile extends Component {
     // use profileID in order to call image.
     componentWillMount() {
         // Request for images tagged with profile (show be changed to pID)
-        axios.get('https://res.cloudinary.com/dn0x8apyr/image/list/profile.json')
+        axios.get('https://res.cloudinary.com/dn0x8apyr/image/list/' + this.props.pID + '.json')
             .then(res => {
                 const imageSet = res.data.resources.map(data => {
                     var obj = {};
@@ -45,8 +45,9 @@ export class PhotographerProfile extends Component {
 
     }
 
+    //upload image with photographer ID as tag
     uploadWidget() {
-        window.cloudinary.openUploadWidget({ cloud_name: 'dn0x8apyr', upload_preset: 'qyoaprdm', tags:["profile"], theme: "white", sign_url: false},
+        window.cloudinary.openUploadWidget({ cloud_name: 'dn0x8apyr', upload_preset: 'qyoaprdm', tags:[this.props.pID], theme: "white", sign_url: false},
             (error, result) => {
                 //Update gallery
                 console.log(result);
@@ -60,7 +61,7 @@ export class PhotographerProfile extends Component {
                 });
                 currentGallery.concat(newImage);
                 this.setState({gallery: currentGallery});
-
+                window.location.reload();
             });
     }
 
@@ -111,7 +112,10 @@ export class PhotographerProfile extends Component {
                                     height={400}
                                     selected={today}
                                     disabledDays={[0,6]}
-                                    minDate={lastWeek}
+
+                                    minDate={new Date(this.props.profile.minDate)}
+                                    maxDate={new Date(this.props.profile.maxDate)}
+
                                     onSelect={this.handleDate}
                                 />
                             </div>

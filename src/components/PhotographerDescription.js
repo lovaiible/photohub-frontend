@@ -4,10 +4,34 @@ import {Avatar, Grid, Cell} from 'react-md';
 import Link from "react-router-dom";
 import ava from '../img/avatar/ava.png';
 import ReviewAverageValueOnlyStars from './ReviewAverageValueOnlyStars';
+import ProfileService from "../services/ProfileService";
+import ReviewService from "../services/ReviewService";
 
 class PhotographerDescription extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            avatar: this.props.profile.avatar
+        }
+    }
+
+    uploadWidget() {
+        window.cloudinary.openUploadWidget({ cloud_name: 'dn0x8apyr', upload_preset: 'qyoaprdm', tags:["avatar"], theme: "white", sign_url: false},
+            (error, result) => {
+                //Update gallery
+                console.log(result);
+                const newAvatar = result[0].url;
+                this.setState({avatar: newAvatar});
+                const newProfile = this.props.profile;
+                newProfile.avatar = newAvatar;
+                ProfileService.updateProfile(newProfile).then((data) => {
+                    localStorage.setItem('notification', 'successUpdated');
+                    window.location.reload();
+                }).catch((e) => {
+                    console.error(e);
+                    //this.setState(Object.assign({}, this.state, {error: 'Error while creating review'}));
+                });
+            });
     }
 
     render() {
@@ -19,9 +43,17 @@ class PhotographerDescription extends React.Component {
           marginTop: '20px'
         }
 
+        let avatar;
+        if(this.props.profile.avatar) {
+            avatar = <Avatar onClick={this.uploadWidget.bind(this)} src={this.props.profile.avatar}/>;
+        } else {
+            avatar = <Avatar onClick={this.uploadWidget.bind(this)} suffix="pink">{(this.props.title).substr(0, 1).toUpperCase()}</Avatar>;
+        }
+        console.log(this.props.profile.avatar);
+
         return (
             <div className="w3-container w3-row" style={marginTop}>
-                <div className="w3-col m2"><Avatar src={ava} className="avatar float-left"/></div>
+                <div className="w3-col m2 avatar float-left">{avatar}</div>
                 <div className="w3-col m10"><h1 className="w3-left"> {this.props.title} <span
                     className="w3-tag w3-small" style={tagStyle}>Premium</span></h1>
                     <div className="w3-cell-row photographerAttr">
