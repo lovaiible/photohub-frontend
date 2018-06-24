@@ -121,7 +121,9 @@ export class ReviewItemListView extends React.Component {
           this.setState({
               loading: false,
               profile: data,
-              city: data.location.city
+              city: data.location.city,
+              description: data.description,
+              title: data.title
           });
       }).catch((e) => {
           console.error(e);
@@ -164,8 +166,8 @@ componentDidUpdate() {
         </div>
         <div>
           <div>
-            <PhotographerDescription  profile={this.state.profile} title={this.state.profile.title} city={this.state.city}
-            description={this.state.profile.description} pID={this.state.pId} avg={this.state.avg}/>
+            <PhotographerDescription  profile={this.state.profile} title={this.state.title} city={this.state.city}
+            description={this.state.description} pID={this.state.pId} avg={this.state.avg}/>
           </div>
           <div style={countRowStyles}>
             <Grid>
