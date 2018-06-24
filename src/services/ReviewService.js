@@ -17,13 +17,6 @@ export default class ReviewService {
                 reject(textStatus);
             });
         });
-       return new Promise((resolve, reject) => {
-           HttpService.get(`${ReviewService.baseURL()}/${id}`, function(data) {
-               resolve(data);
-           }, function(textStatus) {
-               reject(textStatus);
-           });
-       });
     }
 
     static getReview(id) {
