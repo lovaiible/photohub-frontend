@@ -68,7 +68,8 @@ export class ReviewItemListView extends React.Component {
           title:'',
           description: '',
           city: '',
-          requestCounter: 0
+          requestCounter: 0,
+          noReviews: true
       };
       this.handlePageChange = this.handlePageChange.bind(this);
   }
@@ -123,6 +124,7 @@ export class ReviewItemListView extends React.Component {
                 this.setState({
                     avg: [...data],
                     loading: false,
+                    noReviews: false,
                     requestCounter: this.state.requestCounter + 1
                 });
             }).catch((e) => {
@@ -174,7 +176,7 @@ export class ReviewItemListView extends React.Component {
               <div>
                 <div>
                   <PhotographerDescription  profile={this.state.profile} title={this.state.title} city={this.state.city}
-                  description={this.state.description} pID={this.state.pId} avg={this.state.avg} noReviews={false}/>
+                  description={this.state.description} pID={this.state.pId} avg={this.state.avg} noReviews={this.state.noReviews}/>
                 </div>
                 <div style={countRowStyles}>
                   <Grid>
@@ -213,7 +215,7 @@ export class ReviewItemListView extends React.Component {
               <div>
                 <div>
                   <PhotographerDescription  profile={this.state.profile} title={this.state.title} city={this.state.city}
-                  description={this.state.description} pID={this.state.pId} avg={this.state.avg} noReviews={false}/>
+                  description={this.state.description} pID={this.state.pId} avg={this.state.avg} noReviews={this.state.noReviews}/>
                 </div>
                 <div style={countRowStyles}>
                   <Grid>
