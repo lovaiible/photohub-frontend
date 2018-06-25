@@ -67,7 +67,8 @@ export class ReviewItemListView extends React.Component {
           description: '',
           city: '',
           noReviews: true,
-          avgRating: 0
+          avgRating: 0,
+          buttonDisabled: false
       };
       this.handlePageChange = this.handlePageChange.bind(this);
   }
@@ -104,7 +105,8 @@ export class ReviewItemListView extends React.Component {
               city: data.location.city,
               description: data.description,
               title: data.title,
-              loading: false
+              loading: false,
+              pUserId: data.user._id
           });
       }).catch((e) => {
           console.error(e);
@@ -131,8 +133,7 @@ export class ReviewItemListView extends React.Component {
       }).catch((e) => {
           console.error(e);
       });
-
-      this.setState({user: UserService.getCurrentUser()});
+      this.setState({user: UserService.getCurrentUser(), userId: UserService.getCurrentUser().id});
   }
 
   componentDidUpdate() {
@@ -179,7 +180,7 @@ export class ReviewItemListView extends React.Component {
                       <ReviewAverageValue size={'big'} length={this.state.data.length} avgRating={this.state.avgRating}/>
                     </Cell>
                     <Cell size={1}>
-                      <Button floating primary swapTheming onClick={() => this.props.history.push('/addReview/' + this.state.pId)} disabled={false}>add</Button>
+                      <Button floating primary swapTheming onClick={() => this.props.history.push('/addReview/' + this.state.pId)} disabled={this.state.buttonDisabled}>add</Button>
                     </Cell>
                   </Grid>
                 </div>
@@ -197,8 +198,7 @@ export class ReviewItemListView extends React.Component {
                 margin={2}
                 page={this.state.page}
                 count={Math.ceil(this.state.total / itemsPerPage)}
-                onPageChange={this.handlePageChange}
-              />
+                onPageChange={this.handlePageChange}/>
             </Page>
           );
         } else {
@@ -218,7 +218,7 @@ export class ReviewItemListView extends React.Component {
                       <ReviewAverageValue size={'big'} length={this.state.data.length} avgRating={this.state.avgRating} noReviews={this.state.noReviews}/>
                     </Cell>
                     <Cell size={1}>
-                      <Button floating primary swapTheming onClick={() => this.props.history.push('/addReview/' + this.state.pId)} disabled={false}>add</Button>
+                      <Button floating primary swapTheming onClick={() => this.props.history.push('/addReview/' + this.state.pId)} disabled={this.state.buttonDisabled}>add</Button>
                     </Cell>
                   </Grid>
                 </div>

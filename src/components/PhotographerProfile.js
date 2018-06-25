@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Page from './page/Page.js';
-import { Button } from 'react-md';
+import { Button, DialogContainer } from 'react-md';
 import InfiniteCalendar from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
 import PhotographerDescription from './PhotographerDescription';
@@ -8,16 +8,21 @@ import format from 'date-fns/format';
 import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
 import axios from "axios";
 import ImageGallery from "react-image-gallery";
+import UserService from "../services/UserService";
+import ProfileEdit from "./ProfileEdit";
 
 
 export class PhotographerProfile extends Component {
 
 
     constructor(props) {
+        const currentUser = UserService.getCurrentUser().id;
         super(props);
         this.state = {
             date: '',
-            gallery: []
+            gallery: [],
+            currentUser: currentUser,
+            dialogVisible: false
         };
         this.handleDate = this.handleDate.bind(this);
     }
@@ -79,6 +84,11 @@ export class PhotographerProfile extends Component {
 
             }
         }
+        const currentUser = UserService.getCurrentUser().id;
+        let editButton;
+
+            editButton = <ProfileEdit profile={this.props.profile}/> ;
+
 
         var today = new Date();
         var lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
@@ -87,9 +97,9 @@ export class PhotographerProfile extends Component {
         return (
             <Page>
                 <div id="content">
-                    <div> <PhotographerDescription  profile={this.props.profile}  pID={this.props.pID} avgRating={this.props.avgRating}
-                    title={this.props.title} size={'small'} city={this.props.city} description={this.props.description} noReviews={this.props.noReviews}/>
-                    </div>
+                    <div> <PhotographerDescription  profile={this.props.profile}  pID={this.props.pID} avg={this.props.avg} avgRating={this.props.avgRating}
+                    title={this.props.title} city={this.props.city} description={this.props.description} size={'small'} noReviews={this.props.noReviews}/>
+                    </div> <div> {editButton} </div>
                     <div className="w3-container w3-mobile w3-center w3-padding-48">
                         <ImageGallery items={this.state.gallery}/>
                     </div>
@@ -112,7 +122,6 @@ export class PhotographerProfile extends Component {
                                     height={400}
                                     selected={today}
                                     disabledDays={[0,6]}
-
                                     minDate={new Date(this.props.minDate)}
                                     maxDate={new Date(this.props.maxDate)}
 
@@ -135,7 +144,7 @@ export class PhotographerProfile extends Component {
                                 </form>
                                 </div>
                                 <div className="w3-container w3-margin-top w3-cell-row">
-                                    <Button flat primary swapTheming>Confirm</Button>
+                                    <Button flat primary swapTheming onClick={() => this.props.history.push('/showConfirm/' + this.props.pID)}>Confirm</Button>
                                     <Button flat secondary swapTheming>Cancel</Button>
                                 </div>
                             </div>

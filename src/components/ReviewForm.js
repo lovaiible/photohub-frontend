@@ -20,6 +20,10 @@ const bottomStyle = {
    alignItems: 'center'
 };
 
+const ownProfileStyle = {
+  marginTop: '100px', marginBottom: '200px'
+};
+
 class ReviewForm extends React.Component {
 
     constructor(props) {
@@ -70,50 +74,64 @@ class ReviewForm extends React.Component {
     }
 
     render() {
+      if(this.props.userId == this.props.pUserId){
         return (
-                <Card style={style} className="md-block-centered">
-                    <form onSubmit={this.handleSubmit} onReset={() => this.props.history.push('/viewReviews/' + this.state.photographerId)}>
-                    <h3 style={textBoxStyle}> Create a new Review</h3>
-                      <Grid>
-                        <Cell size={1}>
-                          <label>Rating:</label>
-                        </Cell>
-                        <Cell size={3}>
-                          <ReactStars count={5} size={24} value={this.state.rating} edit={true}
-                          color2={'#ffd700'} onChange={this.handleChangeRating}/>
-                        </Cell>
-                      </Grid>
-                        <TextField
-                            label="Text"
-                            id="TextField"
-                            type="text"
-                            rows={5}
-                            required={true}
-                            value={this.state.text}
-                            onChange={this.handleChangeText}
-                            errorText="Text is required"
-                            style={textBoxStyle}/>
-                        <Grid>
-                          <Cell size={4}></Cell>
-                          <Cell size={1}>
-                          <Button id="submit" type="submit"
-                                  disabled={this.state.date.toString().length < 5 || this.state.name == undefined || this.state.name == '' || this.state.date == undefined || this.state.date == '' || this.state.text == undefined || this.state.text == '' || this.state.photographerId == undefined || this.state.photographerId == '' || this.state.rating > 5 || this.state.rating <= 0}
-                                  raised primary className="md-cell md-cell--2">Save</Button>
-                          </Cell>
-                          <Cell size={1}></Cell>
-                          <Cell size={1}>
-                            <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
-                          </Cell>
-                        </Grid>
-                        <Grid>
-                          <Cell size={4}></Cell>
-                          <Cell size={3}>
-                            <AlertMessage className="md-row md-full-width" >{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
-                          </Cell>
-                        </Grid>
-                    </form>
-                </Card>
+          <div style={ownProfileStyle}>
+            <b>Sorry, you can not rate your own profile.</b>
+          </div>
         );
+      } else if(this.props.checkAlreadyRatedLength > 0){
+        return (
+          <div style={ownProfileStyle}>
+            <b>Sorry, you can not rate a photographer twice. You can still edit your review though!</b>
+          </div>
+        );
+      } else {
+        return (
+          <Card style={style} className="md-block-centered">
+              <form onSubmit={this.handleSubmit} onReset={() => this.props.history.push('/viewReviews/' + this.state.photographerId)}>
+              <h3 style={textBoxStyle}> Create a new Review</h3>
+                <Grid>
+                  <Cell size={1}>
+                    <label>Rating:</label>
+                  </Cell>
+                  <Cell size={3}>
+                    <ReactStars count={5} size={24} value={this.state.rating} edit={true}
+                    color2={'#ffd700'} onChange={this.handleChangeRating}/>
+                  </Cell>
+                </Grid>
+                  <TextField
+                      label="Text"
+                      id="TextField"
+                      type="text"
+                      rows={5}
+                      required={true}
+                      value={this.state.text}
+                      onChange={this.handleChangeText}
+                      errorText="Text is required"
+                      style={textBoxStyle}/>
+                  <Grid>
+                    <Cell size={4}></Cell>
+                    <Cell size={1}>
+                    <Button id="submit" type="submit"
+                            disabled={this.state.date.toString().length < 5 || this.state.name == undefined || this.state.name == '' || this.state.date == undefined || this.state.date == '' || this.state.text == undefined || this.state.text == '' || this.state.photographerId == undefined || this.state.photographerId == '' || this.state.rating > 5 || this.state.rating <= 0}
+                            raised primary className="md-cell md-cell--2">Save</Button>
+                    </Cell>
+                    <Cell size={1}></Cell>
+                    <Cell size={1}>
+                      <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
+                    </Cell>
+                  </Grid>
+                  <Grid>
+                    <Cell size={4}></Cell>
+                    <Cell size={3}>
+                      <AlertMessage className="md-row md-full-width" >{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
+                    </Cell>
+                  </Grid>
+              </form>
+          </Card>
+        );
+      }
     }
 }
 

@@ -6,7 +6,7 @@ import ReviewForm from '../components/ReviewForm';
 import Page from '../components/page/Page';
 import ReviewService from '../services/ReviewService';
 import UserService from '../services/UserService';
-
+import ProfileService from '../services/ProfileService';
 import { Link } from 'react-router-dom';
 
 import Button from 'react-md'
@@ -20,10 +20,11 @@ export class ReviewFormView extends React.Component {
         let pId = this.props.match.params.id;
 
         this.state = {
-            loading: false,
+            loading: true,
             review: undefined,
             error: undefined,
-            pId: pId
+            pId: pId,
+            user: UserService.getCurrentUser()
         }
     }
 
@@ -37,21 +38,52 @@ export class ReviewFormView extends React.Component {
       });
     }
     componentWillMount() {
-      this.setState({user: UserService.getCurrentUser()});
+      ProfileService.getProfile(this.state.pId).then((data) => {
+          this.setState({
+              profile: data,
+              city: data.location.city,
+              description: data.description,
+              title: data.title,
+              loading: false,
+              pUserId: data.user._id
+          });
+      }).catch((e) => {
+          console.error(e);
+      });
+
+      ReviewService.getReviews(this.state.pId).then((data) => {
+          this.setState({
+              reviewsCheck: [...data],
+              reviewsCheckLength: data.length,
+              loading: false
+          });
+      }).catch((e) => {
+          console.error(e);
+      });
+
+      ReviewService.checkAlreadyRated(this.state.pId, this.state.user.id).then((data) => {
+          this.setState({
+              alreadyRatedArray: [...data],
+              checkAlreadyRatedLength: data.length,
+              loading: false
+          });
+      }).catch((e) => {
+          console.error(e);
+      });
     }
+
     render() {
         if (this.state.loading) {
             return (<h2>Loading...</h2>);
         }
-
         return (
           <Page>
             <div className="breadcrumbs">
               <Link to={'/'} className="breadcrumbLink">Home</Link> > Search > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">Profile</Link> > <Link to={'/viewReviews/' + this.state.pId}
               className="breadcrumbLink">Reviews</Link> > <b>Create</b>
             </div>
-            <ReviewForm review={this.state.review} onSubmit={(review) => this.createReview(review)}
-            error={this.state.error} userId={this.state.user.id} userName={this.state.user.username} pId={this.state.pId}/>
+            <ReviewForm review={this.state.review} onSubmit={(review) => this.createReview(review)} checkAlreadyRatedLength={this.state.checkAlreadyRatedLength}
+            error={this.state.error} userId={this.state.user.id} pUserId={this.state.pUserId} userName={this.state.user.username} pId={this.state.pId} />
           </Page>
         );
     }

@@ -27,8 +27,6 @@ class SearchFields extends React.Component {
             city: city,
             category: category,
             date: date,
-            categories: this.props.categories,
-            cities: this.props.locations
         };
 
         this.handleSearch = this.handleSearch.bind(this);
@@ -65,11 +63,12 @@ class SearchFields extends React.Component {
                         <Autocomplete
                             name="city"
                             onAutocomplete={this.handleCity}
+                            onChange={this.handleCity}
                             id="location-input"
                             className="col-3"
                             label="Location"
                             placeholder="Choose your location"
-                            data={this.state.cities}
+                            data={this.props.locations}
                             sameWidth={true}
                             defaultValue={this.state.city}
                             required={true}
@@ -87,7 +86,7 @@ class SearchFields extends React.Component {
                                 x: SelectField.HorizontalAnchors.INNER_LEFT,
                                 y: SelectField.VerticalAnchors.BOTTOM
                             }}
-                            menuItems={this.state.categories}
+                            menuItems={this.props.categories}
                             sameWidth={true}
                             simplifiedMenu={false}
                             defaultValue={this.state.category}

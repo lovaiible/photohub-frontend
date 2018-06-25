@@ -5,6 +5,7 @@ import Link from "react-router-dom";
 import ava from '../img/avatar/ava.png';
 import ReviewAverageValue from './ReviewAverageValue';
 import ProfileService from "../services/ProfileService";
+import ProfileEdit from "./ProfileEdit";
 import ReviewService from "../services/ReviewService";
 import ReactStars from 'react-stars'
 

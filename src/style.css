@@ -58,7 +58,7 @@ header nav .logo {
 
 /* ==== Content ==== */
 
-main .container,  div .container {
+main .container, div .container {
     margin-top: 100px;
 }
 
@@ -116,8 +116,10 @@ main .container,  div .container {
 
 .categories .card a, .search-container .card a {
     position: absolute;
-    top: 0; left: 0;
-    height: 100%; width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 }
 
 /* ==== Star Rating ==== */
@@ -132,11 +134,21 @@ main .container,  div .container {
 
 /* ==== Login / Register ==== */
 
-.md-card.login, .md-card.signup  {
+.md-card.login, .md-card.signup {
     text-align: center;
     max-width: 700px;
     margin: 100px auto 60px !important;
     padding: 20px;
+}
+
+.md-card.photo {
+    max-width: 700px;
+    margin: 10px auto 60px !important;
+    padding: 20px;
+}
+
+#register-category-menu {
+    width: 100%;
 }
 
 .md-text-field--inline-indicator {
@@ -219,10 +231,12 @@ main .container,  div .container {
         padding-top: 80px;
         height: 100%;
     }
+
     .col-3 {
         flex: auto;
         max-width: 100% !important;
     }
+
     #slider .container form button {
         margin: 20px auto 15px;
     }
@@ -250,17 +264,17 @@ main .container,  div .container {
     }
 }
 
-.breadcrumbs{
-  font-size: 13px;
-  margin-top: 10px;
+.breadcrumbs {
+    font-size: 13px;
+    margin-top: 10px;
 }
 
 .breadcrumbLink {
-  color: black;
+    color: black;
 }
 
 .horizontalLine {
-  color: black;
-  size: 5;
-  
+    color: black;
+    size: 5;
+
 }
