@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {withRouter} from "react-router-dom";
-import Page from './Page';
+import Page from './page/Page';
 
 import {
     Card,

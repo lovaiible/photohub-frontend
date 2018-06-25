@@ -2,9 +2,9 @@
 
 import React from 'react';
 
-import {CategoryList} from '../components/CategoryList';
+import {CategoryList} from '../components/categories/CategoryList';
 import CategoryService from '../services/CategoryService';
-import LandingPage from "../components/LandingPage";
+import LandingPage from "../components/page/LandingPage";
 
 
 export class CategoryListView extends React.Component {

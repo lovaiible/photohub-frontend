@@ -2,16 +2,35 @@
 
 import React from 'react';
 import SearchResult from '../components/search/SearchResult'
+import SearchService from "../services/SearchService";
+import {withRouter} from "react-router-dom";
 
-export class SearchResultView extends React.Component {
+class SearchResultView extends React.Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
+            data: [],
             loading: false,
-            data: []
         };
+    }
+
+    componentWillMount(){
+        this.setState({
+            loading: true
+        });
+    }
+
+    componentDidMount() {
+        SearchService.getSearchResults(this.props.location.search).then((data) => {
+            this.setState({
+                data: [...data],
+                loading: false
+            });
+        }).catch((e) => {
+            console.error(e);
+        });
     }
 
     render() {
@@ -20,7 +39,9 @@ export class SearchResultView extends React.Component {
         }
 
         return (
-            <SearchResult data={this.state.data} />
+            <SearchResult results={this.state.data} />
         );
     }
 }
+
+export default withRouter(SearchResultView);
