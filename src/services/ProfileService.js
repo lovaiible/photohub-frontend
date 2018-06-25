@@ -66,4 +66,19 @@ export default class ProfileService {
             });
         });
     }
+
+    static getUserProfile(id) {
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${ProfileService.baseURL()}/user/${id}`, function(data) {
+                if(data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                }
+                else {
+                    reject('Error while retrieving profile');
+                }
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
 }
