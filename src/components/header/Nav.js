@@ -1,13 +1,14 @@
 "use strict"
 
 import React from 'react';
-import {AccessibleFakeButton, Avatar, FontIcon, List, ListItem, DropdownMenu, IconSeparator} from "react-md";
+import { List, ListItem} from "react-md";
 import img from '../../img/logo/logo.png';
 import {Link} from "react-router-dom";
 import UserService from "../../services/UserService";
 import {withRouter} from "react-router-dom";
 import AccountMenu from "./AccountMenu";
 import ProfileService from "../../services/ProfileService";
+import 'babel-polyfill';
 
 const flexContainer = {
     display: 'inline-flex',
@@ -22,14 +23,18 @@ class Nav extends React.Component {
         super(props);
         this.state = {
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
-            profile: this.getPhotographerProfile()
+            hasProfile: false
         }
     }
 
+    async componentDidMount() {
+        let hasProfile = await this.getPhotographerProfile();
+        this.setState({'hasProfile' : hasProfile});
+    }
+
     getPhotographerProfile() {
-        ProfileService.getUserProfile(UserService.getCurrentUser().id).then((data) => {
-            console.log('hasPhotographerProfile: ' + data);
-            return true;
+        return ProfileService.getUserProfile(UserService.getCurrentUser().id).then((data) => {
+            return Object.keys(data).length !== 0;
         }).catch((e) => {
             console.error(e);
             return false;
@@ -45,7 +50,7 @@ class Nav extends React.Component {
                 <div>
                     <List style={flexContainer}>
                         <ListItem key={1} primaryText="About" onClick={() => this.props.history.push('/about')} />
-                        { this.state.user && !this.state.profile ? [
+                        { this.state.user && !this.state.hasProfile ? [
                             <ListItem key={2} primaryText="Become a photographer" onClick={() => this.props.history.push('/photographerSignUp')} />
                         ] : []}
                         <ListItem key={3} primaryText="Help" onClick={() => this.props.history.push('/help')}/>

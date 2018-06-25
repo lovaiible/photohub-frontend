@@ -1,7 +1,6 @@
 "use strict";
 
 import React from 'react';
-import 'babel-polyfill';
 import UserService from '../services/UserService';
 import CategoryService from "../services/CategoryService";
 import LocationService from "../services/LocationService";
@@ -67,8 +66,6 @@ export class PhotographerSignUpView extends React.Component {
         }).catch((e) => {
             console.error(e);
         });
-
-        console.log('set state');
 
         this.setState({
             categories: categories.sort(),
