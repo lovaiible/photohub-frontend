@@ -3,7 +3,7 @@ import React from 'react';
 import {Avatar, Grid, Cell} from 'react-md';
 import Link from "react-router-dom";
 import ava from '../img/avatar/ava.png';
-import ReviewAverageValueSmall from './ReviewAverageValueSmall';
+import ReviewAverageValue from './ReviewAverageValue';
 import ProfileService from "../services/ProfileService";
 import ReviewService from "../services/ReviewService";
 import ReactStars from 'react-stars'
@@ -64,7 +64,7 @@ class PhotographerDescription extends React.Component {
                       <p className="w3-cell w3-center w3-border-right">100 successful order</p>
 
                       <div>
-                          <ReviewAverageValueSmall avgRating={this.props.avgRating} pId={this.props.pID} noReviews={this.props.noReviews}/>
+                          <ReviewAverageValue size={'small'} avgRating={this.props.avgRating} pId={this.props.pID} noReviews={this.props.noReviews}/>
                       </div>
 
                       {/*//<Link to={`/reviews/${this.props.pID}`}>*/}
