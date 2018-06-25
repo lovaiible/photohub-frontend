@@ -67,25 +67,25 @@ export class Summary extends React.Component {
                         </Cell>
                         <Cell>
                             <CardText>
-                                {this.props.bookingID}
+                                {localStorage.getItem("bookingID")}
                             </CardText>
                             <CardText>
-                                {this.props.pId}
+                                {localStorage.getItem("pId")}
                             </CardText>
                             <CardText>
-                                Du Sackgesicht
+                                Category
                             </CardText>
                             <CardText>
-                                {this.props.date}
+                                {localStorage.getItem("date")}
                             </CardText>
                             <CardText>
                                 100.000.000.000.000.000.000.000 Euro
                             </CardText>
                             <CardText>
-                                {this.props.payment}
+                                {localStorage.getItem("payment")}
                             </CardText>
                             <CardText>
-                                {this.props.addInfo}
+                                {localStorage.getItem("addInfo")}
                             </CardText>
                         </Cell>
                     </Grid>

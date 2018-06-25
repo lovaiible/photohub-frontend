@@ -27,6 +27,12 @@ export default class App extends React.Component {
         this.state = {
             title: 'Photohub',
             routes: [
+                { component: CategoryListView, path: '/', exact: true },
+                { component: SearchResultView, path: '/results'},
+                { component: ConfirmView , path: '/showConfirm/:id'},
+                { component: SummaryView, path: '/showSummary/:bookingID'},
+                { component: UserLoginView, path: '/login'},
+                { component: UserSignupView, path: '/register'},
                 {component: CategoryListView, path: '/', exact: true},
                 {component: SearchResultView, path: '/results'},
                 {component: ReviewItemListView, path: '/viewReviews/:id', name: "ReviewList"},

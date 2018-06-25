@@ -34,6 +34,8 @@ const style = {
     },
 };
 
+window.localStorage;
+
 export class Confirm extends React.Component {
 
     constructor(props) {
@@ -77,13 +79,23 @@ export class Confirm extends React.Component {
         }
 
         booking.bookingID = Math.floor((Math.random() * 100000000) + 1).toString();
-
-
         booking.date = this.state.date;
         booking.payment = this.state.payment;
         booking.addInfo = this.state.addInfo;
         booking.pId = this.state.pId;
 
+        console.log(booking.bookingID);
+
+        localStorage.setItem("payment", this.state.payment);
+        localStorage.setItem("date", this.state.date);
+        localStorage.setItem("addInfo", this.state.addInfo);
+        localStorage.setItem("bookingID", booking.bookingID);
+        localStorage.setItem("pId", this.state.pId);
+
+
+        //var addInfo = localStorage.getItem("addInfo");
+        //var date = localStorage.getItem("date");
+        //var payment = localStorage.getItem("payment");
 
         this.props.onSubmit(booking);
 

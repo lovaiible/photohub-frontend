@@ -12,7 +12,7 @@ export default class SummaryService {
     static getBooking(id) {
         return new Promise((resolve, reject) => {
             HttpService.get(`${SummaryService.baseURL()}/${id}`, function (data) {
-                console.log(Object.keys(data).length);
+                //console.log(Object.keys(data).length);
                 if (data != undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 }
