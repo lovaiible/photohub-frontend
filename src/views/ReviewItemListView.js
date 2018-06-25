@@ -9,7 +9,6 @@ import UserService from '../services/UserService';
 import ReviewListItem from '../components/ReviewListItem';
 import ReviewAverageValue from '../components/ReviewAverageValue';
 import ReviewAverageValueSmall from '../components/ReviewAverageValueSmall';
-import ReviewUpperBody from '../components/ReviewUpperBody';
 import ReactStars from 'react-stars';
 import PhotographerDescription from '../components/PhotographerDescription';
 
