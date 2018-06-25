@@ -38,6 +38,7 @@ export class PhotographerProfileView extends React.Component {
         ReviewService.getAvgRating(this.state.pID).then((data) => {
             this.setState({
                 avg: [...data],
+                avgRating: data[0].avgRating,
                 loading: false
             });
         }).catch((e) => {

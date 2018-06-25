@@ -12,11 +12,12 @@ import {
     DatePicker,
     TextField
 } from 'react-md';
-import ReactStars from 'react-stars'
 import {RadioGroup, RadioButton} from 'react-radio-buttons';
 import Page from './page/Page';
-
+import ReviewAverageValue from './ReviewAverageValue';
+import ReactStars from 'react-stars';
 import {withRouter, Link} from "react-router-dom";
+import moment from "moment/moment";
 
 const style = {
     root: {
@@ -46,15 +47,17 @@ export class Confirm extends React.Component {
             date: '',
             addInfo: '',
             pId: this.props.pId,
-            price: '',
-
+            price: this.state.price,
+            avatar: this.state.pAvatar,
+            description: this.state.sDescription,
+            pName: this.state.pName,
+            category: this.state.category
         };
 
         this.handleChangePayment = this.handleChangePayment.bind(this);
         this.handleChangeDate = this.handleChangeDate.bind(this);
         this.handleChangeAddInfo = this.handleChangeAddInfo.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleReset = this.handleReset.bind(this);
 
     }
 
@@ -83,52 +86,44 @@ export class Confirm extends React.Component {
         booking.payment = this.state.payment;
         booking.addInfo = this.state.addInfo;
         booking.pId = this.state.pId;
+        booking.pName = this.state.pName;
+        booking.price = this.state.price;
+        booking.category = this.state.category;
 
-        console.log(booking.bookingID);
+
 
         localStorage.setItem("payment", this.state.payment);
         localStorage.setItem("date", this.state.date);
         localStorage.setItem("addInfo", this.state.addInfo);
         localStorage.setItem("bookingID", booking.bookingID);
         localStorage.setItem("pId", this.state.pId);
-
-
-        //var addInfo = localStorage.getItem("addInfo");
-        //var date = localStorage.getItem("date");
-        //var payment = localStorage.getItem("payment");
+        localStorage.setItem("pName", this.state.pName);
+        localStorage.setItem("price", this.state.price);
+        localStorage.setItem("category", this.state.category);
 
         this.props.onSubmit(booking);
-
-    }
-
-    handleReset(event) {
-
-        let booking = this.props.booking;
-
-        booking.payment=undefined;
-        booking.date=undefined;
-        booking.addInfo='';
     }
 
     render() {
         return <Page>
             <Card style={style} className="md-block-centered">
-                <form onSubmit={this.handleSubmit} onReset={this.handleReset}>
+                <form onSubmit={this.handleSubmit} onReset={() => this.props.history.push("/profile/:id")} >
                     <CardTitle title="Confirm and Pay"
                                subtitle="Please confirm your booking details and select a payment method below."/>
 
                     <Grid className="grid-example">
                         <Cell size={3}>
                             <Media aspectRatio="1-1">
-
+                                {this.state.avatar}
                             </Media>
                         </Cell>
                         <Cell size={7}>
                             <h1>Portrait Photography</h1>
-                            <p>Max Mustermann: </p>
-                            <ReactStars count={5} size={24} color2={'#ffd700'} value={4} edit={false}/>
+                            <p>{this.state.pName} </p>
+                            <ReviewAverageValue length={this.props.numberReviews} avgRating={this.props.avgRating}/>
+                            <ReactStars count={5} size={24} value={parseFloat(this.props.avgRating.toFixed(1))} edit={false} color2={'#ffd700'} />
                             <div id="showRating"/>
-                            <p>Servicebeschreibung</p>
+                            <p>{this.state.description}</p>
 
                         </Cell>
                         <Cell size={2}>
@@ -145,12 +140,14 @@ export class Confirm extends React.Component {
                             label="Select an appointment date"
                             className="md-cell"
                             disableOuterDates={true}
-                            disabledDays={{before: Date.now()}}
                             displayMode="landscape"
+                            minDate={moment().toDate()}
+                            locales="en-US"
                             disableWeekEnds={true}
                             showAllDays={false}
-                            cancelLabel={"Cancel"}
-                            okLabel={"Confirm"}/>
+                            disabled={true}
+                            //defaultValue={}
+                        />
                         <TextField
                             onChange={this.handleChangeAddInfo}
                             id="Additional Information"

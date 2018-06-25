@@ -8,7 +8,6 @@ import UserService from '../services/UserService';
 
 import ReviewListItem from '../components/ReviewListItem';
 import ReviewAverageValue from '../components/ReviewAverageValue';
-import ReviewAverageValueSmall from '../components/ReviewAverageValueSmall';
 import ReactStars from 'react-stars';
 import PhotographerDescription from '../components/PhotographerDescription';
 
@@ -67,7 +66,8 @@ export class ReviewItemListView extends React.Component {
           title:'',
           description: '',
           city: '',
-          noReviews: true
+          noReviews: true,
+          avgRating: 0
       };
       this.handlePageChange = this.handlePageChange.bind(this);
   }
@@ -124,6 +124,7 @@ export class ReviewItemListView extends React.Component {
       ReviewService.getAvgRating(this.state.pId).then((data) => {
           this.setState({
               avg: [...data],
+              avgRating: data[0].avgRating,
               loading: false,
               noReviews: false
           });
@@ -170,12 +171,12 @@ export class ReviewItemListView extends React.Component {
               <div>
                 <div>
                   <PhotographerDescription  profile={this.state.profile} title={this.state.title} city={this.state.city}
-                  description={this.state.description} pID={this.state.pId} avg={this.state.avg} noReviews={this.state.noReviews}/>
+                  description={this.state.description} pID={this.state.pId} avg={this.state.avg} avgRating={this.state.avgRating} noReviews={false}/>
                 </div>
                 <div style={countRowStyles}>
                   <Grid>
                     <Cell size={11} style={fontStyleReviews}>
-                      {this.state.avg.map((avg) => <ReviewAverageValue avg={avg} key={avg._id} length={this.state.data.length}/>)}
+                      <ReviewAverageValue size={'big'} length={this.state.data.length} avgRating={this.state.avgRating}/>
                     </Cell>
                     <Cell size={1}>
                       <Button floating primary swapTheming onClick={() => this.props.history.push('/addReview/' + this.state.pId)} disabled={false}>add</Button>
@@ -208,13 +209,13 @@ export class ReviewItemListView extends React.Component {
               </div>
               <div>
                 <div>
-                  <PhotographerDescription  profile={this.state.profile} title={this.state.title} city={this.state.city}
-                  description={this.state.description} pID={this.state.pId} avg={this.state.avg} noReviews={this.state.noReviews}/>
+                  <PhotographerDescription  profile={this.state.profile} title={this.state.title} city={this.state.city} avgRating={this.state.avgRating}
+                  description={this.state.description} size={'small'} pID={this.state.pId} avg={this.state.avg} noReviews={this.state.noReviews}/>
                 </div>
                 <div style={countRowStyles}>
                   <Grid>
                     <Cell size={11} style={fontStyleReviews}>
-                      {this.state.avg.map((avg) => <ReviewAverageValue avg={avg} key={avg._id} length={this.state.data.length}/>)}
+                      <ReviewAverageValue size={'big'} length={this.state.data.length} avgRating={this.state.avgRating} noReviews={this.state.noReviews}/>
                     </Cell>
                     <Cell size={1}>
                       <Button floating primary swapTheming onClick={() => this.props.history.push('/addReview/' + this.state.pId)} disabled={false}>add</Button>
@@ -243,7 +244,7 @@ export class ReviewItemListView extends React.Component {
             <div>
               <div>
                 <PhotographerDescription  profile={this.state.profile} title={this.state.title} city={this.state.city}
-                description={this.state.description} avg={0} pID={this.state.pId} noReviews={true}/>
+                description={this.state.description} avgRating={0} pID={this.state.pId} noReviews={true}/>
               </div>
               <hr className="horizontalLine" style={lineStyle}/>
               <div style={marginNoReviews}>

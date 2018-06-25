@@ -31,16 +31,6 @@ export class PhotographerProfile extends Component {
         const newDate = format(e, "DD.MM.YYYY");
         this.setState({date: newDate});
     }
-/*
-    handleConfirm() {
-        this.props.history.push({
-            pathname: '/showConfirm/' + this.props.pID,
-            date: this.state.date
-        });
-    }*/
-
-    // TODO: delete image in gallery
-    //var cloudinary = require('cloudinary');
 
 
     // use profileID in order to call image.

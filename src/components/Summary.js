@@ -10,7 +10,7 @@ import {
     CardText,
     Cell,
     Grid,
-    DatePicker
+    Button
 } from 'react-md';
 
 const style = {
@@ -70,16 +70,16 @@ export class Summary extends React.Component {
                                 {localStorage.getItem("bookingID")}
                             </CardText>
                             <CardText>
-                                {localStorage.getItem("pId")}
+                                {localStorage.getItem("pName")}
                             </CardText>
                             <CardText>
-                                Category
+                                {localStorage.getItem("category")}
                             </CardText>
                             <CardText>
                                 {localStorage.getItem("date")}
                             </CardText>
                             <CardText>
-                                100.000.000.000.000.000.000.000 Euro
+                                {localStorage.getItem("price")} Euro
                             </CardText>
                             <CardText>
                                 {localStorage.getItem("payment")}
@@ -89,6 +89,10 @@ export class Summary extends React.Component {
                             </CardText>
                         </Cell>
                     </Grid>
+                    <Button flat primary swapTheming className="md-cell md-cell--2 margin-5" onClick={() => this.props.history.push("/")}
+                            style={{display: 'flex', justifyContent: 'center'}}>
+                        Back
+                    </Button>
                 </Card>
             </Page>
         );
