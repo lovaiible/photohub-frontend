@@ -8,7 +8,6 @@ import UserService from '../services/UserService';
 
 import ReviewListItem from '../components/ReviewListItem';
 import ReviewAverageValue from '../components/ReviewAverageValue';
-import ReviewAverageValueSmall from '../components/ReviewAverageValueSmall';
 import ReactStars from 'react-stars';
 import PhotographerDescription from '../components/PhotographerDescription';
 
@@ -172,12 +171,12 @@ export class ReviewItemListView extends React.Component {
               <div>
                 <div>
                   <PhotographerDescription  profile={this.state.profile} title={this.state.title} city={this.state.city}
-                  description={this.state.description} pID={this.state.pId} avg={this.state.avg} avgRating={this.state.avgRating} noReviews={this.state.noReviews}/>
+                  description={this.state.description} pID={this.state.pId} avg={this.state.avg} avgRating={this.state.avgRating} noReviews={false}/>
                 </div>
                 <div style={countRowStyles}>
                   <Grid>
                     <Cell size={11} style={fontStyleReviews}>
-                      <ReviewAverageValue length={this.state.data.length} avgRating={this.state.avgRating}/>
+                      <ReviewAverageValue size={'big'} length={this.state.data.length} avgRating={this.state.avgRating}/>
                     </Cell>
                     <Cell size={1}>
                       <Button floating primary swapTheming onClick={() => this.props.history.push('/addReview/' + this.state.pId)} disabled={false}>add</Button>
@@ -211,12 +210,12 @@ export class ReviewItemListView extends React.Component {
               <div>
                 <div>
                   <PhotographerDescription  profile={this.state.profile} title={this.state.title} city={this.state.city} avgRating={this.state.avgRating}
-                  description={this.state.description} pID={this.state.pId} avg={this.state.avg} noReviews={this.state.noReviews}/>
+                  description={this.state.description} size={'small'} pID={this.state.pId} avg={this.state.avg} noReviews={this.state.noReviews}/>
                 </div>
                 <div style={countRowStyles}>
                   <Grid>
                     <Cell size={11} style={fontStyleReviews}>
-                      <ReviewAverageValue length={this.state.data.length} avgRating={this.state.avgRating}/>
+                      <ReviewAverageValue size={'big'} length={this.state.data.length} avgRating={this.state.avgRating} noReviews={this.state.noReviews}/>
                     </Cell>
                     <Cell size={1}>
                       <Button floating primary swapTheming onClick={() => this.props.history.push('/addReview/' + this.state.pId)} disabled={false}>add</Button>

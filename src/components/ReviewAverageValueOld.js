@@ -4,7 +4,7 @@ import React from 'react';
 import ReactStars from 'react-stars'
 import { Link } from 'react-router-dom';
 
-export default class ReviewAverageValue extends React.Component {
+export default class ReviewAverageValueSmall extends React.Component {
   constructor(props){
     super(props)
   }

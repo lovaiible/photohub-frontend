@@ -12,6 +12,7 @@ import {
     DatePicker,
     TextField
 } from 'react-md';
+import ReactStars from 'react-stars'
 import {RadioGroup, RadioButton} from 'react-radio-buttons';
 import Page from './page/Page';
 
@@ -46,17 +47,15 @@ export class Confirm extends React.Component {
             date: '',
             addInfo: '',
             pId: this.props.pId,
-            price: this.state.price,
-            avatar: this.state.pAvatar,
-            description: this.state.sDescription,
-            pName: this.state.pName,
-            category: this.state.category
+            price: '',
+
         };
 
         this.handleChangePayment = this.handleChangePayment.bind(this);
         this.handleChangeDate = this.handleChangeDate.bind(this);
         this.handleChangeAddInfo = this.handleChangeAddInfo.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+//        this.handleReset = this.handleReset.bind(this);
 
     }
 
@@ -85,20 +84,14 @@ export class Confirm extends React.Component {
         booking.payment = this.state.payment;
         booking.addInfo = this.state.addInfo;
         booking.pId = this.state.pId;
-        booking.pName = this.state.pName;
-        booking.price = this.state.price;
-        booking.category = this.state.category;
 
-
+        console.log(booking.bookingID);
 
         localStorage.setItem("payment", this.state.payment);
         localStorage.setItem("date", this.state.date);
         localStorage.setItem("addInfo", this.state.addInfo);
         localStorage.setItem("bookingID", booking.bookingID);
         localStorage.setItem("pId", this.state.pId);
-        localStorage.setItem("pName", this.state.pName);
-        localStorage.setItem("price", this.state.price);
-        localStorage.setItem("category", this.state.category);
 
         this.props.onSubmit(booking);
     }
@@ -106,28 +99,22 @@ export class Confirm extends React.Component {
     render() {
         return <Page>
             <Card style={style} className="md-block-centered">
-                <form onSubmit={this.handleSubmit} onReset={() => this.props.history.push("/profile/:id")} >
+                <form onSubmit={this.handleSubmit} >
                     <CardTitle title="Confirm and Pay"
                                subtitle="Please confirm your booking details and select a payment method below."/>
 
                     <Grid className="grid-example">
                         <Cell size={3}>
                             <Media aspectRatio="1-1">
-                                {this.state.avatar}
+
                             </Media>
                         </Cell>
                         <Cell size={7}>
                             <h1>Portrait Photography</h1>
-<<<<<<< HEAD
-                            <p>{this.state.pName} </p>
-                            <ReviewAverageValue length={this.props.numberReviews} avgRating={this.props.avgRating}/>
-
-=======
                             <p>Max Mustermann: </p>
                             <ReactStars count={5} size={24} value={parseFloat(this.props.avgRating.toFixed(1))} edit={false} color2={'#ffd700'} />
->>>>>>> fdec27b486a68669a81012e96562f4fa94ec8db8
                             <div id="showRating"/>
-                            <p>{this.state.description}</p>
+                            <p>Servicebeschreibung</p>
 
                         </Cell>
                         <Cell size={2}>
@@ -150,7 +137,7 @@ export class Confirm extends React.Component {
                             disableWeekEnds={true}
                             showAllDays={false}
                             disabled={true}
-                            //defaultValue={}
+                           // defaultValue={}
                         />
                         <TextField
                             onChange={this.handleChangeAddInfo}
