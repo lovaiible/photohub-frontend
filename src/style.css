@@ -114,7 +114,7 @@ main .container,  div .container {
     margin-bottom: 25px;
 }
 
-.categories .card a {
+.categories .card a, .search-container .card a {
     position: absolute;
     top: 0; left: 0;
     height: 100%; width: 100%;
