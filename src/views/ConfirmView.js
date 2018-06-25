@@ -5,6 +5,7 @@ import React from 'react';
 import {Confirm} from './../components/Confirm';
 import ConfirmService from '../services/ConfirmService';
 import ReviewService from '../services/ReviewService';
+import ProfileService from "../services/ProfileService";
 
 export class ConfirmView extends React.Component {
 
@@ -49,6 +50,19 @@ export class ConfirmView extends React.Component {
         }).catch((e) => {
             console.error(e);
         });
+
+        ProfileService.getProfile(this.state.pID).then((data)=> {
+            this.setState({
+                profile: data,
+                city: data.location.city,
+                description: data.description,
+                title: data.title,
+                minDate: data.minDate,
+                maxDate: data.maxDate
+            });
+        }).catch((e) => {
+            console.error(e);
+        });
     }
 
     createBooking(booking) {
@@ -84,7 +98,9 @@ export class ConfirmView extends React.Component {
 
 
             <Confirm booking={this.state.booking} onSubmit={(booking) => this.updateBooking(booking)} error={this.state.error}
-                           pId={this.state.pId} avgRating={this.state.avgRating} numberReviews={this.state.numberReviews}/>
+                           pId={this.state.profile._id} avgRating={this.state.avgRating} numberReviews={this.state.numberReviews} pName={this.state.profile.title}
+                            sDescription={this.state.profile.serviceDescription} pAvatar={this.state.profile.avatar} price={this.state.profile.price}
+                             category={this.state.profile.category}/>
           </div>
         );
     }
