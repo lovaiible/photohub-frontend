@@ -51,7 +51,7 @@ export default class App extends React.Component {
                 {component: SummaryView, path: '/showSummary/:bookingID/:pId/:date/:payment/:addInfo'},
                 {component: UserLoginView, path: '/login'},
                 {component: UserSignupView, path: '/register'},
-                {component: PhotographerSignUpView, path: '/photographerSignup'},
+                {component: PhotographerSignUpView, path: '/photographerSignUp'},
                 {component: Error, path: '*'}
             ]
         };
