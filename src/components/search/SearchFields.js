@@ -39,7 +39,6 @@ class SearchFields extends React.Component {
 
     handleCity(input) {
         this.setState({city: input});
-        console.log(this.getCurrentPosition);
     }
 
     handleCategory(input) {
@@ -109,7 +108,7 @@ class SearchFields extends React.Component {
                             defaultValue={this.state.date}
                             onChange={this.handleDate}
                             autoOk={true}
-                            required={true}
+                            required={false}
                             errorText="Date is required"
                         />
                         <Button raised primary className='search-button md-cell--3 margin-5'
