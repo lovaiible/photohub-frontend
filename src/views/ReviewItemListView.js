@@ -105,7 +105,6 @@ export class ReviewItemListView extends React.Component {
               city: data.location.city,
               description: data.description,
               title: data.title,
-              loading: false,
               pUserId: data.user._id
           });
       }).catch((e) => {
@@ -116,8 +115,7 @@ export class ReviewItemListView extends React.Component {
           this.setState({
               data: [...data],
               renderedReviews: data.slice(0, itemsPerPage),
-              total: data.length,
-              loading: false
+              total: data.length
           });
       }).catch((e) => {
           console.error(e);
@@ -126,10 +124,16 @@ export class ReviewItemListView extends React.Component {
       ReviewService.getAvgRating(this.state.pId).then((data) => {
           this.setState({
               avg: [...data],
-              avgRating: data[0].avgRating,
-              loading: false,
               noReviews: false
           });
+          if(this.state.avg.length != 0){
+           this.setState({
+               avgRating: data[0].avgRating
+           });
+         }
+         this.setState({
+             loading: false
+         });
       }).catch((e) => {
           console.error(e);
       });
@@ -171,7 +175,7 @@ export class ReviewItemListView extends React.Component {
               </div>
               <div>
                 <div>
-                  <PhotographerDescription  profile={this.state.profile} title={this.state.title} city={this.state.city}
+                  <PhotographerDescription  profile={this.state.profile} title={this.state.title} city={this.state.city} size={'small'}
                   description={this.state.description} pID={this.state.pId} avg={this.state.avg} avgRating={this.state.avgRating} noReviews={false}/>
                 </div>
                 <div style={countRowStyles}>
@@ -244,7 +248,7 @@ export class ReviewItemListView extends React.Component {
             <div>
               <div>
                 <PhotographerDescription  profile={this.state.profile} title={this.state.title} city={this.state.city}
-                description={this.state.description} avgRating={0} pID={this.state.pId} noReviews={true}/>
+                description={this.state.description} size={'small'} avgRating={0} pID={this.state.pId} noReviews={true}/>
               </div>
               <hr className="horizontalLine" style={lineStyle}/>
               <div style={marginNoReviews}>

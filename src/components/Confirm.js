@@ -120,7 +120,6 @@ export class Confirm extends React.Component {
                         <Cell size={7}>
                             <h1>Portrait Photography</h1>
                             <p>{this.state.pName} </p>
-                            <ReviewAverageValue length={this.props.numberReviews} avgRating={this.props.avgRating}/>
                             <ReactStars count={5} size={24} value={parseFloat(this.props.avgRating.toFixed(1))} edit={false} color2={'#ffd700'} />
                             <div id="showRating"/>
                             <p>{this.state.description}</p>

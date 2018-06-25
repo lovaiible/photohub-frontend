@@ -38,9 +38,16 @@ export class PhotographerProfileView extends React.Component {
         ReviewService.getAvgRating(this.state.pID).then((data) => {
             this.setState({
                 avg: [...data],
-                avgRating: data[0].avgRating,
-                loading: false
+                length: data.length
             });
+            if(this.state.length != 0){
+             this.setState({
+                 avgRating: data[0].avgRating
+             });
+           }
+           this.setState({
+               loading: false
+           });
         }).catch((e) => {
             console.error(e);
         });
@@ -51,16 +58,16 @@ export class PhotographerProfileView extends React.Component {
         if (this.state.loading) {
             return (<h2>Loading...</h2>);
         } else {
-          if(this.state.avg.length > 0){
+          if(this.state.length <= 0){
             return (
-                <PhotographerProfile  profile={this.state.profile} pID={this.state.pID} avg={this.state.avg} avgRating={this.state.avgRating} noReviews={false}
+                <PhotographerProfile  profile={this.state.profile} pID={this.state.pID} avg={this.state.avg} avgRating={0} noReviews={true}
                 title={this.state.title} city={this.state.city} description={this.state.description} history={this.props.history} size={'small'}/>
             );
           } else {
             return (
-                <PhotographerProfile  profile={this.state.profile} pID={this.state.pID} noReviews={true} avgRating={this.state.avgRating} size={'small'}
-                title={this.state.title} city={this.state.city} description={this.state.description} history={this.props.history}/>
-            );
+              <PhotographerProfile  profile={this.state.profile} pID={this.state.pID} noReviews={false} avg={this.state.avg} avgRating={this.state.avgRating} size={'small'}
+              title={this.state.title} city={this.state.city} description={this.state.description} history={this.props.history}/>
+          );
           }
         }
     }
