@@ -8,6 +8,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
+        'babel-polyfill': ['babel-polyfill'],
         'vendor': ['react','react-dom','react-router-dom'],
         'app': path.resolve(__dirname,'src/index.js')
     },

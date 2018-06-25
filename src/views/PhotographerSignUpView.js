@@ -1,8 +1,7 @@
 "use strict";
 
 import React from 'react';
-
-import UserSignup from '../components/header/UserSignup';
+import 'babel-polyfill';
 import UserService from '../services/UserService';
 import CategoryService from "../services/CategoryService";
 import LocationService from "../services/LocationService";
@@ -17,11 +16,13 @@ export class PhotographerSignUpView extends React.Component {
         this.state = {
             loading: false,
             categories: [],
-            locations: []
+            locations: [],
+            isPhotographer: false,
+            userId: UserService.getCurrentUser().id
         };
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.setState({
             loading: true
         });
@@ -48,11 +49,11 @@ export class PhotographerSignUpView extends React.Component {
     }
 
     componentDidMount() {
-        var categories = [];
-        var locations = [];
+        let categories = [];
+        let locations = [];
 
         CategoryService.getCategories().then((data) => {
-            for(var index in data) {
+            for (var index in data) {
                 categories.push(data[index].title);
             }
         }).catch((e) => {
@@ -60,12 +61,14 @@ export class PhotographerSignUpView extends React.Component {
         });
 
         LocationService.getLocations().then((data) => {
-            for(var index in data) {
+            for (var index in data) {
                 locations.push(data[index].city);
             }
         }).catch((e) => {
             console.error(e);
         });
+
+        console.log('set state');
 
         this.setState({
             categories: categories.sort(),
@@ -76,7 +79,9 @@ export class PhotographerSignUpView extends React.Component {
 
     render() {
         return (
-            <PhotographerSignUp categories={this.state.categories} locations={this.state.locations} onSubmit={(photographer) => this.signup(photographer)}> </PhotographerSignUp>
+            <PhotographerSignUp isPhotographer={this.state.isPhotographer} categories={this.state.categories}
+                                locations={this.state.locations}
+                                onSubmit={(photographer) => this.signup(photographer)}> </PhotographerSignUp>
         );
     }
 }
