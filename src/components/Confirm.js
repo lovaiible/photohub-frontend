@@ -15,6 +15,7 @@ import {
 import ReactStars from 'react-stars'
 import {RadioGroup, RadioButton} from 'react-radio-buttons';
 import Page from './page/Page';
+import ReviewAverageValue from './ReviewAverageValue';
 
 import {withRouter, Link} from "react-router-dom";
 import moment from "moment/moment";
@@ -112,7 +113,8 @@ export class Confirm extends React.Component {
                         <Cell size={7}>
                             <h1>Portrait Photography</h1>
                             <p>Max Mustermann: </p>
-                            <ReactStars count={5} size={24} color2={'#ffd700'} value={4} edit={false}/>
+                            <ReviewAverageValue length={this.props.numberReviews} avgRating={this.props.avgRating}/>
+
                             <div id="showRating"/>
                             <p>Servicebeschreibung</p>
 
