@@ -48,11 +48,14 @@ class SearchFields extends React.Component {
     }
 
     handleSearch() {
+        localStorage.setItem('city', this.state.city);
+        localStorage.setItem('category', this.state.category);
+        localStorage.setItem('date', this.state.date);
+
         if (this.props.location.pathname !== "/") {
             window.location.reload();
         }
         window.location = '#/results?city=' + this.state.city + '&category=' + this.state.category + '&date=' + this.state.date;
-
     }
 
     render() {
