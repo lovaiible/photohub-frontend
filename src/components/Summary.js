@@ -91,7 +91,7 @@ export class Summary extends React.Component {
                     </Grid>
                     <Button flat primary swapTheming className="md-cell md-cell--2 margin-5" onClick={() => this.props.history.push("/")}
                             style={{display: 'flex', justifyContent: 'center'}}>
-                        Back
+                        Back to main menu
                     </Button>
                 </Card>
             </Page>

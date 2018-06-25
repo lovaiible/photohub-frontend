@@ -5,7 +5,7 @@ import React from 'react';
 import {Confirm} from './../components/Confirm';
 import ConfirmService from '../services/ConfirmService';
 import ReviewService from '../services/ReviewService';
-import ProfileService from "../services/ProfileService";
+import ProfileService from '../services/ProfileService';
 
 export class ConfirmView extends React.Component {
 
@@ -20,7 +20,14 @@ export class ConfirmView extends React.Component {
             booking: undefined,
             pId: pId,
             avgRating: 0,
-            numberReviews: 0
+            numberReviews: 0,
+            title:'',
+            description: '',
+            city: '',
+            price: '',
+            avatar:'',
+            category:''
+
         };
     }
 
@@ -39,6 +46,8 @@ export class ConfirmView extends React.Component {
             console.error(e);
         });
 
+
+
         ReviewService.getAvgRating(this.state.pId).then((data) => {
             this.setState({
                 avg: [...data],
@@ -51,18 +60,23 @@ export class ConfirmView extends React.Component {
             console.error(e);
         });
 
-        ProfileService.getProfile(this.state.pID).then((data)=> {
+        ProfileService.getProfile(this.state.pId).then((data)=> {
+            console.log(data);
+
             this.setState({
                 profile: data,
                 city: data.location.city,
                 description: data.description,
                 title: data.title,
-                minDate: data.minDate,
-                maxDate: data.maxDate
+                price: data.price,
+                avatar: data.avatar,
+                category: data.category
             });
         }).catch((e) => {
             console.error(e);
         });
+
+        console.log("test" + this.state.city);
     }
 
     createBooking(booking) {
@@ -96,11 +110,10 @@ export class ConfirmView extends React.Component {
         return (
           <div>
 
-
             <Confirm booking={this.state.booking} onSubmit={(booking) => this.updateBooking(booking)} error={this.state.error}
-                           pId={this.state.profile._id} avgRating={this.state.avgRating} numberReviews={this.state.numberReviews} pName={this.state.profile.title}
-                            sDescription={this.state.profile.serviceDescription} pAvatar={this.state.profile.avatar} price={this.state.profile.price}
-                             category={this.state.profile.category}/>
+                           pId={this.state.pId} avgRating={this.state.avgRating} numberReviews={this.state.numberReviews} pName={this.state.title}
+                            sDescription={this.state.description} pAvatar={this.state.avatar} price={this.state.price}
+                             category={this.state.category.title}/>
           </div>
         );
     }

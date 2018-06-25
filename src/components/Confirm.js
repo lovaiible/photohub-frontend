@@ -47,11 +47,12 @@ export class Confirm extends React.Component {
             date: '',
             addInfo: '',
             pId: this.props.pId,
-            price: this.state.price,
-            avatar: this.state.pAvatar,
-            description: this.state.sDescription,
-            pName: this.state.pName,
-            category: this.state.category
+            avatar: this.props.pAvatar,
+            description: this.props.sDescription,
+            pName: this.props.pName,
+            category: this.props.category
+
+
         };
 
         this.handleChangePayment = this.handleChangePayment.bind(this);
@@ -86,22 +87,23 @@ export class Confirm extends React.Component {
         booking.payment = this.state.payment;
         booking.addInfo = this.state.addInfo;
         booking.pId = this.state.pId;
-        booking.pName = this.state.pName;
-        booking.price = this.state.price;
+        booking.pName = this.props.pName;
+        booking.price = this.props.price;
         booking.category = this.state.category;
-
 
 
         localStorage.setItem("payment", this.state.payment);
         localStorage.setItem("date", this.state.date);
         localStorage.setItem("addInfo", this.state.addInfo);
         localStorage.setItem("bookingID", booking.bookingID);
-        localStorage.setItem("pId", this.state.pId);
-        localStorage.setItem("pName", this.state.pName);
-        localStorage.setItem("price", this.state.price);
-        localStorage.setItem("category", this.state.category);
+        localStorage.setItem("pId", this.props.pId);
+        localStorage.setItem("pName", this.props.pName);
+        localStorage.setItem("price", this.props.price);
+        localStorage.setItem("category", this.props.category);
 
         this.props.onSubmit(booking);
+
+
     }
 
     render() {
@@ -113,21 +115,21 @@ export class Confirm extends React.Component {
 
                     <Grid className="grid-example">
                         <Cell size={3}>
-                            <Media aspectRatio="1-1">
-                                {this.state.avatar}
+                            <Media aspectRatio="1-1" >
+                                <img src={this.props.pAvatar}/>
                             </Media>
                         </Cell>
                         <Cell size={7}>
-                            <h1>Portrait Photography</h1>
-                            <p>{this.state.pName} </p>
+                            <h1>{this.props.category}</h1>
+                            <p>{this.props.pName} </p>
                             <ReviewAverageValue length={this.props.numberReviews} avgRating={this.props.avgRating}/>
                             <ReactStars count={5} size={24} value={parseFloat(this.props.avgRating.toFixed(1))} edit={false} color2={'#ffd700'} />
                             <div id="showRating"/>
-                            <p>{this.state.description}</p>
+                            <p>{this.props.sDescription}</p>
 
                         </Cell>
                         <Cell size={2}>
-                            <h2>100.00 Euro</h2>
+                            <h2>{this.props.price} Euro</h2>
                         </Cell>
                     </Grid>
 
@@ -145,7 +147,7 @@ export class Confirm extends React.Component {
                             locales="en-US"
                             disableWeekEnds={true}
                             showAllDays={false}
-                            disabled={true}
+                            //disabled={true}
                             //defaultValue={}
                         />
                         <TextField
