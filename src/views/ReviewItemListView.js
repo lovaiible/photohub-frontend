@@ -65,7 +65,8 @@ export class ReviewItemListView extends React.Component {
             city: '',
             noReviews: true,
             avgRating: 0,
-            buttonDisabled: false
+            buttonDisabled: false,
+            searchLink: ''
         };
         this.handlePageChange = this.handlePageChange.bind(this);
     }
@@ -139,6 +140,16 @@ export class ReviewItemListView extends React.Component {
             console.error(e);
         });
         this.setState({user: UserService.getCurrentUser(), userId: UserService.getCurrentUser().id});
+
+        if(localStorage.getItem('city') == null){
+          this.setState({
+            searchLink: '/'
+          });
+        } else {
+          this.setState({
+            searchLink: '/results?city=' + localStorage.getItem('city') + '&category=' + localStorage.getItem('category') + '&date=' + localStorage.getItem('date')
+          });
+        }
     }
 
     componentDidUpdate() {
@@ -172,9 +183,7 @@ export class ReviewItemListView extends React.Component {
                     return (
                         <Page>
                             <div className="breadcrumbs">
-                                <Link to={'/'} className="breadcrumbLink">Home</Link> > Search > <Link
-                                to={'/profile/' + this.state.pId}
-                                className="breadcrumbLink">Profile</Link> > <b>Reviews</b>
+                              <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink} className="breadcrumbLink">Search</Link> > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">{this.state.title}</Link> > <b>Reviews</b>
                             </div>
                             <div>
                                 <div>
@@ -218,11 +227,9 @@ export class ReviewItemListView extends React.Component {
                 } else {
                     return (
                         <Page>
-                            <div className="breadcrumbs">
-                                <Link to={'/'} className="breadcrumbLink">Home</Link> > Search > <Link
-                                to={'/profile/' + this.state.pId}
-                                className="breadcrumbLink">Profile</Link> > <b>Reviews</b>
-                            </div>
+                        <div className="breadcrumbs">
+                          <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink} className="breadcrumbLink">Search</Link> > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">{this.state.title}</Link> > <b>Reviews</b>
+                        </div>
                             <div>
                                 <div>
                                     <PhotographerDescription profile={this.state.profile} title={this.state.title}
@@ -262,10 +269,9 @@ export class ReviewItemListView extends React.Component {
             } else {
                 return (
                     <Page>
-                        <div className="breadcrumbs">
-                            <Link to={'/'} className="breadcrumbLink">Home</Link> > Search > <Link
-                            to={'/profile/' + this.state.pId} className="breadcrumbLink">Profile</Link> > <b>Reviews</b>
-                        </div>
+                    <div className="breadcrumbs">
+                      <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink} className="breadcrumbLink">Search</Link> > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">{this.state.title}</Link> > <b>Reviews</b>
+                    </div>
                         <div>
                             <div>
                                 <PhotographerDescription profile={this.state.profile} title={this.state.title}
