@@ -97,8 +97,8 @@ export class PhotographerProfile extends Component {
         return (
             <Page>
                 <div id="content">
-                    <div> <PhotographerDescription  profile={this.props.profile}  pID={this.props.pID} avg={this.props.avg}
-                    title={this.props.title} city={this.props.city} description={this.props.description} noReviews={this.props.noReviews}/>
+                    <div> <PhotographerDescription  profile={this.props.profile}  pID={this.props.pID} avg={this.props.avg} avgRating={this.props.avgRating}
+                    title={this.props.title} city={this.props.city} description={this.props.description} size={'small'} noReviews={this.props.noReviews}/>
                     </div> <div> {editButton} </div>
                     <div className="w3-container w3-mobile w3-center w3-padding-48">
                         <ImageGallery items={this.state.gallery}/>
