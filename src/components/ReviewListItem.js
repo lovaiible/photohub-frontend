@@ -21,16 +21,7 @@ export default class ReviewListItem extends React.Component {
       firstLetter: (this.props.review.name.slice(0,1))
     };
   }
-  EditAndDelete(id){
-    if(id == this.props.review.userId){
-      return(
-        <Cell size={1}>
-          <FontIcon>mode_edit</FontIcon>
-          <FontIcon>delete</FontIcon>
-        </Cell>
-      );
-    }
-  }
+
 
   render(){
     return(
