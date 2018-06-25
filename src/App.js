@@ -26,7 +26,7 @@ export default class App extends React.Component {
                 { component: SearchResultView, path: '/results',},
                 { component: MovieDetailView , path: '/show/:id'},
                 { component: ConfirmView , path: '/showConfirm/:id'},
-                { component: SummaryView, path: '/showSummary/:bookingID/:pId/:date/:payment/:addInfo'},
+                { component: SummaryView, path: '/showSummary/:bookingID'},
                 { component: UserLoginView, path: '/login'},
                 { component: UserSignupView, path: '/register'}
             ]
