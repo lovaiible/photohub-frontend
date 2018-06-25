@@ -50,18 +50,18 @@ class Nav extends React.Component {
                 <div>
                     <List style={flexContainer}>
                         <ListItem key={1} primaryText="About" onClick={() => this.props.history.push('/about')} />
-                        { this.state.user && !this.state.hasProfile ? [
+                        { this.state.user && !this.state.hasProfile ?
                             <ListItem key={2} primaryText="Become a photographer" onClick={() => this.props.history.push('/photographerSignUp')} />
-                        ] : []}
+                         : []}
                         <ListItem key={3} primaryText="Help" onClick={() => this.props.history.push('/help')}/>
-                        { this.state.user ? [
+                        { this.state.user ?
                             <ListItem key={4} primaryText="">
                                 <AccountMenu />
                             </ListItem>
-                        ] : [
+                         :
                             <ListItem key={4} primaryText="Register" onClick={() => this.props.history.push('/register')}/>,
                             <ListItem key={5} primaryText="Login" onClick={() => this.props.history.push('/login')}/>
-                        ]}
+                        }
                     </List>
                 </div>
             </nav>

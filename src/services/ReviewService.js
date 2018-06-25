@@ -75,7 +75,7 @@ export default class ReviewService {
     static getAvgRating(id) {
         return new Promise((resolve, reject) => {
             HttpService.get(`${ReviewService.baseURL()}/getAvgRating/${id}`, function(data) {
-                if(data != undefined || Object.keys(data).length !== 0) {
+                if(data !== undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 }
                 else {

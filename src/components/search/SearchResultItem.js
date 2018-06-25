@@ -1,14 +1,40 @@
 "use strict";
 
 import React from 'react';
-import StarsRating from 'react-stars-rating';
-
+import ReviewService from "../../services/ReviewService";
+import 'babel-polyfill';
+import ReactStars from 'react-stars'
 
 export class SearchResultItem extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            avg: [],
+            rating : 0,
+        }
     }
+
+    async componentDidMount() {
+        await this.getRating(this.props._id);
+    }
+
+    getRating(id) {
+        ReviewService.getAvgRating(id).then((data) => {
+            this.setState({
+                avg: [...data]
+            });
+            if(this.state.avg.length !== 0){
+                this.setState({
+                    rating: data[0].avgRating
+                });
+            }
+        }).catch((e) => {
+            console.error(e);
+            return false;
+        });
+    }
+
 
     render() {
         return (
@@ -22,10 +48,10 @@ export class SearchResultItem extends React.Component {
                             <span>{this.props.description ? this.props.description : ''}</span>
                             <span className="float-right">{this.props.price} €</span>
                         </h5>
-                        <p className="card-text">
+                        <div className="card-text">
                             <span>{this.props.title}</span>
-                            <StarsRating rating={4.5}/>
-                        </p>
+                            <ReactStars count={5} size={20} value={parseFloat(this.state.rating.toFixed(1))} edit={false} color2={'#ffd700'} />
+                        </div>
                     </div>
                 </div>
                 <div className="card-footer">
