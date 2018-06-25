@@ -17,6 +17,7 @@ import {RadioGroup, RadioButton} from 'react-radio-buttons';
 import Page from './page/Page';
 
 import {withRouter, Link} from "react-router-dom";
+import moment from "moment/moment";
 
 const style = {
     root: {
@@ -54,7 +55,7 @@ export class Confirm extends React.Component {
         this.handleChangeDate = this.handleChangeDate.bind(this);
         this.handleChangeAddInfo = this.handleChangeAddInfo.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleReset = this.handleReset.bind(this);
+//        this.handleReset = this.handleReset.bind(this);
 
     }
 
@@ -92,28 +93,13 @@ export class Confirm extends React.Component {
         localStorage.setItem("bookingID", booking.bookingID);
         localStorage.setItem("pId", this.state.pId);
 
-
-        //var addInfo = localStorage.getItem("addInfo");
-        //var date = localStorage.getItem("date");
-        //var payment = localStorage.getItem("payment");
-
         this.props.onSubmit(booking);
-
-    }
-
-    handleReset(event) {
-
-        let booking = this.props.booking;
-
-        booking.payment=undefined;
-        booking.date=undefined;
-        booking.addInfo='';
     }
 
     render() {
         return <Page>
             <Card style={style} className="md-block-centered">
-                <form onSubmit={this.handleSubmit} onReset={this.handleReset}>
+                <form onSubmit={this.handleSubmit} >
                     <CardTitle title="Confirm and Pay"
                                subtitle="Please confirm your booking details and select a payment method below."/>
 
@@ -145,12 +131,14 @@ export class Confirm extends React.Component {
                             label="Select an appointment date"
                             className="md-cell"
                             disableOuterDates={true}
-                            disabledDays={{before: Date.now()}}
                             displayMode="landscape"
+                            minDate={moment().toDate()}
+                            locales="en-US"
                             disableWeekEnds={true}
                             showAllDays={false}
-                            cancelLabel={"Cancel"}
-                            okLabel={"Confirm"}/>
+                            disabled={true}
+                           // defaultValue={}
+                        />
                         <TextField
                             onChange={this.handleChangeAddInfo}
                             id="Additional Information"
