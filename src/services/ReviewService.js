@@ -86,4 +86,14 @@ export default class ReviewService {
             });
         });
     }
+
+    static checkAlreadyRated(id, userid){
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${ReviewService.baseURL()}/checkAlreadyRated/${id}/${userid}`, function(data) {
+                resolve(data);
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
 }
