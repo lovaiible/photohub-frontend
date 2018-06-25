@@ -5,8 +5,7 @@ import Link from "react-router-dom";
 import ava from '../img/avatar/ava.png';
 import ReviewAverageValueSmall from './ReviewAverageValueSmall';
 import ProfileService from "../services/ProfileService";
-import ReviewService from "../services/ReviewService";
-import ReactStars from 'react-stars'
+import ProfileEdit from "./ProfileEdit";
 
 class PhotographerDescription extends React.Component {
     constructor(props) {
@@ -61,7 +60,7 @@ class PhotographerDescription extends React.Component {
                       className="w3-tag w3-small" style={tagStyle}>Premium</span></h1>
                       <div className="w3-cell-row photographerAttr">
                           <p className="w3-cell w3-center w3-border-right"><i className="material-icons">place</i>
-                              Location: {this.props.city}</p>
+                              Location: {this.props.city} </p>
                           <p className="w3-cell w3-center w3-border-right">100 successful order</p>
 
                           <div>

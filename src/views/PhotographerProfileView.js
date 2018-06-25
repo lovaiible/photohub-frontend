@@ -53,12 +53,12 @@ export class PhotographerProfileView extends React.Component {
           if(this.state.avg.length > 0){
             return (
                 <PhotographerProfile  profile={this.state.profile} pID={this.state.pID} avg={this.state.avg} noReviews={false}
-                title={this.state.title} city={this.state.city} description={this.state.description}/>
+                title={this.state.title} city={this.state.city} description={this.state.description} history={this.props.history}/>
             );
           } else {
             return (
                 <PhotographerProfile  profile={this.state.profile} pID={this.state.pID} noReviews={true}
-                title={this.state.title} city={this.state.city} description={this.state.description}/>
+                title={this.state.title} city={this.state.city} description={this.state.description} history={this.props.history}/>
             );
           }
         }
