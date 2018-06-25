@@ -24,15 +24,12 @@ export default class App extends React.Component {
         this.state = {
             title: 'Photohub',
             routes: [
-<<<<<<< HEAD
                 { component: CategoryListView, path: '/', exact: true },
-                { component: SearchResultView, path: '/results',},
-                { component: MovieDetailView , path: '/show/:id'},
+                { component: SearchResultView, path: '/results'},
                 { component: ConfirmView , path: '/showConfirm/:id'},
                 { component: SummaryView, path: '/showSummary/:bookingID'},
                 { component: UserLoginView, path: '/login'},
-                { component: UserSignupView, path: '/register'}
-=======
+                { component: UserSignupView, path: '/register'},
                 {component: CategoryListView, path: '/', exact: true},
                 {component: SearchResultView, path: '/results'},
                 {component: ReviewItemListView, path: '/viewReviews/:id', name: "ReviewList"},
@@ -52,7 +49,6 @@ export default class App extends React.Component {
                 {component: UserLoginView, path: '/login'},
                 {component: UserSignupView, path: '/register'},
                 {component: Error, path: '*'}
->>>>>>> 616cab8b43dcabe6be1ad442248aa921cdc7b022
             ]
         };
     }
