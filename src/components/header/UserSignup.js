@@ -69,7 +69,7 @@ class UserSignup extends React.Component {
                             errorText="Password is required"/>
                         <div>
                             <Button id="submit" type="submit"
-                                    disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
+                                    disabled={this.state.username === undefined || this.state.username === '' || this.state.password === undefined || this.state.password === ''}
                                     raised primary className="md-cell md-cell--2 margin-5">Register</Button>
                             <Button id="reset" type="reset" raised secondary
                                     className="md-cell md-cell--2 margin-5">Dismiss</Button>

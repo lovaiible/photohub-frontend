@@ -139,6 +139,11 @@ main .container,  div .container {
     padding: 20px;
 }
 
+#register-category-menu {
+    text-align: left !important;
+    width: 100%;
+}
+
 .md-text-field--inline-indicator {
     width: 100% !important;
 }
