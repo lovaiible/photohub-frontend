@@ -4,6 +4,7 @@ import React from 'react';
 
 import Summary from './../components/Summary';
 import SummaryService from '../services/SummaryService';
+import {Link} from 'react-router-dom';
 
 export class SummaryView extends React.Component {
 
@@ -18,7 +19,8 @@ export class SummaryView extends React.Component {
             pId: this.props.match.params.pId,
             payment: this.props.match.params.payment,
             date: this.props.match.params.date,
-            addInfo: this.props.match.params.addInfo
+            addInfo: this.props.match.params.addInfo,
+            searchLink: ''
         };
     }
 
@@ -32,6 +34,16 @@ export class SummaryView extends React.Component {
         }).catch((e) => {
             console.error(e);
         });
+
+        if(localStorage.getItem('city') == null){
+          this.setState({
+            searchLink: '/'
+          });
+        } else {
+          this.setState({
+            searchLink: '/results?city=' + localStorage.getItem('city') + '&category=' + localStorage.getItem('category') + '&date=' + localStorage.getItem('date')
+          });
+        }
     }
 
     render() {
@@ -41,6 +53,7 @@ export class SummaryView extends React.Component {
 
         return (
           <div>
+
             <Summary data={this.state.data} pId={this.state.pId} date={this.state.date}  payment={this.state.payment} bookingID={this.state.bookingID} addInfo={this.state.addInfo} />
           </div>
         );

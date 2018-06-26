@@ -6,6 +6,7 @@ import {Confirm} from './../components/Confirm';
 import ConfirmService from '../services/ConfirmService';
 import ReviewService from '../services/ReviewService';
 import ProfileService from "../services/ProfileService";
+import {Link} from 'react-router-dom';
 
 export class ConfirmView extends React.Component {
 
@@ -20,7 +21,8 @@ export class ConfirmView extends React.Component {
             booking: undefined,
             pId: pId,
             avgRating: 0,
-            numberReviews: 0
+            numberReviews: 0,
+            searchLink: ''
         };
     }
 
@@ -63,6 +65,16 @@ export class ConfirmView extends React.Component {
         }).catch((e) => {
             console.error(e);
         });
+
+        if(localStorage.getItem('city') == null){
+          this.setState({
+            searchLink: '/'
+          });
+        } else {
+          this.setState({
+            searchLink: '/results?city=' + localStorage.getItem('city') + '&category=' + localStorage.getItem('category') + '&date=' + localStorage.getItem('date')
+          });
+        }
     }
 
     createBooking(booking) {
@@ -95,7 +107,9 @@ export class ConfirmView extends React.Component {
 
         return (
           <div>
-
+          <div className="breadcrumbs">
+            <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink} className="breadcrumbLink">Search</Link> > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">{this.state.profile.title}</Link> > <b>Payment and confirmation</b>
+          </div>
 
             <Confirm booking={this.state.booking} onSubmit={(booking) => this.updateBooking(booking)} error={this.state.error}
                            pId={this.state.profile._id} avgRating={this.state.avgRating} numberReviews={this.state.numberReviews} pName={this.state.profile.title}

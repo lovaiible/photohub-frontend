@@ -65,7 +65,6 @@ export class ReviewItemListView extends React.Component {
             city: '',
             noReviews: true,
             avgRating: 0,
-            buttonDisabled: false,
             searchLink: ''
         };
         this.handlePageChange = this.handlePageChange.bind(this);

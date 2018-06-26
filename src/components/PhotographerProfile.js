@@ -10,7 +10,7 @@ import axios from "axios";
 import ImageGallery from "react-image-gallery";
 import UserService from "../services/UserService";
 import ProfileEdit from "./ProfileEdit";
-
+import {Link} from 'react-router-dom';
 
 export class PhotographerProfile extends Component {
 
@@ -22,7 +22,8 @@ export class PhotographerProfile extends Component {
             date: '',
             gallery: [],
             currentUser: currentUser,
-            dialogVisible: false
+            dialogVisible: false,
+            searchLink: ''
         };
         this.handleDate = this.handleDate.bind(this);
     }
@@ -48,6 +49,15 @@ export class PhotographerProfile extends Component {
                 this.setState({gallery: imageSet});
             });
 
+        if(localStorage.getItem('city') == null){
+          this.setState({
+            searchLink: '/'
+          });
+        } else {
+          this.setState({
+            searchLink: '/results?city=' + localStorage.getItem('city') + '&category=' + localStorage.getItem('category') + '&date=' + localStorage.getItem('date')
+          });
+        }
     }
 
     //upload image with photographer ID as tag
@@ -96,6 +106,9 @@ export class PhotographerProfile extends Component {
 
         return (
             <Page>
+              <div className="breadcrumbs">
+                <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink} className="breadcrumbLink">Search</Link> > <b>{this.props.title}</b>
+              </div>
                 <div id="content">
                     <div> <PhotographerDescription  profile={this.props.profile}  pID={this.props.pID} avg={this.props.avg} avgRating={this.props.avgRating}
                     title={this.props.title} city={this.props.city} description={this.props.description} size={'small'} noReviews={this.props.noReviews}/>
