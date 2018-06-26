@@ -6,25 +6,31 @@ import {Confirm} from './../components/Confirm';
 import ConfirmService from '../services/ConfirmService';
 import ReviewService from '../services/ReviewService';
 import ProfileService from "../services/ProfileService";
-import {Link} from 'react-router-dom';
 
 export class ConfirmView extends React.Component {
 
-    constructor(props) {
-        super(props);
+  constructor(props) {
+      super(props);
 
-        let pId = this.props.match.params.id;
+      let pId = this.props.match.params.id;
 
-        this.state = {
-            loading: false,
-            data: [],
-            booking: undefined,
-            pId: pId,
-            avgRating: 0,
-            numberReviews: 0,
-            searchLink: ''
-        };
-    }
+      this.state = {
+          loading: false,
+          data: [],
+          booking: undefined,
+          pId: pId,
+          avgRating: 0,
+          numberReviews: 0,
+          title:'',
+          description: '',
+          city: '',
+          price: '',
+          avatar:'',
+          category:'',
+          date:''
+
+      };
+  }
 
     componentWillMount() {
 
@@ -53,28 +59,22 @@ export class ConfirmView extends React.Component {
             console.error(e);
         });
 
-        ProfileService.getProfile(this.state.pID).then((data)=> {
+        ProfileService.getProfile(this.state.pId).then((data)=> {
+
             this.setState({
                 profile: data,
                 city: data.location.city,
                 description: data.description,
                 title: data.title,
-                minDate: data.minDate,
-                maxDate: data.maxDate
+                price: data.price,
+                avatar: data.avatar,
+                category: data.category,
+                date: data.date
             });
         }).catch((e) => {
             console.error(e);
         });
 
-        if(localStorage.getItem('city') == null){
-          this.setState({
-            searchLink: '/'
-          });
-        } else {
-          this.setState({
-            searchLink: '/results?city=' + localStorage.getItem('city') + '&category=' + localStorage.getItem('category') + '&date=' + localStorage.getItem('date')
-          });
-        }
     }
 
     createBooking(booking) {
@@ -107,14 +107,12 @@ export class ConfirmView extends React.Component {
 
         return (
           <div>
-          <div className="breadcrumbs">
-            <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink} className="breadcrumbLink">Search</Link> > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">{this.state.profile.title}</Link> > <b>Payment and confirmation</b>
-          </div>
 
-            <Confirm booking={this.state.booking} onSubmit={(booking) => this.updateBooking(booking)} error={this.state.error}
-                           pId={this.state.profile._id} avgRating={this.state.avgRating} numberReviews={this.state.numberReviews} pName={this.state.profile.title}
-                            sDescription={this.state.profile.serviceDescription} pAvatar={this.state.profile.avatar} price={this.state.profile.price}
-                             category={this.state.profile.category}/>
+
+          <Confirm booking={this.state.booking} onSubmit={(booking) => this.updateBooking(booking)} error={this.state.error}
+                         pId={this.state.pId} avgRating={this.state.avgRating} numberReviews={this.state.numberReviews} pName={this.state.title}
+                          sDescription={this.state.description} pAvatar={this.state.avatar} price={this.state.price}
+                           category={this.state.category.title} date={this.state.date}/>
           </div>
         );
     }

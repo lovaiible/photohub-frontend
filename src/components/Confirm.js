@@ -50,7 +50,8 @@ export class Confirm extends React.Component {
             avatar: this.props.pAvatar,
             description: this.props.sDescription,
             pName: this.props.pName,
-            category: this.props.category
+            category: this.props.category,
+            searchLink: ''
 
 
         };
@@ -106,8 +107,24 @@ export class Confirm extends React.Component {
 
     }
 
+    componentWillMount() {
+      if(localStorage.getItem('city') == null){
+        this.setState({
+          searchLink: '/'
+        });
+      } else {
+        this.setState({
+          searchLink: '/results?city=' + localStorage.getItem('city') + '&category=' + localStorage.getItem('category') + '&date=' + localStorage.getItem('date')
+        });
+      }
+    }
+
     render() {
         return <Page>
+
+          <div className="breadcrumbs">
+            <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink} className="breadcrumbLink">Search</Link> > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">{this.props.pName}</Link> > <b>Payment and confirmation</b>
+          </div>
             <Card style={style} className="md-block-centered">
                 <form onSubmit={this.handleSubmit} onReset={() => this.props.history.push("/")} >
                     <CardTitle title="Confirm and Pay"
@@ -122,7 +139,6 @@ export class Confirm extends React.Component {
                         <Cell size={7}>
                             <h1>{this.props.category}</h1>
                             <p>{this.props.pName} </p>
-                            <ReviewAverageValue length={this.props.numberReviews} avgRating={this.props.avgRating}/>
                             <ReactStars count={5} size={24} value={parseFloat(this.props.avgRating.toFixed(1))} edit={false} color2={'#ffd700'} />
                             <div id="showRating"/>
                             <p>{this.props.sDescription}</p>

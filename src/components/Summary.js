@@ -4,6 +4,7 @@ import React from 'react';
 import {withRouter} from "react-router-dom";
 import Page from './page/Page';
 
+import {Link} from 'react-router-dom';
 import {
     Card,
     CardTitle,
@@ -42,7 +43,8 @@ export class Summary extends React.Component {
             pName: localStorage.getItem("pName"),
             category: localStorage.getItem("category"),
             price: localStorage.getItem("price"),
-            bookingID: localStorage.getItem("bookingID")
+            bookingID: localStorage.getItem("bookingID"),
+            searchLink: ''
         };
     }
 
@@ -58,9 +60,24 @@ export class Summary extends React.Component {
         localStorage.removeItem("bookingID");
     }
 
+    componentWillMount(){
+      if(localStorage.getItem('city') == null){
+        this.setState({
+          searchLink: '/'
+        });
+      } else {
+        this.setState({
+          searchLink: '/results?city=' + localStorage.getItem('city') + '&category=' + localStorage.getItem('category') + '&date=' + localStorage.getItem('date')
+        });
+      }
+    }
+
     render() {
         return (
             <Page>
+              <div className="breadcrumbs">
+                <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink} className="breadcrumbLink">Search</Link> > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">{this.state.pName}</Link> > <Link to={'/showConfirm/' + this.state.pId} className="breadcrumbLink">Payment and confirmation</Link> > <b>Booking summary</b>
+              </div>
                 <Card style={style} className="md-block-centered">
                     <CardTitle title="Thank you for using Photohub. "
                                subtitle="This is the summary of your order:"/>
