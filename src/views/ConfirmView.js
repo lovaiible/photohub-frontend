@@ -47,14 +47,19 @@ export class ConfirmView extends React.Component {
             console.error(e);
         });
 
-        ReviewService.getAvgRating(this.state.pId).then((data) => {
+        ReviewService.getAvgRating(this.state.pID).then((data) => {
             this.setState({
                 avg: [...data],
-                avgRating: data[0].avgRating,
-                loading: false,
-                noReviews: false,
-                numberReviews: data.length
+                length: data.length
             });
+            if(this.state.length != 0){
+             this.setState({
+                 avgRating: data[0].avgRating
+             });
+           }
+           this.setState({
+               loading: false
+           });
         }).catch((e) => {
             console.error(e);
         });
