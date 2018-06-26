@@ -1,4 +1,3 @@
-"use strict";
 import React from 'react';
 import {Avatar, Grid, Cell} from 'react-md';
 import Link from "react-router-dom";
@@ -36,6 +35,7 @@ class PhotographerDescription extends React.Component {
             });
     }
 
+
     render() {
 
         const tagStyle = {
@@ -53,6 +53,7 @@ class PhotographerDescription extends React.Component {
         }
         console.log(this.props.profile.avatar);
         console.log(this.props.noReviews);
+        let editLocationButton = <ProfileEdit profile={this.props.profile} type="editLocation"/>;
 
         return (
           <div className="w3-container w3-row" style={marginTop}>
@@ -60,9 +61,9 @@ class PhotographerDescription extends React.Component {
               <div className="w3-col m10"><h1 className="w3-left"> {this.props.title} <span
                   className="w3-tag w3-small" style={tagStyle}>Premium</span></h1>
                   <div className="w3-cell-row photographerAttr">
-                      <p className="w3-cell w3-center w3-border-right"><i className="material-icons">place</i>
-                          Location: {this.props.city}</p>
-                      <p className="w3-cell w3-center w3-border-right">100 successful order</p>
+                      <div className="w3-cell w3-center w3-border-right"><i className="material-icons">place</i>
+                          Location: {this.props.city} {editLocationButton}</div>
+                      <div className="w3-cell w3-center w3-border-right">100 successful order</div>
 
                       <div>
                           <ReviewAverageValue size={'small'} avgRating={this.props.avgRating} pId={this.props.pID} noReviews={this.props.noReviews}/>
