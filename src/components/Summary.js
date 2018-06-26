@@ -33,6 +33,29 @@ export class Summary extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            payment: localStorage.getItem("payment"),
+            date: localStorage.getItem("date"),
+            addInfo: localStorage.getItem("addInfo"),
+            pId: localStorage.getItem("pId"),
+            pName: localStorage.getItem("pName"),
+            category: localStorage.getItem("category"),
+            price: localStorage.getItem("price"),
+            bookingID: localStorage.getItem("bookingID")
+        };
+    }
+
+    componentDidMount(){
+
+        localStorage.removeItem("payment");
+        localStorage.removeItem("date");
+        localStorage.removeItem("addInfo");
+        localStorage.removeItem("pId");
+        localStorage.removeItem("pName");
+        localStorage.removeItem("category");
+        localStorage.removeItem("price");
+        localStorage.removeItem("bookingID");
     }
 
     render() {
@@ -67,25 +90,25 @@ export class Summary extends React.Component {
                         </Cell>
                         <Cell>
                             <CardText>
-                                {localStorage.getItem("bookingID")}
+                                {this.state.bookingID}
                             </CardText>
                             <CardText>
-                                {localStorage.getItem("pName")}
+                                {this.state.pName}
                             </CardText>
                             <CardText>
-                                {localStorage.getItem("category")}
+                                {this.state.category}
                             </CardText>
                             <CardText>
-                                {localStorage.getItem("date")}
+                                {this.state.date}
                             </CardText>
                             <CardText>
-                                {localStorage.getItem("price")} Euro
+                                {this.state.price} Euro
                             </CardText>
                             <CardText>
-                                {localStorage.getItem("payment")}
+                                {this.state.payment}
                             </CardText>
                             <CardText>
-                                {localStorage.getItem("addInfo")}
+                                {this.state.addInfo}
                             </CardText>
                         </Cell>
                     </Grid>

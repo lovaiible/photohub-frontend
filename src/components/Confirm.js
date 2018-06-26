@@ -44,7 +44,7 @@ export class Confirm extends React.Component {
 
         this.state = {
             payment: '',
-            date: '',
+            date: this.props.date,
             addInfo: '',
             pId: this.props.pId,
             avatar: this.props.pAvatar,
@@ -83,7 +83,7 @@ export class Confirm extends React.Component {
         }
 
         booking.bookingID = Math.floor((Math.random() * 100000000) + 1).toString();
-        booking.date = this.state.date;
+        booking.date = this.props.date;
         booking.payment = this.state.payment;
         booking.addInfo = this.state.addInfo;
         booking.pId = this.state.pId;
@@ -93,7 +93,7 @@ export class Confirm extends React.Component {
 
 
         localStorage.setItem("payment", this.state.payment);
-        localStorage.setItem("date", this.state.date);
+        localStorage.setItem("date", this.props.date);
         localStorage.setItem("addInfo", this.state.addInfo);
         localStorage.setItem("bookingID", booking.bookingID);
         localStorage.setItem("pId", this.props.pId);
@@ -109,7 +109,7 @@ export class Confirm extends React.Component {
     render() {
         return <Page>
             <Card style={style} className="md-block-centered">
-                <form onSubmit={this.handleSubmit} onReset={() => this.props.history.push("/profile/:id")} >
+                <form onSubmit={this.handleSubmit} onReset={() => this.props.history.push("/")} >
                     <CardTitle title="Confirm and Pay"
                                subtitle="Please confirm your booking details and select a payment method below."/>
 
@@ -147,8 +147,8 @@ export class Confirm extends React.Component {
                             locales="en-US"
                             disableWeekEnds={true}
                             showAllDays={false}
-                            //disabled={true}
-                            //defaultValue={}
+                            disabled={true}
+                            defaultValue={this.state.date}
                         />
                         <TextField
                             onChange={this.handleChangeAddInfo}
