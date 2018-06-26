@@ -62,7 +62,6 @@ export class ConfirmView extends React.Component {
         });
 
         ProfileService.getProfile(this.state.pId).then((data)=> {
-            console.log(data);
 
             this.setState({
                 profile: data,
@@ -77,8 +76,6 @@ export class ConfirmView extends React.Component {
         }).catch((e) => {
             console.error(e);
         });
-
-        console.log("test" + this.state.city);
     }
 
     createBooking(booking) {
