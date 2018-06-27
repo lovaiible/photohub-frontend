@@ -278,3 +278,8 @@ main .container, div .container {
     size: 5;
 
 }
+
+margin-right {
+    margin-right: 5px;
+    margin-left: 5px;
+}

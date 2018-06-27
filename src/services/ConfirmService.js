@@ -49,7 +49,6 @@ export default class ConfirmService {
         return new Promise((resolve, reject) => {
             HttpService.post(ConfirmService.baseURL(), booking, function(data) {
                 resolve(data);
-                console.log(data);
             }, function(textStatus) {
                 reject(textStatus);
             });
