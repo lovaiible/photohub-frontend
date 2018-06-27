@@ -1,19 +1,16 @@
 import React, {Component} from 'react';
 import Page from './page/Page.js';
-import { Button, DialogContainer } from 'react-md';
+import { Button } from 'react-md';
 import InfiniteCalendar from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
 import PhotographerDescription from './PhotographerDescription';
 import format from 'date-fns/format';
-import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
 import axios from "axios";
 import ImageGallery from "react-image-gallery";
 import UserService from "../services/UserService";
 import ProfileEdit from "./ProfileEdit";
 
-
 export class PhotographerProfile extends Component {
-
 
     constructor(props) {
         const currentUser = UserService.getCurrentUser().id;
@@ -28,7 +25,7 @@ export class PhotographerProfile extends Component {
     }
 
     handleDate(e) {
-        const newDate = format(e, "DD.MM.YYYY");
+        const newDate = format(e, 'MM/DD/YYYY');
         this.setState({date: newDate});
     }
 
@@ -71,7 +68,6 @@ export class PhotographerProfile extends Component {
     }
 
     render() {
-
         const styles = {
             tagStyle : {
                 transform: "rotate(-5deg)"
@@ -96,7 +92,7 @@ export class PhotographerProfile extends Component {
 
         return (
             <Page>
-                <div id="content">
+                <div id="photographer-profile">
                     <div> <PhotographerDescription  profile={this.props.profile}  pID={this.props.pID} avg={this.props.avg} avgRating={this.props.avgRating}
                     title={this.props.title} city={this.props.city} description={this.props.description} size={'small'} noReviews={this.props.noReviews}/>
                     </div> <div> {editButton} </div>

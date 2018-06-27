@@ -57,14 +57,14 @@ class PhotographerDescription extends React.Component {
         return (
           <div className="w3-container w3-row" style={marginTop}>
               <div className="w3-col m2 avatar float-left">{avatar}</div>
-              <div className="w3-col m10"><h1 className="w3-left"> {this.props.title} <span
+              <div className="w3-col m10"><h1> {this.props.title} <span
                   className="w3-tag w3-small" style={tagStyle}>Premium</span></h1>
-                  <div className="w3-cell-row photographerAttr">
-                      <p className="w3-cell w3-center w3-border-right"><i className="material-icons">place</i>
-                          Location: {this.props.city}</p>
-                      <p className="w3-cell w3-center w3-border-right">100 successful order</p>
+                  <div className="md-grid photographerAttr">
+                      <div className="col-4 w3-border-right"><i className="material-icons">place</i>
+                          Location: {this.props.city}</div>
+                      <div className="col-4 w3-border-right">100 successful order</div>
 
-                      <div>
+                      <div className="col-4">
                           <ReviewAverageValue size={'small'} avgRating={this.props.avgRating} pId={this.props.pID} noReviews={this.props.noReviews}/>
                       </div>
 
