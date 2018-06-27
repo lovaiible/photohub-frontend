@@ -46,7 +46,7 @@ export default class ProfileEdit extends React.Component {
         actions.push(<Button flat primary onClick={this.handleEdit}>Confirm</Button>);
         return(
             <div>
-                <div><Button icon onClick={this.show}>mode_edit</Button> </div>
+                <Button icon onClick={this.show}>mode_edit</Button>
                 <div>
                    <DialogContainer
                     id="simple-action-dialog"
@@ -62,7 +62,7 @@ export default class ProfileEdit extends React.Component {
                            id="TextField"
                            rows={5}
                            required={true}
-                           value={this.state.profile.description}
+                           defaultValue={this.state.profile.description}
                            onChange={this.handleChangeText}
                            errorText="Text is required"
                        />
