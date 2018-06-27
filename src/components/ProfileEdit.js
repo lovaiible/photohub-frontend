@@ -10,7 +10,8 @@ export default class ProfileEdit extends React.Component {
             dialogVisible: false,
             profile: this.props.profile,
             city: this.props.profile.location.city,
-            country: this.props.profile.location.country
+            country: this.props.profile.location.country,
+            disabledEdit: this.props.disabledEdit
         };
         this.hide = this.hide.bind(this);
         this.show = this.show.bind(this);
@@ -72,7 +73,7 @@ export default class ProfileEdit extends React.Component {
             actions.push(<Button flat primary onClick={this.handleLocationEdit}>Confirm</Button>);
             return(
                 <div>
-                    <div><Button icon onClick={this.show}>mode_edit</Button> </div>
+                    <div><Button icon disabled={this.state.disabledEdit} onClick={this.show}>mode_edit</Button> </div>
                     <div>
                         <DialogContainer
                             id="simple-action-dialog"
@@ -110,7 +111,7 @@ export default class ProfileEdit extends React.Component {
             actions.push(<Button flat primary onClick={this.handleDescriptionEdit}>Confirm</Button>);
             return(
                 <div>
-                    <div><Button icon onClick={this.show}>mode_edit</Button> </div>
+                    <div><Button icon disabled={this.state.disabledEdit} onClick={this.show}>mode_edit</Button> </div>
                     <div>
                         <DialogContainer
                             id="simple-action-dialog"

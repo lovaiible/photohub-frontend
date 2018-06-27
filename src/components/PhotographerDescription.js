@@ -30,7 +30,6 @@ class PhotographerDescription extends React.Component {
                     window.location.reload();
                 }).catch((e) => {
                     console.error(e);
-                    //this.setState(Object.assign({}, this.state, {error: 'Error while creating review'}));
                 });
             });
     }
@@ -46,15 +45,15 @@ class PhotographerDescription extends React.Component {
         }
 
         let avatar;
-        if(this.props.profile.avatar) {
-            avatar = <Avatar onClick={this.uploadWidget.bind(this)} src={this.props.profile.avatar}/>;
-        } else {
+        if(this.props.profile.avatar == "") {
             avatar = <Avatar onClick={this.uploadWidget.bind(this)} suffix="pink">{(this.props.title).substr(0, 1).toUpperCase()}</Avatar>;
+        } else {
+            avatar = <Avatar onClick={this.uploadWidget.bind(this)} src={this.props.profile.avatar}/>;
         }
         console.log(this.props.profile.avatar);
         console.log(this.props.noReviews);
-        let editLocationButton = <ProfileEdit profile={this.props.profile} type="editLocation"/>;
-
+        let editLocationButton = <ProfileEdit profile={this.props.profile} type="editLocation" disabledEdit={this.props.disabledEdit}/>;
+        let editDescriptionButton = <ProfileEdit profile={this.props.profile} type="editDescription" disabledEdit={this.props.disabledEdit}/>;
         return (
           <div className="w3-container w3-row" style={marginTop}>
               <div className="w3-col m2 avatar float-left">{avatar}</div>
@@ -68,10 +67,8 @@ class PhotographerDescription extends React.Component {
                       <div>
                           <ReviewAverageValue size={'small'} avgRating={this.props.avgRating} pId={this.props.pID} noReviews={this.props.noReviews}/>
                       </div>
-
-                      {/*//<Link to={`/reviews/${this.props.pID}`}>*/}
                   </div>
-                  <div className="descriptionText w3-opacity">{this.props.description}</div>
+                  <div className="descriptionText w3-opacity">{this.props.description} </div> <div>{editDescriptionButton}</div>
               </div>
           </div>
         );

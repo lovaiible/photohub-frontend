@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Page from './page/Page.js';
-import {Button, DialogContainer} from 'react-md';
+import {Button, DatePicker} from 'react-md';
 import InfiniteCalendar from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
 import PhotographerDescription from './PhotographerDescription';
@@ -20,22 +20,25 @@ export class PhotographerProfile extends Component {
         const currentUser = UserService.getCurrentUser().id;
         super(props);
         this.state = {
-            d8ate: '',
+            selectedDate: '',
             gallery: this.props.gallery,
             currentUser: currentUser,
-            dialogVisible: false,
+            disabledEdit: true,
             searchLink: ''
         };
         this.handleDate = this.handleDate.bind(this);
+        this.handleConfirm = this.handleConfirm.bind(this);
     }
-
     handleDate(e) {
         const newDate = format(e, "DD.MM.YYYY");
-        this.setState({date: newDate});
+        this.setState({selectedDate: newDate});
     }
-
-
-    // use profileID in order to call image.
+    handleConfirm() {
+        this.props.history.push({
+            pathname: '/showConfirm/' + this.props.pID,
+            state: {selectedDate: this.state.selectedDate}
+        });
+    }
     componentWillMount() {
         if (localStorage.getItem('city') == null) {
             this.setState({
@@ -46,9 +49,10 @@ export class PhotographerProfile extends Component {
                 searchLink: '/results?city=' + localStorage.getItem('city') + '&category=' + localStorage.getItem('category') + '&date=' + localStorage.getItem('date')
             });
         }
+        if (this.props.profile.user.username == this.state.currentUser.username) {
+            this.setState({disabledEdit: false});
+        }
     }
-
-    //upload image with photographer ID as tag
     uploadWidget() {
         window.cloudinary.openUploadWidget({
                 cloud_name: 'dn0x8apyr',
@@ -98,13 +102,11 @@ export class PhotographerProfile extends Component {
 
             }
         }
-        const currentUser = UserService.getCurrentUser().id;
-
-        let editDescriptionButton = <ProfileEdit profile={this.props.profile} type="editDescription"/>;
-
 
 
         var today = new Date();
+        var formatedMinDate = new Date(this.props.profile.minDate);
+        var formatedMaxDate = new Date(this.props.profile.maxDate);
 
 
         return (
@@ -118,9 +120,10 @@ export class PhotographerProfile extends Component {
                                                   avgRating={this.props.avgRating}
                                                   title={this.props.title} city={this.props.city}
                                                   description={this.props.description} size={'small'}
+                                                  disabledEdit={this.state.disabledEdit}
                                                   noReviews={this.props.noReviews}/>
                     </div>
-                    <div> {editDescriptionButton} </div>
+                    <div></div>
                     <div className="w3-container w3-mobile w3-center w3-padding-48">
                         <ImageGallery items={this.state.gallery}/>
                     </div>
@@ -142,9 +145,8 @@ export class PhotographerProfile extends Component {
                                     width={400}
                                     height={400}
                                     selected={today}
-                                    disabledDays={[0, 6]}
-                                    minDate={new Date(this.props.minDate)}
-                                    maxDate={new Date(this.props.maxDate)}
+                                    minDate={formatedMinDate}
+                                    maxDate={formatedMaxDate}
                                     onSelect={this.handleDate}
                                 />
                             </div>
@@ -158,14 +160,14 @@ export class PhotographerProfile extends Component {
                                             <input
                                                 className="w3-opacity"
                                                 type="text"
-                                                value={this.state.date}
+                                                value={this.state.selectedDate}
                                             />
                                         </label>
                                     </form>
                                 </div>
                                 <div className="w3-container w3-margin-top w3-cell-row">
                                     <Button flat primary swapTheming
-                                            onClick={() => this.props.history.push('/showConfirm/' + this.props.pID)}>Confirm</Button>
+                                            onClick={this.handleConfirm}>Confirm</Button>
                                     <Button flat secondary swapTheming>Cancel</Button>
                                 </div>
                             </div>
