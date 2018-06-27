@@ -47,10 +47,8 @@ class PhotographerDescription extends React.Component {
             avatar = <Avatar onClick={this.uploadWidget.bind(this)} src={this.props.profile.avatar}/>;
         }
 
-        let editLocationButton = <ProfileEdit profile={this.props.profile} type="editLocation"
-                                              disabledEdit={this.props.disabledEdit}/>;
-        let editDescriptionButton = <ProfileEdit profile={this.props.profile} type="editDescription"
-                                                 disabledEdit={this.props.disabledEdit}/>;
+        let editLocationButton = (!this.props.disabledEdit) ? <ProfileEdit profile={this.props.profile} type="editLocation"/> : '';
+        let editDescriptionButton = (!this.props.disabledEdit) ? <ProfileEdit profile={this.props.profile} type="editDescription"/> : '';
 
         return (
             <div className="md-grid">
