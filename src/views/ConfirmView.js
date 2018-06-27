@@ -9,20 +9,28 @@ import ProfileService from "../services/ProfileService";
 
 export class ConfirmView extends React.Component {
 
-    constructor(props) {
-        super(props);
+  constructor(props) {
+      super(props);
 
-        let pId = this.props.match.params.id;
+      let pId = this.props.match.params.id;
 
-        this.state = {
-            loading: false,
-            data: [],
-            booking: undefined,
-            pId: pId,
-            avgRating: 0,
-            numberReviews: 0
-        };
-    }
+      this.state = {
+          loading: false,
+          data: [],
+          booking: undefined,
+          pId: pId,
+          avgRating: 0,
+          numberReviews: 0,
+          title:'',
+          description: '',
+          city: '',
+          price: '',
+          avatar:'',
+          category:'',
+          date:''
+
+      };
+  }
 
     componentWillMount() {
 
@@ -39,30 +47,39 @@ export class ConfirmView extends React.Component {
             console.error(e);
         });
 
-        ReviewService.getAvgRating(this.state.pId).then((data) => {
+        ReviewService.getAvgRating(this.state.pID).then((data) => {
             this.setState({
                 avg: [...data],
-                avgRating: data[0].avgRating,
-                loading: false,
-                noReviews: false,
-                numberReviews: data.length
+                length: data.length
             });
+            if(this.state.length != 0){
+             this.setState({
+                 avgRating: data[0].avgRating
+             });
+           }
+           this.setState({
+               loading: false
+           });
         }).catch((e) => {
             console.error(e);
         });
 
-        ProfileService.getProfile(this.state.pID).then((data)=> {
+        ProfileService.getProfile(this.state.pId).then((data)=> {
+
             this.setState({
                 profile: data,
                 city: data.location.city,
                 description: data.description,
                 title: data.title,
-                minDate: data.minDate,
-                maxDate: data.maxDate
+                price: data.price,
+                avatar: data.avatar,
+                category: data.category,
+                date: data.date
             });
         }).catch((e) => {
             console.error(e);
         });
+
     }
 
     createBooking(booking) {
@@ -97,10 +114,10 @@ export class ConfirmView extends React.Component {
           <div>
 
 
-            <Confirm booking={this.state.booking} onSubmit={(booking) => this.updateBooking(booking)} error={this.state.error}
-                           pId={this.state.profile._id} avgRating={this.state.avgRating} numberReviews={this.state.numberReviews} pName={this.state.profile.title}
-                            sDescription={this.state.profile.serviceDescription} pAvatar={this.state.profile.avatar} price={this.state.profile.price}
-                             category={this.state.profile.category}/>
+          <Confirm booking={this.state.booking} onSubmit={(booking) => this.updateBooking(booking)} error={this.state.error}
+                         pId={this.state.pId} avgRating={this.state.avgRating} numberReviews={this.state.numberReviews} pName={this.state.title}
+                          sDescription={this.state.description} pAvatar={this.state.avatar} price={this.state.price}
+                           category={this.state.category.title} date={this.state.date}/>
           </div>
         );
     }

@@ -1,4 +1,3 @@
-"use strict";
 import React from 'react';
 import {Avatar} from 'react-md';
 import ReviewAverageValue from './ReviewAverageValue';
@@ -28,26 +27,30 @@ class PhotographerDescription extends React.Component {
                 this.setState({avatar: newAvatar});
                 const newProfile = this.props.profile;
                 newProfile.avatar = newAvatar;
-                ProfileService.updateProfile(newProfile).then((data) => {
+                ProfileService.updateProfile(newProfile).then(() => {
                     localStorage.setItem('notification', 'successUpdated');
                     window.location.reload();
                 }).catch((e) => {
                     console.error(e);
-                    //this.setState(Object.assign({}, this.state, {error: 'Error while creating review'}));
                 });
             });
     }
 
+
     render() {
         let avatar;
-        if (this.props.profile.avatar) {
-            avatar = <Avatar onClick={this.uploadWidget.bind(this)} src={this.props.profile.avatar}/>;
-        } else {
+
+        if (this.props.profile.avatar === "") {
             avatar = <Avatar onClick={this.uploadWidget.bind(this)}
                              suffix="pink">{(this.props.title).substr(0, 1).toUpperCase()}</Avatar>;
+        } else {
+            avatar = <Avatar onClick={this.uploadWidget.bind(this)} src={this.props.profile.avatar}/>;
         }
 
-        let editButton = <ProfileEdit profile={this.props.profile}/>;
+        let editLocationButton = <ProfileEdit profile={this.props.profile} type="editLocation"
+                                              disabledEdit={this.props.disabledEdit}/>;
+        let editDescriptionButton = <ProfileEdit profile={this.props.profile} type="editDescription"
+                                                 disabledEdit={this.props.disabledEdit}/>;
 
         return (
             <div className="md-grid">
@@ -57,7 +60,7 @@ class PhotographerDescription extends React.Component {
                     <div className="md-grid photographerAttr">
                         <div className="md-cell md-cell--4 w3-border-right">
                             <div className="location">
-                                <i className="fas fa-map-marker-alt"> </i>Location: {this.props.city}
+                                <i className="fas fa-map-marker-alt"> </i>Location: {this.props.city} {editLocationButton}
                             </div>
                         </div>
                         <div className="md-cell md-cell--4 w3-border-right">
@@ -70,12 +73,12 @@ class PhotographerDescription extends React.Component {
                     </div>
                     <div className="md-grid">
                         <div className="md-cell md-cell--10">{this.props.description}</div>
-                        <div className="md-cell md-cell--2">{editButton}</div>
+                        <div className="md-cell md-cell--2">{editDescriptionButton}</div>
                     </div>
                 </div>
             </div>
         );
     }
-};
+}
 
 export default PhotographerDescription;
