@@ -1,19 +1,13 @@
 import React, {Component} from 'react';
-import Page from './page/Page.js';
-import {Button, DatePicker} from 'react-md';
-import InfiniteCalendar, {Calendar, withRange} from 'react-infinite-calendar';
+import InfiniteCalendar from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
 import PhotographerDescription from './PhotographerDescription';
 import format from 'date-fns/format';
-import {CloudinaryContext, Transformation, Image} from 'cloudinary-react';
-import axios from "axios";
 import ImageGallery from "react-image-gallery";
 import UserService from "../services/UserService";
-import ProfileEdit from "./ProfileEdit";
 import {Link} from 'react-router-dom';
 import ProfileService from "../services/ProfileService";
 import 'react-dates/lib/css/_datepicker.css';
-import {DateRangePicker, SingleDatePicker, DayPickerRangeController} from 'react-dates';
 import moment from "moment/moment";
 
 
@@ -70,6 +64,7 @@ export class PhotographerProfile extends Component {
         });
         window.location.reload();
     }
+
 
     componentWillMount() {
         if (localStorage.getItem('city') == null) {
@@ -196,25 +191,21 @@ export class PhotographerProfile extends Component {
                     <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink}
                                                                                   className="breadcrumbLink">Search</Link> > <b>{this.props.title}</b>
                 </div>
-                <div id="content">
-                    <div><PhotographerDescription profile={this.props.profile} pID={this.props.pID} avg={this.props.avg}
-                                                  avgRating={this.props.avgRating}
-                                                  title={this.props.title} city={this.props.city}
-                                                  description={this.props.description} size={'small'}
-                                                  disabledEdit={this.state.disabledEdit}
-                                                  noReviews={this.props.noReviews}/>
+                <div id="photographer-profile" className="md-grid">
+                    <div>
+                        <PhotographerDescription profile={this.props.profile} pID={this.props.pID} avg={this.props.avg}
+                                                 avgRating={this.props.avgRating}
+                                                 title={this.props.title} city={this.props.city}
+                                                 description={this.props.description} size={'small'}
+                                                 disabledEdit={this.state.disabledEdit}
+                                                 noReviews={this.props.noReviews}/>
                     </div>
-                    <div></div>
-                    <div className="w3-container w3-mobile w3-center w3-padding-48">
-                        <ImageGallery items={this.state.gallery}/>
+                    <div className="md-cell md-cell--2"> </div>
+                    <div className="md-cell md-cell--8 gallery">
+                        <ImageGallery items={this.state.gallery} showBullets={true}/>
                     </div>
-
-
-                    <div className="upload w3-container w3-center">
-                        <Button flat primary onClick={this.uploadWidget.bind(this)} className="upload-button">
-                            Add more images
-                        </Button>
-
+                    <div className="md-cell md-cell--2">
+                        <Button icon onClick={this.uploadWidget.bind(this)} iconClassName="fas fa-upload"/>
                     </div>
 
                     <div className="w3-container w3-row">

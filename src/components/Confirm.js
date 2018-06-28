@@ -189,14 +189,14 @@ export class Confirm extends React.Component {
                                  align="middle"
                             />
                         </Cell>
-                        <Cell size={3} style={{display: 'flex', justifyContent: 'center'}}>
+                        <Cell size={3} style={{display: 'flex', justifyContent: 'center'}} className="margin-5">
                             <img src="https://i.imgur.com/LtMahs7.png"
                                  alt="MasterCard"
                                  width={150}
                                  height={100}
                             />
                         </Cell>
-                        <Cell size={3} style={{display: 'flex', justifyContent: 'center'}}>
+                        <Cell size={3} style={{display: 'flex', justifyContent: 'center'}} className="margin-5">
                             <img src="https://i.imgur.com/Hu8ZzsL.jpg"
                                  alt="PayPal"
                                  width={150}
@@ -211,17 +211,17 @@ export class Confirm extends React.Component {
                             />
                         </Cell>
                     </Grid>
-                    <RadioGroup horizontal onChange={this.handleChangePayment} required>
-                        <RadioButton value="Visa" rootColor={'#000000'} pointColor={'#000000'} iconSize={5}>
+                    <RadioGroup horizontal onChange={this.handleChangePayment} required className="margin-right">
+                        <RadioButton value="Visa" rootColor={'#000000'} pointColor={'#000000'} iconSize={5} className="margin-5">
                             <b>Visa</b>
                         </RadioButton>
-                        <RadioButton value="Mastercard" rootColor={'#000000'} pointColor={'#000000'} iconSize={5}>
+                        <RadioButton value="Mastercard" rootColor={'#000000'} pointColor={'#000000'} iconSize={5} className="margin-5">
                             <b>Mastercard</b>
                         </RadioButton>
-                        <RadioButton value="Paypal" rootColor={'#000000'} pointColor={'#000000'} iconSize={5}>
+                        <RadioButton value="Paypal" rootColor={'#000000'} pointColor={'#000000'} iconSize={5} className="margin-5">
                             <b>Paypal</b>
                         </RadioButton>
-                        <RadioButton value="Sofort" rootColor={'#000000'} pointColor={'#000000'} iconSize={5}>
+                        <RadioButton value="Sofort" rootColor={'#000000'} pointColor={'#000000'} iconSize={5} className="margin-5">
                             <b>Sofortüberweisung</b>
                         </RadioButton>
                     </RadioGroup>

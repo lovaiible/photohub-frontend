@@ -155,6 +155,40 @@ main .container, div .container {
     width: 100% !important;
 }
 
+/* ==== Photographer Profile ==== */
+
+#photographer-profile .md-grid {
+    padding: 0 !important;
+}
+
+#photographer-profile .md-avatar {
+    height: 100px;
+    width: 100px;
+    float: left;
+}
+
+#photographer-profile .gallery .image-gallery {
+    margin: 8px;
+}
+
+#photographer-profile button .fa-upload {
+    margin-left: 25px;
+}
+
+.photographerAttr .location, .photographerAttr .orders {
+    margin: 16px 0 10px;
+}
+
+.photographerAttr .review > div {
+    margin-bottom: 6px;
+}
+
+.photographerAttr .review a {
+    padding-left: 8px;
+}
+
+
+
 /* ==== 404 Error Page ==== */
 
 #error {
@@ -220,7 +254,7 @@ main .container, div .container {
     padding-right: 25px;
 }
 
-#footer .social i {
+#footer .social i, .photographerAttr i {
     padding-right: 10px;
 }
 
@@ -275,6 +309,10 @@ main .container, div .container {
 
 .horizontalLine {
     color: black;
-    size: 5;
+    size: 5px;
+}
 
+margin-right {
+    margin-right: 5px;
+    margin-left: 5px;
 }
