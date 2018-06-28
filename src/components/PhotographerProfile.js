@@ -25,8 +25,8 @@ export class PhotographerProfile extends Component {
             currentUser: currentUser,
             disabledEdit: true,
             searchLink: '',
-            minDate: this.props.profile.minDate,
-            maxDate: this.props.profile.maxDate
+            minDate: this.props.minDate,
+            maxDate: this.props.maxDate
         };
         this.handleDate = this.handleDate.bind(this);
         this.handleConfirm = this.handleConfirm.bind(this);
@@ -109,7 +109,7 @@ export class PhotographerProfile extends Component {
                 //save gallery to backend
                 let newProfile = this.props.profile;
                 newProfile.gallery = currentGallery;
-                ProfileService.updateProfile(newProfile).then((data) => {
+                ProfileService.updateProfile(newProfile).then(() => {
                     localStorage.setItem('notification', 'successUpdated');
                 }).catch((e) => {
                     console.error(e);
@@ -120,36 +120,27 @@ export class PhotographerProfile extends Component {
 
     render() {
 
-        const styles = {
-            tagStyle: {
-                transform: "rotate(-5deg)"
-            },
-            galleryStyle: {
-                height: "50%",
-                width: "70%",
-                display: 'flex',
-                justifyContent: 'center',
-
-            }
-        }
-
-
-        var formatedMinDate = new Date(this.props.profile.minDate);
-        var formatedMaxDate = new Date(this.props.profile.maxDate);
+        const formatedMinDate = new Date(this.props.profile.minDate);
+        const formatedMaxDate = new Date(this.props.profile.maxDate);
         let calendar;
+        let uploadButton = (!this.state.disabledEdit) ?
+            <Button icon onClick={this.uploadWidget.bind(this)} iconClassName="fas fa-upload"/> : "";
         if (this.state.disabledEdit) {
-            calendar = <div className="w3-container">
-                <h2>Choose an appointment </h2>
-                <InfiniteCalendar
-                    width={400}
-                    height={400}
-                    minDate={formatedMinDate}
-                    maxDate={formatedMaxDate}
-                    onSelect={this.handleDate}
-                    selected={false}
-                /></div>;
+            calendar = <div>
+                <h2 className="w3-left">Choose an appointment with photographer: </h2>
+                <div className="w3-center">
+                    <InfiniteCalendar
+                        width={400}
+                        height={400}
+                        minDate={formatedMinDate}
+                        maxDate={formatedMaxDate}
+                        onSelect={this.handleDate}
+                        selected={false}
+                    />
+                </div>
+            </div>;
         } else {
-            calendar = <div className="w3-container"><DatePicker
+            calendar = <div className="w3-center"><DatePicker
                 name="date"
                 id="date-input"
                 label="select your start date"
@@ -193,7 +184,7 @@ export class PhotographerProfile extends Component {
                     <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink}
                                                                                   className="breadcrumbLink">Search</Link> > <b>{this.props.title}</b>
                 </div>
-                <div id="photographer-profile" className="md-grid">
+                <div id="photographer-profile">
                     <div>
                         <PhotographerDescription profile={this.props.profile} pID={this.props.pID} avg={this.props.avg}
                                                  avgRating={this.props.avgRating}
@@ -202,21 +193,23 @@ export class PhotographerProfile extends Component {
                                                  disabledEdit={this.state.disabledEdit}
                                                  noReviews={this.props.noReviews}/>
                     </div>
-                    <div className="md-cell md-cell--2"> </div>
-                    <div className="md-cell md-cell--8 gallery">
-                        <ImageGallery items={this.state.gallery} showBullets={true}/>
-                    </div>
-                    <div className="md-cell md-cell--2">
-                        <Button icon onClick={this.uploadWidget.bind(this)} iconClassName="fas fa-upload"/>
+                    <div className="w3-container w3-cell-row">
+                        <div className="w3-cell ">
+                            <ImageGallery items={this.state.gallery} showBullets={true}/>
+                        </div>
+                        <div className="w3-cell ">
+                            {uploadButton}
+                        </div>
                     </div>
 
-                    <div className="w3-container w3-row">
-                        <div className="w3-col m6">
+                    <div className="w3-container w3-row w3-padding-24">
+                        <div className="w3-col m6 w3-center ">
                             {calendar}
                         </div>
-                        <div className="w3-container w3-col m6"><h2>Process to check out: </h2>
-                            <div className="w3-container">
-                                <div className="w3-cell w3-container">
+                        <div className="w3-col m6 w3-center">
+                            <h2>Process to check out: </h2>
+                            <div>
+                                <div>
                                     <form>
                                         <label>
                                             Selected date:

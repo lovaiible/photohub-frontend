@@ -64,7 +64,9 @@ export class PhotographerProfileView extends React.Component {
             return (
               <div>
                 <PhotographerProfile  profile={this.state.profile} pID={this.state.pID} avg={this.state.avg} avgRating={0} noReviews={true}
-                title={this.state.title} city={this.state.city} description={this.state.description} history={this.props.history} size={'small'} gallery={this.state.gallery}/>
+                title={this.state.title} city={this.state.city} description={this.state.description} history={this.props.history} size={'small'} gallery={this.state.gallery}
+                minDate={this.state.minDate} maxDate={this.state.maxDate}
+                />
               </div>
             );
           } else {

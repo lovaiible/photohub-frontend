@@ -36,8 +36,19 @@ class PhotographerDescription extends React.Component {
             });
     }
 
-
     render() {
+        const styles = {
+            tagStyle: {
+                transform: "rotate(-5deg)"
+            },
+            galleryStyle: {
+                height: "50%",
+                width: "70%",
+                display: 'flex',
+                justifyContent: 'center',
+
+            }
+        }
         let avatar;
 
         if (this.props.profile.avatar === "") {
@@ -51,27 +62,24 @@ class PhotographerDescription extends React.Component {
         let editDescriptionButton = (!this.props.disabledEdit) ? <ProfileEdit profile={this.props.profile} type="editDescription"/> : '';
 
         return (
-            <div className="md-grid">
-                <div className="md-cell md-cell--2">{avatar}</div>
-                <div className="md-cell md-cell--10">
-                    <h1>{this.props.title}</h1>
-                    <div className="md-grid photographerAttr">
-                        <div className="md-cell md-cell--4 w3-border-right">
+            <div className="w3-panel w3-cell-row w3-padding-48">
+                <div className="w3-cell-middle w3-container l4 avatar">{avatar}</div>
+                <div className="w3-cell l8 w3-container">
+                    <h1 className="w3-margin-right">{this.props.title}</h1>
+                    <div className="w3-row photographerAttr">
+                        <div className="w3-col m6 w3-border-right w3-center">
                             <div className="location">
                                 <i className="fas fa-map-marker-alt"> </i>Location: {this.props.city} {editLocationButton}
                             </div>
                         </div>
-                        <div className="md-cell md-cell--4 w3-border-right">
-                            <div className="orders">100 successful orders</div>
-                        </div>
-                        <div className="md-cell md-cell--4 review">
-                            <ReviewAverageValue size={'small'} avgRating={this.props.avgRating} pId={this.props.pID}
-                                                noReviews={this.props.noReviews}/>
+                        <div className="w3-col m6 w3-container w3-center review" id="profileReview">
+                            <div id="profileReview"><ReviewAverageValue size={'small'} avgRating={this.props.avgRating} pId={this.props.pID}
+                                                     noReviews={this.props.noReviews}/></div>
                         </div>
                     </div>
-                    <div className="md-grid">
-                        <div className="md-cell md-cell--10">{this.props.description}</div>
-                        <div className="md-cell md-cell--2">{editDescriptionButton}</div>
+                    <div className="w3-cell-row">
+                        <div className="w3-cell ">{this.props.description}</div>
+                        <div className="w3-cell ">{editDescriptionButton}</div>
                     </div>
                 </div>
             </div>

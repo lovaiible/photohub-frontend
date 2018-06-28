@@ -162,8 +162,8 @@ main .container, div .container {
 }
 
 #photographer-profile .md-avatar {
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
     float: left;
 }
 
@@ -181,10 +181,12 @@ main .container, div .container {
 
 .photographerAttr .review > div {
     margin-bottom: 6px;
+    text-align:center;
 }
 
 .photographerAttr .review a {
     padding-left: 8px;
+    text-align:center;
 }
 
 
@@ -315,4 +317,8 @@ main .container, div .container {
 margin-right {
     margin-right: 5px;
     margin-left: 5px;
+}
+#profileReview {
+    display:inline-block;
+    vertical-align:middle;
 }
