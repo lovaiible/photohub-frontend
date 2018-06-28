@@ -54,7 +54,7 @@ export class ReviewItemListView extends React.Component {
             loading: true,
             avg: [],
             data: [],
-            renderedReviews: [],
+            slicedReviews: [],
             pId: pId,
             page: 1,
             total: 0,
@@ -65,14 +65,15 @@ export class ReviewItemListView extends React.Component {
             city: '',
             noReviews: true,
             avgRating: 0,
-            searchLink: ''
+            searchLink: '',
+            pagiCount: 0
         };
         this.handlePageChange = this.handlePageChange.bind(this);
     }
 
     handlePageChange(page) {
-        const renderedReviews = this.state.data.slice((page - 1) * itemsPerPage, (page - 1) * itemsPerPage + itemsPerPage);
-        this.setState({page, renderedReviews});
+        const slicedReviews = this.state.data.slice((page - 1) * itemsPerPage, (page - 1) * itemsPerPage + itemsPerPage);
+        this.setState({page, slicedReviews});
     }
 
     notifySuccess() {
@@ -106,7 +107,7 @@ export class ReviewItemListView extends React.Component {
                 city: data.location.city,
                 description: data.description,
                 title: data.title,
-                pUserId: data.user._id
+                pUserId: data.user._id,
             });
         }).catch((e) => {
             console.error(e);
@@ -115,8 +116,10 @@ export class ReviewItemListView extends React.Component {
         ReviewService.getReviews(this.state.pId).then((data) => {
             this.setState({
                 data: [...data],
-                renderedReviews: data.slice(0, itemsPerPage),
-                total: data.length
+                slicedReviews: data.slice(0, itemsPerPage),
+                total: data.length,
+                pagiCount: Math.ceil(data.length / itemsPerPage),
+                loading: false
             });
         }).catch((e) => {
             console.error(e);
@@ -133,7 +136,6 @@ export class ReviewItemListView extends React.Component {
                 });
             }
             this.setState({
-                loading: false
             });
         }).catch((e) => {
             console.error(e);
@@ -174,9 +176,16 @@ export class ReviewItemListView extends React.Component {
     }
 
     render() {
+
+
         if (this.state.loading) {
             return (<h2>Loading...</h2>);
         } else {
+          let pagination = <Pagination
+              margin={2}
+              page={this.state.page}
+              count={this.state.pagiCount}
+              onPageChange={this.handlePageChange}/>;
             if (this.state.data.length > 0) {
                 if (this.state.data.length > itemsPerPage) {
                     return (
@@ -190,7 +199,7 @@ export class ReviewItemListView extends React.Component {
                                                              city={this.state.city} size={'small'}
                                                              description={this.state.description} pID={this.state.pId}
                                                              avg={this.state.avg} avgRating={this.state.avgRating}
-                                                             noReviews={false}/>
+                                                             noReviews={false} disabledEdit={true}/>
                                 </div>
                                 <div style={countRowStyles}>
                                     <Grid>
@@ -209,18 +218,14 @@ export class ReviewItemListView extends React.Component {
                             </div>
                             <ul id="review-list">
                                 {
-                                    this.state.renderedReviews.map((review) =>
+                                    this.state.slicedReviews.map((review) =>
                                         <li key={review._id} id="review-list" style={lineItemStyle}>
                                             <ReviewListItem review={review} user={this.state.user} pId={this.state.pId}
                                                             history={this.props.history}/>
                                         </li>)
                                 }
                             </ul>
-                            <Pagination
-                                margin={2}
-                                page={this.state.page}
-                                count={Math.ceil(this.state.total / itemsPerPage)}
-                                onPageChange={this.handlePageChange}/>
+                            {pagination}
                         </Page>
                     );
                 } else {
@@ -235,7 +240,7 @@ export class ReviewItemListView extends React.Component {
                                                              city={this.state.city} avgRating={this.state.avgRating}
                                                              description={this.state.description} size={'small'}
                                                              pID={this.state.pId} avg={this.state.avg}
-                                                             noReviews={this.state.noReviews}/>
+                                                             noReviews={this.state.noReviews} disabledEdit={true}/>
                                 </div>
                                 <div style={countRowStyles}>
                                     <Grid>
@@ -255,7 +260,7 @@ export class ReviewItemListView extends React.Component {
                             </div>
                             <ul id="review-list">
                                 {
-                                    this.state.renderedReviews.map((review) =>
+                                    this.state.slicedReviews.map((review) =>
                                         <li key={review._id} id="review-list" style={lineItemStyle}>
                                             <ReviewListItem review={review} user={this.state.user} pId={this.state.pId}
                                                             history={this.props.history}/>
@@ -274,7 +279,7 @@ export class ReviewItemListView extends React.Component {
                         <div>
                             <div>
                                 <PhotographerDescription profile={this.state.profile} title={this.state.title}
-                                                         city={this.state.city}
+                                                         city={this.state.city} disabledEdit={true}
                                                          description={this.state.description} size={'small'}
                                                          avgRating={0} pID={this.state.pId} noReviews={true}/>
                             </div>

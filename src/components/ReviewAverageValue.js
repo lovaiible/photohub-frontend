@@ -11,12 +11,21 @@ export default class ReviewAverageValue extends React.Component {
 
   render(){
     if(this.props.size == 'big'){
+      if(this.props.length > 1){
+        return(
+          <div id="avgRatingValue">
+            <ReactStars count={5} size={30} value={parseFloat(this.props.avgRating.toFixed(1))} edit={false} color2={'#ffd700'} />
+            <b>{this.props.length}</b> Reviews with <b>{this.props.avgRating.toFixed(1)}</b> of 5 stars
+          </div>
+        );
+    } else {
       return(
         <div id="avgRatingValue">
           <ReactStars count={5} size={30} value={parseFloat(this.props.avgRating.toFixed(1))} edit={false} color2={'#ffd700'} />
-          <b>{this.props.length}</b> Reviews with <b>{this.props.avgRating.toFixed(1)}</b> of 5 stars
+          <b>{this.props.length}</b> Review with <b>{this.props.avgRating.toFixed(1)}</b> of 5 stars
         </div>
       );
+    }
     } else {
       if(this.props.noReviews == false) {
         return(

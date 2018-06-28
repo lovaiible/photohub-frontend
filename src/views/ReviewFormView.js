@@ -24,7 +24,8 @@ export class ReviewFormView extends React.Component {
             review: undefined,
             error: undefined,
             pId: pId,
-            user: UserService.getCurrentUser()
+            user: UserService.getCurrentUser(),
+            searchLink: ''
         }
     }
 
@@ -70,6 +71,16 @@ export class ReviewFormView extends React.Component {
       }).catch((e) => {
           console.error(e);
       });
+
+      if(localStorage.getItem('city') == null){
+        this.setState({
+          searchLink: '/'
+        });
+      } else {
+        this.setState({
+          searchLink: '/results?city=' + localStorage.getItem('city') + '&category=' + localStorage.getItem('category') + '&date=' + localStorage.getItem('date')
+        });
+      }
     }
 
     render() {
@@ -79,7 +90,7 @@ export class ReviewFormView extends React.Component {
         return (
           <Page>
             <div className="breadcrumbs">
-              <Link to={'/'} className="breadcrumbLink">Home</Link> > Search > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">Profile</Link> > <Link to={'/viewReviews/' + this.state.pId}
+              <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink} className="breadcrumbLink">Search</Link> > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">Profile</Link> > <Link to={'/viewReviews/' + this.state.pId}
               className="breadcrumbLink">Reviews</Link> > <b>Create</b>
             </div>
             <ReviewForm review={this.state.review} onSubmit={(review) => this.createReview(review)} checkAlreadyRatedLength={this.state.checkAlreadyRatedLength}
