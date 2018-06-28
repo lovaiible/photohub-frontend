@@ -52,8 +52,16 @@ class PhotographerDescription extends React.Component {
         }
         console.log(this.props.profile.avatar);
         console.log(this.props.noReviews);
-        let editLocationButton = <ProfileEdit profile={this.props.profile} type="editLocation" disabledEdit={this.props.disabledEdit}/>;
-        let editDescriptionButton = <ProfileEdit profile={this.props.profile} type="editDescription" disabledEdit={this.props.disabledEdit}/>;
+        let editLocationButton;
+        let editDescriptionButton;
+
+        if(this.props.disabledEdit) {
+            editLocationButton = <div></div>;
+            editDescriptionButton = <div></div>;
+        } else {
+            editLocationButton = <ProfileEdit profile={this.props.profile} type="editLocation" />;
+            editDescriptionButton = <ProfileEdit profile={this.props.profile} type="editDescription" />;
+        }
         return (
           <div className="w3-container w3-row" style={marginTop}>
               <div className="w3-col m2 avatar float-left">{avatar}</div>

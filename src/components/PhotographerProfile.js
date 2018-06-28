@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Page from './page/Page.js';
 import {Button, DatePicker} from 'react-md';
-import InfiniteCalendar from 'react-infinite-calendar';
+import InfiniteCalendar, {Calendar, withRange} from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
 import PhotographerDescription from './PhotographerDescription';
 import format from 'date-fns/format';
@@ -12,6 +12,10 @@ import UserService from "../services/UserService";
 import ProfileEdit from "./ProfileEdit";
 import {Link} from 'react-router-dom';
 import ProfileService from "../services/ProfileService";
+import 'react-dates/lib/css/_datepicker.css';
+import {DateRangePicker, SingleDatePicker, DayPickerRangeController} from 'react-dates';
+import moment from "moment/moment";
+
 
 export class PhotographerProfile extends Component {
 
@@ -24,21 +28,49 @@ export class PhotographerProfile extends Component {
             gallery: this.props.gallery,
             currentUser: currentUser,
             disabledEdit: true,
-            searchLink: ''
+            searchLink: '',
+            minDate: this.props.profile.minDate,
+            maxDate: this.props.profile.maxDate
         };
         this.handleDate = this.handleDate.bind(this);
         this.handleConfirm = this.handleConfirm.bind(this);
+        this.handleMinDate = this.handleMinDate.bind(this);
+        this.handleMaxDate = this.handleMaxDate.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
     }
+
     handleDate(e) {
         const newDate = format(e, "DD.MM.YYYY");
         this.setState({selectedDate: newDate});
     }
+
     handleConfirm() {
         this.props.history.push({
             pathname: '/showConfirm/' + this.props.pID,
             state: {selectedDate: this.state.selectedDate}
         });
     }
+
+    handleMinDate(e) {
+        this.setState({minDate: encodeURI(e)});
+    }
+
+    handleMaxDate(e) {
+        this.setState({maxDate: encodeURI(e)});
+    }
+
+    handleDateChange() {
+        let newProfile = this.props.profile;
+        newProfile.minDate = this.state.minDate;
+        newProfile.maxDate = this.state.maxDate;
+        ProfileService.updateProfile(newProfile).then((data) => {
+            localStorage.setItem('notification', 'successUpdated');
+        }).catch((e) => {
+            console.error(e);
+        });
+        window.location.reload();
+    }
+
     componentWillMount() {
         if (localStorage.getItem('city') == null) {
             this.setState({
@@ -49,10 +81,11 @@ export class PhotographerProfile extends Component {
                 searchLink: '/results?city=' + localStorage.getItem('city') + '&category=' + localStorage.getItem('category') + '&date=' + localStorage.getItem('date')
             });
         }
-        if (this.props.profile.user.username == this.state.currentUser.username) {
+        if (Object.is(this.props.profile.user, this.state.currentUser)) {
             this.setState({disabledEdit: false});
         }
     }
+
     uploadWidget() {
         window.cloudinary.openUploadWidget({
                 cloud_name: 'dn0x8apyr',
@@ -104,10 +137,58 @@ export class PhotographerProfile extends Component {
         }
 
 
-        var today = new Date();
         var formatedMinDate = new Date(this.props.profile.minDate);
         var formatedMaxDate = new Date(this.props.profile.maxDate);
-
+        let calendar;
+        if (this.state.disabledEdit) {
+            calendar = <div className="w3-container">
+                <h2>Choose an appointment </h2>
+                <InfiniteCalendar
+                    width={400}
+                    height={400}
+                    minDate={formatedMinDate}
+                    maxDate={formatedMaxDate}
+                    onSelect={this.handleDate}
+                    selected={false}
+                /></div>;
+        } else {
+            calendar = <div className="w3-container"><DatePicker
+                name="date"
+                id="date-input"
+                label="select your start date"
+                firstDayOfWeek={1}
+                disableOuterDates={true}
+                placeholder="Choose your start date"
+                className="col-3"
+                displayMode="portrait"
+                minDate={moment().toDate()}
+                locales="en-US"
+                defaultValue={this.props.profile.minDate}
+                onChange={this.handleMinDate}
+                autoOk={true}
+                required={false}
+                errorText="Date is required"
+            />
+                <DatePicker
+                    name="date"
+                    id="date-input"
+                    label="Select your end date"
+                    firstDayOfWeek={1}
+                    disableOuterDates={true}
+                    placeholder="Choose your end date"
+                    className="col-3"
+                    displayMode="portrait"
+                    minDate={moment().toDate()}
+                    locales="en-US"
+                    defaultValue={this.props.profile.maxDate}
+                    onChange={this.handleMaxDate}
+                    autoOk={true}
+                    required={false}
+                    errorText="Date is required"
+                />
+                <Button flat primary swapTheming onClick={this.handleDateChange}>Confirm date change</Button>
+            </div>;
+        }
 
         return (
             <Page>
@@ -138,18 +219,7 @@ export class PhotographerProfile extends Component {
 
                     <div className="w3-container w3-row">
                         <div className="w3-col m6">
-
-                            <div className="w3-container">
-                                <h2>Choose date </h2>
-                                <InfiniteCalendar
-                                    width={400}
-                                    height={400}
-                                    selected={today}
-                                    minDate={formatedMinDate}
-                                    maxDate={formatedMaxDate}
-                                    onSelect={this.handleDate}
-                                />
-                            </div>
+                            {calendar}
                         </div>
                         <div className="w3-container w3-col m6"><h2>Process to check out: </h2>
                             <div className="w3-container">
