@@ -23,7 +23,7 @@ export class PhotographerProfile extends Component {
             selectedDate: '',
             gallery: this.props.gallery,
             currentUser: currentUser,
-            disabledEdit: true,
+            disabledEdit: false,
             searchLink: '',
             minDate: this.props.minDate,
             maxDate: this.props.maxDate
@@ -36,7 +36,7 @@ export class PhotographerProfile extends Component {
     }
 
     handleDate(e) {
-        const newDate = format(e, "DD.MM.YYYY");
+        const newDate = format(e, "MM/DD/YYYY");
         this.setState({selectedDate: newDate});
     }
 
@@ -65,6 +65,10 @@ export class PhotographerProfile extends Component {
             console.error(e);
         });
         window.location.reload();
+    }
+
+    showDelete(e){
+        console.log(e);
     }
 
 
@@ -123,6 +127,7 @@ export class PhotographerProfile extends Component {
         const formatedMinDate = new Date(this.props.profile.minDate);
         const formatedMaxDate = new Date(this.props.profile.maxDate);
         let calendar;
+        let checkout;
         let uploadButton = (!this.state.disabledEdit) ?
             <Button icon onClick={this.uploadWidget.bind(this)} iconClassName="fas fa-upload"/> : "";
         if (this.state.disabledEdit) {
@@ -137,6 +142,29 @@ export class PhotographerProfile extends Component {
                         onSelect={this.handleDate}
                         selected={false}
                     />
+                </div>
+            </div>;
+
+            checkout = <div className="w3-col m6 w3-center">
+                <h2>Process to check out: </h2>
+                <div>
+                    <div>
+                        <form>
+                            <label>
+                                Selected date:
+                                <input
+                                    className="w3-opacity"
+                                    type="text"
+                                    value={this.state.selectedDate}
+                                />
+                            </label>
+                        </form>
+                    </div>
+                    <div className="w3-container w3-margin-top w3-cell-row">
+                        <Button flat primary swapTheming
+                                onClick={this.handleConfirm}>Confirm</Button>
+                        <Button flat secondary swapTheming>Cancel</Button>
+                    </div>
                 </div>
             </div>;
         } else {
@@ -176,6 +204,8 @@ export class PhotographerProfile extends Component {
                 />
                 <Button flat primary swapTheming onClick={this.handleDateChange}>Confirm date change</Button>
             </div>;
+
+            checkout = "";
         }
 
         return (
@@ -195,7 +225,7 @@ export class PhotographerProfile extends Component {
                     </div>
                     <div className="w3-container w3-cell-row">
                         <div className="w3-cell ">
-                            <ImageGallery items={this.state.gallery} showBullets={true}/>
+                            <ImageGallery items={this.state.gallery} showBullets={true}  onMouseOver={this.showDelete}/>
                         </div>
                         <div className="w3-cell ">
                             {uploadButton}
@@ -206,29 +236,7 @@ export class PhotographerProfile extends Component {
                         <div className="w3-col m6 w3-center ">
                             {calendar}
                         </div>
-                        <div className="w3-col m6 w3-center">
-                            <h2>Process to check out: </h2>
-                            <div>
-                                <div>
-                                    <form>
-                                        <label>
-                                            Selected date:
-                                            <input
-                                                className="w3-opacity"
-                                                type="text"
-                                                value={this.state.selectedDate}
-                                            />
-                                        </label>
-                                    </form>
-                                </div>
-                                <div className="w3-container w3-margin-top w3-cell-row">
-                                    <Button flat primary swapTheming
-                                            onClick={this.handleConfirm}>Confirm</Button>
-                                    <Button flat secondary swapTheming>Cancel</Button>
-                                </div>
-                            </div>
-                        </div>
-
+                        <div> {checkout}</div>
                     </div>
 
                 </div>

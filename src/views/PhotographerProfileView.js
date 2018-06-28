@@ -17,7 +17,8 @@ export class PhotographerProfileView extends React.Component {
             description: '',
             city: '',
             minDate: '',
-            maxDate: ''
+            maxDate: '',
+            gallery: []
         };
     }
 

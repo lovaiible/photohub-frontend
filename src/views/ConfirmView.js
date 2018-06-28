@@ -27,8 +27,7 @@ export class ConfirmView extends React.Component {
           price: '',
           avatar:'',
           category:'',
-          date:''
-
+          date: ""
       };
   }
 
@@ -74,12 +73,12 @@ export class ConfirmView extends React.Component {
                 price: data.price,
                 //avatar: data.avatar,
                 avatar: data.picture[0].original,
-                category: data.category,
-                date: data.date
+                category: data.category
             });
         }).catch((e) => {
             console.error(e);
         });
+        this.setState({date: this.props.location.state.selectedDate})
 
     }
 
