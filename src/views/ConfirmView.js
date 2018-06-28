@@ -65,14 +65,15 @@ export class ConfirmView extends React.Component {
         });
 
         ProfileService.getProfile(this.state.pId).then((data)=> {
-
+            console.log(data)
             this.setState({
                 profile: data,
                 city: data.location.city,
-                description: data.description,
+                description: data.serviceDescription,
                 title: data.title,
                 price: data.price,
-                avatar: data.avatar,
+                //avatar: data.avatar,
+                avatar: data.picture[0].original,
                 category: data.category,
                 date: data.date
             });
@@ -116,7 +117,7 @@ export class ConfirmView extends React.Component {
 
           <Confirm booking={this.state.booking} onSubmit={(booking) => this.updateBooking(booking)} error={this.state.error}
                          pId={this.state.pId} avgRating={this.state.avgRating} numberReviews={this.state.numberReviews} pName={this.state.title}
-                          sDescription={this.state.serviceDescription} pAvatar={this.state.avatar} price={this.state.price}
+                          sDescription={this.state.description} pAvatar={this.state.avatar} price={this.state.price}
                            category={this.state.category.title} date={this.state.date}/>
           </div>
         );

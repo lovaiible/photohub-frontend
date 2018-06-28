@@ -9,15 +9,15 @@ import {
     Grid,
     Cell,
     Button,
-    DatePicker,
+//    DatePicker,
     TextField
 } from 'react-md';
 import {RadioGroup, RadioButton} from 'react-radio-buttons';
 import Page from './page/Page';
-import ReviewAverageValue from './ReviewAverageValue';
+// import ReviewAverageValue from './ReviewAverageValue';
 import ReactStars from 'react-stars';
 import {withRouter, Link} from "react-router-dom";
-import moment from "moment/moment";
+// import moment from "moment/moment";
 
 const style = {
     root: {
@@ -57,7 +57,6 @@ export class Confirm extends React.Component {
         };
 
         this.handleChangePayment = this.handleChangePayment.bind(this);
-        this.handleChangeDate = this.handleChangeDate.bind(this);
         this.handleChangeAddInfo = this.handleChangeAddInfo.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -65,10 +64,6 @@ export class Confirm extends React.Component {
 
     handleChangePayment(event) {
         this.setState({payment: event});
-    }
-
-    handleChangeDate(event) {
-        this.setState({date: event});
     }
 
     handleChangeAddInfo(event) {
@@ -138,11 +133,10 @@ export class Confirm extends React.Component {
                         </Cell>
                         <Cell size={7}>
                             <h1>{this.props.category}</h1>
-                            <p>{this.props.pName} </p>
+                            <div>{this.props.pName}</div>
                             <ReactStars count={5} size={24} value={parseFloat(this.props.avgRating.toFixed(1))} edit={false} color2={'#ffd700'} />
-                            <div id="showRating"/>
-                            <p>{this.props.sDescription}</p>
-
+                            <p>Appointment date: {this.props.date}</p>
+                            <div>{this.props.sDescription}</div>
                         </Cell>
                         <Cell size={2}>
                             <h2>{this.props.price} Euro</h2>
@@ -151,21 +145,6 @@ export class Confirm extends React.Component {
 
                     <CardText>
                         <h3>Please provide information below</h3>
-                        <DatePicker
-                            onChange={this.handleChangeDate}
-                            id="appointment-date"
-                            required
-                            label="Select an appointment date"
-                            className="md-cell"
-                            disableOuterDates={true}
-                            displayMode="landscape"
-                            minDate={moment().toDate()}
-                            locales="en-US"
-                            disableWeekEnds={true}
-                            showAllDays={false}
-                            disabled={true}
-                            defaultValue={this.state.date}
-                        />
                         <TextField
                             onChange={this.handleChangeAddInfo}
                             id="Additional Information"
