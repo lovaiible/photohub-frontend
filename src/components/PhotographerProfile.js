@@ -23,7 +23,7 @@ export class PhotographerProfile extends Component {
             selectedDate: '',
             gallery: this.props.gallery,
             currentUser: currentUser,
-            disabledEdit: false,
+            disabledEdit: true,
             searchLink: '',
             minDate: this.props.minDate,
             maxDate: this.props.maxDate
