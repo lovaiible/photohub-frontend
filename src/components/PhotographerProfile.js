@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Page from "../components/page/Page";
 import InfiniteCalendar from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
 import PhotographerDescription from './PhotographerDescription';
@@ -9,6 +10,7 @@ import {Link} from 'react-router-dom';
 import ProfileService from "../services/ProfileService";
 import 'react-dates/lib/css/_datepicker.css';
 import moment from "moment/moment";
+import {Button, DatePicker} from "react-md";
 
 
 export class PhotographerProfile extends Component {
