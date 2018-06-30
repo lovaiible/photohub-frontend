@@ -28,6 +28,7 @@ const style = {
     titleStyle: {
         color: 'rgb(0, 188, 212)',
     },
+    marginTop: '15px'
 };
 
 export class Summary extends React.Component {

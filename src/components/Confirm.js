@@ -33,6 +33,7 @@ const style = {
     titleStyle: {
         color: 'rgb(0, 188, 212)',
     },
+    marginTop: '15px'
 };
 
 window.localStorage;
@@ -190,7 +191,7 @@ export class Confirm extends React.Component {
                             />
                         </Cell>
                     </Grid>
-                    <RadioGroup horizontal onChange={this.handleChangePayment} required className="margin-right">
+                    <RadioGroup horizontal onChange={this.handleChangePayment} required className="w3-container">
                         <RadioButton value="Visa" rootColor={'#000000'} pointColor={'#000000'} iconSize={5} className="margin-5">
                             <b>Visa</b>
                         </RadioButton>
