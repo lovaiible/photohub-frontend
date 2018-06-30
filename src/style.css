@@ -272,10 +272,8 @@ main .container, div .container {
     background: #33cc33;
     text-align: center;
     line-height: 2.5;
+    opacity: 0.9;
     overflow: hidden;
-    -webkit-box-shadow: 0 0 5px black;
-    -moz-box-shadow:    0 0 5px black;
-    box-shadow:         0 0 5px black;
 }
 
 .notification.success {
