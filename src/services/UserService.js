@@ -1,6 +1,7 @@
 "use strict";
 
 import HttpService from "./HttpService";
+import CategoryService from "./CategoryService";
 
 export default class UserService {
 
@@ -8,6 +9,7 @@ export default class UserService {
     }
 
     static baseURL() {return "http://localhost:3000/auth"; }
+    static userURL() {return "http://localhost:3000"; }
 
     static register(mail, user, pass) {
         return new Promise((resolve, reject) => {
@@ -30,6 +32,21 @@ export default class UserService {
                 password: pass
             }, function(data) {
                 resolve(data);
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+
+    static getUserObject(id) {
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${UserService.baseURL()}/user/${id}`, function(data) {
+                if(data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                }
+                else {
+                    reject('Error while retrieving movie');
+                }
             }, function(textStatus) {
                 reject(textStatus);
             });

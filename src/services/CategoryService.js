@@ -19,6 +19,21 @@ export default class CategoryService {
        });
     }
 
+    static getCategoryByName(name) {
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${CategoryService.baseURL()}/list/${name}`, function(data) {
+                if(data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                }
+                else {
+                    reject('Error while retrieving movie');
+                }
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+
     static getCategory(id) {
         return new Promise((resolve, reject) => {
             HttpService.get(`${CategoryService.baseURL()}/${id}`, function(data) {

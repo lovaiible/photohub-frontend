@@ -19,6 +19,21 @@ export default class LocationService {
         });
     }
 
+    static getLocationByName(name) {
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${LocationService.baseURL()}/list/${name}`, function(data) {
+                if(data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                }
+                else {
+                    reject('Error while retrieving movie');
+                }
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+
     static getLocation(id) {
         return new Promise((resolve, reject) => {
             HttpService.get(`${LocationService.baseURL()}/${id}`, function(data) {

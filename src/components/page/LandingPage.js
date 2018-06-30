@@ -13,7 +13,6 @@ export default class LandingPage extends React.Component {
         super(props);
 
         this.state = {
-
         }
     }
 
