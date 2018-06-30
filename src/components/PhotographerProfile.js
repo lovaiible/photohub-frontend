@@ -79,14 +79,14 @@ export class PhotographerProfile extends Component {
                 searchLink: '/results?city=' + localStorage.getItem('city') + '&category=' + localStorage.getItem('category') + '&date=' + localStorage.getItem('date')
             });
         }
-        if (Object.is(this.props.profile.user.id, this.state.currentUser)) {
+        /*if (Object.is(this.props.profile.user.id, this.state.currentUser)) {
             this.setState({disabledEdit: false});
-        }
-        if (this.state.gallery.length == 0){
-            let newGallery =[];
+        }*/
+        if (this.props.gallery.length == 0) {
+            let newGallery = [];
             newGallery.push({
-                original: "http://res.cloudinary.com/dn0x8apyr/image/upload/c_scale,w_500/v1530195424/picture-not-available.jpg",
-                thumbnail: "http://res.cloudinary.com/dn0x8apyr/image/upload/c_scale,w_500/v1530195424/picture-not-available.jpg"
+                original: "http://res.cloudinary.com/dn0x8apyr/image/upload/c_scale,w_300/v1530195424/picture-not-available.jpg",
+                thumbnail: "http://res.cloudinary.com/dn0x8apyr/image/upload/c_scale,w_300/v1530195424/picture-not-available.jpg"
             });
             this.setState({gallery: newGallery})
         }
@@ -103,7 +103,7 @@ export class PhotographerProfile extends Component {
             (error, result) => {
                 //Update gallery
                 console.log(result);
-                const currentGallery = this.state.gallery;
+                const currentGallery = this.props.gallery;
                 const newImage = result.map(data => {
                     console.log(data);
                     var obj = {};
@@ -128,7 +128,7 @@ export class PhotographerProfile extends Component {
     }
 
     render() {
-        const defaultImage = "http://res.cloudinary.com/dn0x8apyr/image/upload/c_scale,w_500/v1530195424/picture-not-available.jpg";
+        const defaultImage = "http://res.cloudinary.com/dn0x8apyr/image/upload/c_scale,w_300/v1530195424/picture-not-available.jpg";
         const formatedMinDate = new Date(this.props.profile.minDate);
         const formatedMaxDate = new Date(this.props.profile.maxDate);
         let calendar;
@@ -136,7 +136,7 @@ export class PhotographerProfile extends Component {
         let uploadButton = (!this.state.disabledEdit) ?
             <Button icon onClick={this.uploadWidget.bind(this)} iconClassName="fas fa-upload"/> : "";
         let editPhotoButton = (!this.state.disabledEdit) ?
-            <PhotoEdit profile={this.state.profile} gallery={this.state.gallery}/>  : "";
+            <PhotoEdit profile={this.state.profile} gallery={this.state.gallery}/> : "";
         if (this.state.disabledEdit) {
             calendar = <div>
                 <h2 className="w3-left">Choose an appointment with photographer: </h2>
@@ -151,7 +151,6 @@ export class PhotographerProfile extends Component {
                     />
                 </div>
             </div>;
-
             checkout = <div className="w3-col m6 w3-center">
                 <h2>Process to check out: </h2>
                 <div>
@@ -169,7 +168,9 @@ export class PhotographerProfile extends Component {
                     </div>
                     <div className="w3-container w3-margin-top w3-cell-row">
                         <Button flat primary swapTheming
-                                onClick={this.handleConfirm}>Confirm</Button>
+                                onClick={this.handleConfirm}
+                                disabled={this.state.selectedDate == ''}
+                        >Confirm</Button>
                         <Button flat secondary swapTheming>Cancel</Button>
                     </div>
                 </div>

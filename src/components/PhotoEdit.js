@@ -72,6 +72,7 @@ export default class PhotoEdit extends React.Component {
                         width={"1200px"}
                         onHide={this.hide}
                         actions={actions}
+                        modal
                         title="Edit your gallery">
                         {photoArea}
                     </DialogContainer>

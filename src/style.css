@@ -415,3 +415,10 @@ main .container, div .container {
     grid-gap: 10px;
     grid-auto-rows: 250px;
 }
+.md-dialog-footer--inline {
+    padding: 16px;
+    text-align: center;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 50%;
+}
