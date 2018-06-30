@@ -40,7 +40,7 @@ export class SearchResultItem extends React.Component {
         return (
             <div className="card">
                 <a href={'/#/profile/' + this.props._id} className="card-link"> </a>
-                <img className="card-img-top" src={this.props.picture[0] ? this.props.picture[0].thumbnail : ''}
+                <img className="card-img-top" src={this.props.picture && this.props.picture[0].thumbnail ? this.props.picture[0].thumbnail : ''}
                      alt={this.props.title}/>
                 <div className="card-block">
                     <div className="card-body">

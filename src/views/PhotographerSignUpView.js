@@ -6,6 +6,7 @@ import CategoryService from "../services/CategoryService";
 import LocationService from "../services/LocationService";
 import PhotographerSignUp from "../components/header/PhotographerSignUp";
 import ProfileService from "../services/ProfileService";
+import 'babel-polyfill';
 
 
 export class PhotographerSignUpView extends React.Component {
@@ -15,9 +16,7 @@ export class PhotographerSignUpView extends React.Component {
         this.state = {
             loading: false,
             categories: [],
-            locations: [],
-            isPhotographer: false,
-            userId: UserService.getCurrentUser().id
+            locations: []
         };
     }
 
@@ -27,18 +26,34 @@ export class PhotographerSignUpView extends React.Component {
         });
     }
 
-    signup(photographer) {
-        const newProfile = {
+    async signup(photographer) {
+        let selectedCity;
+
+        if(this.state.locations.includes(photographer.city)) {
+            selectedCity = await LocationService.getLocationByName(photographer.city);
+            selectedCity = selectedCity[0];
+        } else {
+            selectedCity = {
+                city: photographer.city,
+                country: ''
+            };
+        }
+
+        let selectedUser = await UserService.getUserObject(UserService.getCurrentUser().id);
+        let selectedCategory = await CategoryService.getCategoryByName(photographer.category);
+
+        const profile = {
             title: photographer.name,
             description: photographer.description,
-            location: photographer.city,
-            user: UserService.getCurrentUser(),
-            category: photographer.category,
+            location: selectedCity,
+            user: selectedUser,
+            category: selectedCategory,
             serviceDescription: photographer.serviceDescription,
             price: photographer.price
         }
-        console.log(newProfile);
-        ProfileService.createProfile(newProfile).then(() => {
+
+        ProfileService.createProfile(profile).then(() => {
+            window.localStorage['notify'] = 'You have successfully created your photographer profile.';
             this.props.history.push('/');
         }).catch((e) => {
             console.error(e);
@@ -77,7 +92,7 @@ export class PhotographerSignUpView extends React.Component {
 
     render() {
         return (
-            <PhotographerSignUp isPhotographer={this.state.isPhotographer} categories={this.state.categories}
+            <PhotographerSignUp categories={this.state.categories}
                                 locations={this.state.locations}
                                 onSubmit={(photographer) => this.signup(photographer)}> </PhotographerSignUp>
         );

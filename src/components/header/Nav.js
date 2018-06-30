@@ -22,17 +22,25 @@ class Nav extends React.Component {
         super(props);
         this.state = {
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
-            hasProfile: false
+            hasProfile: false,
+            profile: ''
         }
     }
 
     async componentDidMount() {
-        let hasProfile = await this.getPhotographerProfile();
-        this.setState({hasProfile: hasProfile});
+        let currentUserId = UserService.getCurrentUser().id;
+
+        if(currentUserId !== undefined) {
+            let hasProfile = await this.getPhotographerProfile(currentUserId);
+            this.setState(Object.assign({}, this.state, {hasProfile: hasProfile}));
+        } else {
+            this.setState(Object.assign({}, this.state, {hasProfile: false}));
+        }
     }
 
-    getPhotographerProfile() {
-        return ProfileService.getUserProfile(UserService.getCurrentUser().id).then((data) => {
+    getPhotographerProfile(id) {
+        return ProfileService.getUserProfile(id).then((data) => {
+            this.setState(Object.assign({}, this.state, {profile: data[0]}));
             return Object.keys(data).length !== 0;
         }).catch((e) => {
             console.error(e);
@@ -56,7 +64,7 @@ class Nav extends React.Component {
                         <ListItem key={3} primaryText="Help" onClick={() => this.props.history.push('/help')}/>
                         {this.state.user ?
                             <ListItem key={4} primaryText="">
-                                <AccountMenu/>
+                                <AccountMenu hasProfile={this.state.user && this.state.hasProfile} profile={this.state.profile}/>
                             </ListItem>
                             : [
                                 <ListItem key={4} primaryText="Register"

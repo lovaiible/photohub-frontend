@@ -26,30 +26,32 @@ class AccountMenu extends React.Component {
     }
 
     render() {
-        return (
-            <DropdownMenu
-                id="account-nav"
-                menuItems={<ListItem key={1} primaryText="Logout" onClick={() => this.logout()} />}
-                anchor={{
-                    x: DropdownMenu.HorizontalAnchors.INNER_LEFT,
-                    y: DropdownMenu.VerticalAnchors.BOTTOM,
-                }}
-                position={DropdownMenu.Positions.BELOW}
-                fullWidth={true}
+        return <DropdownMenu
+            id="account-nav"
+            menuItems={ this.props.hasProfile ?
+                [
+                    <ListItem key={0} primaryText="Profile" onClick={ () => this.props.history.push('/profile/' + this.props.profile._id)}/>,
+                    <ListItem key={1} primaryText="Logout" onClick={() => this.logout()}/>
+                ] : <ListItem key={1} primaryText="Logout" onClick={() => this.logout()}/>
+            }
+            anchor={{
+                x: DropdownMenu.HorizontalAnchors.INNER_LEFT,
+                y: DropdownMenu.VerticalAnchors.BOTTOM,
+            }}
+            position={DropdownMenu.Positions.BELOW}
+        >
+            <AccessibleFakeButton
+                component={IconSeparator}
+                iconBefore
+                label={
+                    <IconSeparator label={this.state.user.username}>
+                        <FontIcon>arrow_drop_down</FontIcon>
+                    </IconSeparator>
+                }
             >
-                <AccessibleFakeButton
-                    component={IconSeparator}
-                    iconBefore
-                    label={
-                        <IconSeparator label={this.state.user.username}>
-                            <FontIcon>arrow_drop_down</FontIcon>
-                        </IconSeparator>
-                    }
-                >
-                    <Avatar suffix="pink">{(this.state.user.username).substr(0, 1).toUpperCase()}</Avatar>
-                </AccessibleFakeButton>
-            </DropdownMenu>
-        )
+                <Avatar suffix="pink">{(this.state.user.username).substr(0, 1).toUpperCase()}</Avatar>
+            </AccessibleFakeButton>
+        </DropdownMenu>
     }
 }
 
