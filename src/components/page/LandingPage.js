@@ -13,6 +13,7 @@ export default class LandingPage extends React.Component {
         super(props);
 
         this.state = {
+            notification: ''
         }
     }
 
@@ -20,11 +21,19 @@ export default class LandingPage extends React.Component {
         this.setState({
             title: document.title
         });
+
+        if(window.localStorage['notify'] !== undefined) {
+            this.state.notification = window.localStorage['notify'];
+            window.localStorage.removeItem("notify");
+        }
     }
 
     render() {
         return (
             <section>
+                { this.state.notification !== ' ' ?
+                    <div className="notification success">{this.state.notification}</div> : ''
+                }
                 <Header title={this.state.title}/>
                 <Slider/>
                 <main id='content' className="container">

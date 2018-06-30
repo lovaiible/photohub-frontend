@@ -155,6 +155,9 @@ main .container, div .container {
     width: 100% !important;
 }
 
+.md-list--nested-1 .md-list-tile {
+    padding: 0 30px !important;
+}
 /* ==== Photographer Profile ==== */
 
 #photographer-profile .md-grid {
@@ -188,8 +191,6 @@ main .container, div .container {
     padding-left: 8px;
     text-align:center;
 }
-
-
 
 /* ==== 404 Error Page ==== */
 
@@ -260,6 +261,39 @@ main .container, div .container {
     padding-right: 10px;
 }
 
+/* ==== Notification ==== */
+
+.notification.success {
+    position: absolute;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #33cc33;
+    text-align: center;
+    line-height: 2.5;
+    overflow: hidden;
+    -webkit-box-shadow: 0 0 5px black;
+    -moz-box-shadow:    0 0 5px black;
+    box-shadow:         0 0 5px black;
+}
+
+.notification.success {
+    -webkit-transform: translateY(-50px);
+    -webkit-animation: slideDown 5s 1.0s 1 ease forwards;
+    -moz-transform:    translateY(-50px);
+    -moz-animation:    slideDown 5s 1.0s 1 ease forwards;
+}
+
+@-webkit-keyframes slideDown {
+    0%, 100% { -webkit-transform: translateY(-50px); }
+    10%, 90% { -webkit-transform: translateY(0px); }
+}
+@-moz-keyframes slideDown {
+    0%, 100% { -moz-transform: translateY(-50px); }
+    10%, 90% { -moz-transform: translateY(0px); }
+}
+
 /* ==== Responsive ==== */
 
 @media (max-width: 900px) {
@@ -314,7 +348,7 @@ main .container, div .container {
     size: 5px;
 }
 
-margin-right {
+.margin-right {
     margin-right: 5px;
     margin-left: 5px;
 }

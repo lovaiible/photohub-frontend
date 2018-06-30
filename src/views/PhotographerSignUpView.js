@@ -53,6 +53,7 @@ export class PhotographerSignUpView extends React.Component {
         }
 
         ProfileService.createProfile(profile).then(() => {
+            window.localStorage['notify'] = 'You have successfully created your photographer profile';
             this.props.history.push('/');
         }).catch((e) => {
             console.error(e);
