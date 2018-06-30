@@ -18,7 +18,8 @@ export class PhotographerProfileView extends React.Component {
             city: '',
             minDate: '',
             maxDate: '',
-            gallery: []
+            gallery: [],
+            user: {}
         };
     }
 
@@ -32,7 +33,8 @@ export class PhotographerProfileView extends React.Component {
                 minDate: data.minDate,
                 maxDate: data.maxDate,
                 searchLink: '',
-                gallery: data.gallery
+                gallery: data.gallery,
+                user: data.user
             });
         }).catch((e) => {
             console.error(e);
@@ -66,7 +68,7 @@ export class PhotographerProfileView extends React.Component {
               <div>
                 <PhotographerProfile  profile={this.state.profile} pID={this.state.pID} avg={this.state.avg} avgRating={0} noReviews={true}
                 title={this.state.title} city={this.state.city} description={this.state.description} history={this.props.history} size={'small'} gallery={this.state.gallery}
-                minDate={this.state.minDate} maxDate={this.state.maxDate}
+                minDate={this.state.minDate} maxDate={this.state.maxDate} user={this.state.user}
                 />
               </div>
             );
@@ -74,7 +76,8 @@ export class PhotographerProfileView extends React.Component {
             return (
               <div>
                 <PhotographerProfile  profile={this.state.profile} pID={this.state.pID} noReviews={false} avg={this.state.avg} avgRating={this.state.avgRating} size={'small'}
-                title={this.state.title} city={this.state.city} description={this.state.description} history={this.props.history} gallery={this.state.gallery}/>
+                title={this.state.title} city={this.state.city} description={this.state.description} history={this.props.history} gallery={this.state.gallery}
+                                      minDate={this.state.minDate} maxDate={this.state.maxDate} user={this.state.user}/>
               </div>
           );
           }

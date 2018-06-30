@@ -158,39 +158,6 @@ main .container, div .container {
 .md-list--nested-1 .md-list-tile {
     padding: 0 30px !important;
 }
-/* ==== Photographer Profile ==== */
-
-#photographer-profile .md-grid {
-    padding: 0 !important;
-}
-
-#photographer-profile .md-avatar {
-    height: 150px;
-    width: 150px;
-    float: left;
-}
-
-#photographer-profile .gallery .image-gallery {
-    margin: 8px;
-}
-
-#photographer-profile button .fa-upload {
-    margin-left: 25px;
-}
-
-.photographerAttr .location, .photographerAttr .orders {
-    margin: 16px 0 10px;
-}
-
-.photographerAttr .review > div {
-    margin-bottom: 6px;
-    text-align:center;
-}
-
-.photographerAttr .review a {
-    padding-left: 8px;
-    text-align:center;
-}
 
 /* ==== 404 Error Page ==== */
 
@@ -279,17 +246,26 @@ main .container, div .container {
 .notification.success {
     -webkit-transform: translateY(-50px);
     -webkit-animation: slideDown 5s 1.0s 1 ease forwards;
-    -moz-transform:    translateY(-50px);
-    -moz-animation:    slideDown 5s 1.0s 1 ease forwards;
+    -moz-transform: translateY(-50px);
+    -moz-animation: slideDown 5s 1.0s 1 ease forwards;
 }
 
 @-webkit-keyframes slideDown {
-    0%, 100% { -webkit-transform: translateY(-50px); }
-    10%, 90% { -webkit-transform: translateY(0px); }
+    0%, 100% {
+        -webkit-transform: translateY(-50px);
+    }
+    10%, 90% {
+        -webkit-transform: translateY(0px);
+    }
 }
+
 @-moz-keyframes slideDown {
-    0%, 100% { -moz-transform: translateY(-50px); }
-    10%, 90% { -moz-transform: translateY(0px); }
+    0%, 100% {
+        -moz-transform: translateY(-50px);
+    }
+    10%, 90% {
+        -moz-transform: translateY(0px);
+    }
 }
 
 /* ==== Responsive ==== */
@@ -350,7 +326,92 @@ main .container, div .container {
     margin-right: 5px;
     margin-left: 5px;
 }
+
 #profileReview {
-    display:inline-block;
-    vertical-align:middle;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* ==== Photographer Profile ==== */
+
+#photographer-profile .md-grid {
+    padding: 0 !important;
+}
+
+#photographer-profile .md-avatar-content {
+    font-size: 40px;
+}
+
+#photographer-profile .md-avatar {
+    height: 120px;
+    width: 120px;
+    float: left;
+}
+
+#photographer-profile .gallery .image-gallery {
+    margin: 8px;
+}
+
+/*#photographer-profile button .fa-upload {
+    margin-left: 25px;
+}*/
+
+.photographerAttr .location, .photographerAttr .orders {
+    margin: 16px 0 10px;
+}
+
+.photographerAttr .review > div {
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.photographerAttr .review a {
+    padding-left: 8px;
+    text-align: center;
+}
+
+/* ===Photo Edit Dialog=== */
+.gallery-pic {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: 300px;
+    margin: 10px;
+}
+
+.gallery-pic:hover .edit {
+    display: block;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #f1f1f1;
+    color: black;
+    font-size: 16px;
+    padding: 16px 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.edit {
+    padding-top: 7px;
+    padding-right: 7px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+}
+
+.edit a {
+    color: #000;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: 250px;
 }

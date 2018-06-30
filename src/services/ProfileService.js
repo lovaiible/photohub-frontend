@@ -52,7 +52,7 @@ export default class ProfileService {
 
     static createProfile(profile) {
         return new Promise((resolve, reject) => {
-            HttpService.post(ProfileService.baseURL(), profile, function(data) {
+            HttpService.post(`${ProfileService.baseURL()}`, profile, function(data) {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);
