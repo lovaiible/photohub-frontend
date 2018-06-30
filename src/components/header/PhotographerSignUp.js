@@ -71,6 +71,7 @@ class PhotographerSignUp extends React.Component {
     render() {
         return (
             <Page>
+                <h1>Photographer Registration</h1>
                 <Card className="md-block-centered photo">
                     <form className="md-grid--stacked" onSubmit={this.handleSubmit}
                           onReset={() => this.props.history.goBack()}>

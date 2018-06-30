@@ -45,6 +45,7 @@ class UserLogin extends React.Component {
     render() {
         return (
             <Page>
+                <h1>User Login</h1>
                 <Card className="md-block-centered login">
                     <form className="md-grid--stacked" onSubmit={this.handleSubmit}
                           onReset={() => this.props.history.goBack()}>
