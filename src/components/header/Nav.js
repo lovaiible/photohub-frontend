@@ -27,12 +27,18 @@ class Nav extends React.Component {
     }
 
     async componentDidMount() {
-        let hasProfile = await this.getPhotographerProfile();
-        this.setState({hasProfile: hasProfile});
+        let currentUserId = UserService.getCurrentUser().id;
+
+        if(currentUserId !== undefined) {
+            let hasProfile = await this.getPhotographerProfile(currentUserId);
+            this.setState(Object.assign({}, this.state, {hasProfile: hasProfile}));
+        } else {
+            this.setState(Object.assign({}, this.state, {hasProfile: false}));
+        }
     }
 
-    getPhotographerProfile() {
-        return ProfileService.getUserProfile(UserService.getCurrentUser().id).then((data) => {
+    getPhotographerProfile(id) {
+        return ProfileService.getUserProfile(id).then((data) => {
             return Object.keys(data).length !== 0;
         }).catch((e) => {
             console.error(e);
