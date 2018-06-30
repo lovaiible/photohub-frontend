@@ -11,6 +11,7 @@ import ProfileService from "../services/ProfileService";
 import 'react-dates/lib/css/_datepicker.css';
 import moment from "moment/moment";
 import {Button, DatePicker} from "react-md";
+import PhotoEdit from "./PhotoEdit";
 
 
 export class PhotographerProfile extends Component {
@@ -23,10 +24,11 @@ export class PhotographerProfile extends Component {
             selectedDate: '',
             gallery: this.props.gallery,
             currentUser: currentUser,
-            disabledEdit: true,
+            disabledEdit: false,
             searchLink: '',
             minDate: this.props.minDate,
-            maxDate: this.props.maxDate
+            maxDate: this.props.maxDate,
+            profile: this.props.profile
         };
         this.handleDate = this.handleDate.bind(this);
         this.handleConfirm = this.handleConfirm.bind(this);
@@ -67,11 +69,6 @@ export class PhotographerProfile extends Component {
         window.location.reload();
     }
 
-    showDelete(e){
-        console.log(this.state.currentUser);
-    }
-
-
     componentWillMount() {
         if (localStorage.getItem('city') == null) {
             this.setState({
@@ -84,6 +81,14 @@ export class PhotographerProfile extends Component {
         }
         if (Object.is(this.props.profile.user.id, this.state.currentUser)) {
             this.setState({disabledEdit: false});
+        }
+        if (this.state.gallery.length == 0){
+            let newGallery =[];
+            newGallery.push({
+                original: "http://res.cloudinary.com/dn0x8apyr/image/upload/c_scale,w_500/v1530195424/picture-not-available.jpg",
+                thumbnail: "http://res.cloudinary.com/dn0x8apyr/image/upload/c_scale,w_500/v1530195424/picture-not-available.jpg"
+            });
+            this.setState({gallery: newGallery})
         }
     }
 
@@ -107,7 +112,7 @@ export class PhotographerProfile extends Component {
                     return obj;
                 });
                 console.log(newImage);
-                currentGallery.push(...newImage);
+                currentGallery.unshift(...newImage);
                 this.setState({gallery: currentGallery});
 
                 //save gallery to backend
@@ -123,13 +128,15 @@ export class PhotographerProfile extends Component {
     }
 
     render() {
-        const defaultImage = "http://res.cloudinary.com/dn0x8apyr/image/upload/v1530195424/picture-not-available.jpg"
+        const defaultImage = "http://res.cloudinary.com/dn0x8apyr/image/upload/c_scale,w_500/v1530195424/picture-not-available.jpg";
         const formatedMinDate = new Date(this.props.profile.minDate);
         const formatedMaxDate = new Date(this.props.profile.maxDate);
         let calendar;
         let checkout;
         let uploadButton = (!this.state.disabledEdit) ?
             <Button icon onClick={this.uploadWidget.bind(this)} iconClassName="fas fa-upload"/> : "";
+        let editPhotoButton = (!this.state.disabledEdit) ?
+            <PhotoEdit profile={this.state.profile} gallery={this.state.gallery}/>  : "";
         if (this.state.disabledEdit) {
             calendar = <div>
                 <h2 className="w3-left">Choose an appointment with photographer: </h2>
@@ -224,10 +231,15 @@ export class PhotographerProfile extends Component {
                     </div>
                     <div className="w3-container w3-cell-row">
                         <div className="w3-cell ">
-                            <ImageGallery items={this.state.gallery} showBullets={true}  onMouseOver={this.showDelete}/>
+                            <ImageGallery
+                                items={this.state.gallery}
+                                showBullets={true}
+                                defaultImage={defaultImage}
+                            />
                         </div>
                         <div className="w3-cell ">
                             {uploadButton}
+                            {editPhotoButton}
                         </div>
                     </div>
 

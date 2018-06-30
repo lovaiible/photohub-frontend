@@ -161,9 +161,12 @@ main .container, div .container {
     padding: 0 !important;
 }
 
+#photographer-profile .md-avatar-content {
+    font-size: 40px;
+}
 #photographer-profile .md-avatar {
-    height: 150px;
-    width: 150px;
+    height: 120px;
+    width: 120px;
     float: left;
 }
 
@@ -171,9 +174,9 @@ main .container, div .container {
     margin: 8px;
 }
 
-#photographer-profile button .fa-upload {
+/*#photographer-profile button .fa-upload {
     margin-left: 25px;
-}
+}*/
 
 .photographerAttr .location, .photographerAttr .orders {
     margin: 16px 0 10px;
@@ -187,6 +190,50 @@ main .container, div .container {
 .photographerAttr .review a {
     padding-left: 8px;
     text-align:center;
+}
+
+/* ===Photo Edit Dialog=== */
+.gallery-pic {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: 300px;
+    margin: 10px;
+}
+
+.gallery-pic:hover .edit {
+    display:block;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #f1f1f1;
+    color: black;
+    font-size: 16px;
+    padding: 16px 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+.edit {
+    padding-top: 7px;
+    padding-right: 7px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+}
+.edit a {
+    color: #000;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: 250px;
 }
 
 

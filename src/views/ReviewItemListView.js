@@ -193,7 +193,7 @@ export class ReviewItemListView extends React.Component {
                             <div className="breadcrumbs">
                               <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink} className="breadcrumbLink">Search</Link> > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">{this.state.title}</Link> > <b>Reviews</b>
                             </div>
-                            <div>
+                            <div id="photographer-profile">
                                 <div>
                                     <PhotographerDescription profile={this.state.profile} title={this.state.title}
                                                              city={this.state.city} size={'small'}
@@ -234,7 +234,7 @@ export class ReviewItemListView extends React.Component {
                         <div className="breadcrumbs">
                           <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink} className="breadcrumbLink">Search</Link> > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">{this.state.title}</Link> > <b>Reviews</b>
                         </div>
-                            <div>
+                            <div id="photographer-profile">
                                 <div>
                                     <PhotographerDescription profile={this.state.profile} title={this.state.title}
                                                              city={this.state.city} avgRating={this.state.avgRating}
@@ -276,7 +276,7 @@ export class ReviewItemListView extends React.Component {
                     <div className="breadcrumbs">
                       <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink} className="breadcrumbLink">Search</Link> > <Link to={'/profile/' + this.state.pId} className="breadcrumbLink">{this.state.title}</Link> > <b>Reviews</b>
                     </div>
-                        <div>
+                        <div id="photographer-profile">
                             <div>
                                 <PhotographerDescription profile={this.state.profile} title={this.state.title}
                                                          city={this.state.city} disabledEdit={true}

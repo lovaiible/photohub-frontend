@@ -16,7 +16,7 @@ class PhotographerDescription extends React.Component {
         if(!this.props.disabledEdit){
             window.cloudinary.openUploadWidget({
                     cloud_name: 'dn0x8apyr',
-                    upload_preset: 'qyoaprdm',
+                    upload_preset: 'avatarUpload',
                     tags: ["avatar"],
                     theme: "white",
                     sign_url: false
