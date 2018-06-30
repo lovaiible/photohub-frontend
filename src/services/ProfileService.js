@@ -51,15 +51,8 @@ export default class ProfileService {
     }
 
     static createProfile(profile) {
-       /* movie.id = Math.floor((Math.random() * 100000000) + 1).toString();
-        movie.posters = {
-            thumbnail: "http://resizing.flixster.com/AeDB8hgaGed_TMCcIF1P_gubGwA=/54x81/dkpu1ddg7pbsk.cloudfront.net/movie/11/27/63/11276344_ori.jpg",
-            profile: "http://resizing.flixster.com/AeDB8hgaGed_TMCcIF1P_gubGwA=/54x81/dkpu1ddg7pbsk.cloudfront.net/movie/11/27/63/11276344_ori.jpg",
-            detailed: "http://resizing.flixster.com/AeDB8hgaGed_TMCcIF1P_gubGwA=/54x81/dkpu1ddg7pbsk.cloudfront.net/movie/11/27/63/11276344_ori.jpg",
-            original: "http://resizing.flixster.com/AeDB8hgaGed_TMCcIF1P_gubGwA=/54x81/dkpu1ddg7pbsk.cloudfront.net/movie/11/27/63/11276344_ori.jpg"
-        };*/
         return new Promise((resolve, reject) => {
-            HttpService.post(ProfileService.baseURL(), profile, function(data) {
+            HttpService.post(`${ProfileService.baseURL()}`, profile, function(data) {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);

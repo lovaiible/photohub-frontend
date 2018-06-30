@@ -68,7 +68,7 @@ export class PhotographerProfile extends Component {
     }
 
     showDelete(e){
-        console.log(e);
+        console.log(this.state.currentUser);
     }
 
 
@@ -82,7 +82,7 @@ export class PhotographerProfile extends Component {
                 searchLink: '/results?city=' + localStorage.getItem('city') + '&category=' + localStorage.getItem('category') + '&date=' + localStorage.getItem('date')
             });
         }
-        if (Object.is(this.props.profile.user, this.state.currentUser)) {
+        if (Object.is(this.props.profile.user.id, this.state.currentUser)) {
             this.setState({disabledEdit: false});
         }
     }
@@ -123,7 +123,7 @@ export class PhotographerProfile extends Component {
     }
 
     render() {
-
+        const defaultImage = "http://res.cloudinary.com/dn0x8apyr/image/upload/v1530195424/picture-not-available.jpg"
         const formatedMinDate = new Date(this.props.profile.minDate);
         const formatedMaxDate = new Date(this.props.profile.maxDate);
         let calendar;
@@ -204,7 +204,6 @@ export class PhotographerProfile extends Component {
                 />
                 <Button flat primary swapTheming onClick={this.handleDateChange}>Confirm date change</Button>
             </div>;
-
             checkout = "";
         }
 

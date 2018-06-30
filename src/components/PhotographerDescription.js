@@ -13,27 +13,31 @@ class PhotographerDescription extends React.Component {
     }
 
     uploadWidget() {
-        window.cloudinary.openUploadWidget({
-                cloud_name: 'dn0x8apyr',
-                upload_preset: 'qyoaprdm',
-                tags: ["avatar"],
-                theme: "white",
-                sign_url: false
-            },
-            (error, result) => {
-                //Update gallery
-                console.log(result);
-                const newAvatar = result[0].url;
-                this.setState({avatar: newAvatar});
-                const newProfile = this.props.profile;
-                newProfile.avatar = newAvatar;
-                ProfileService.updateProfile(newProfile).then(() => {
-                    localStorage.setItem('notification', 'successUpdated');
-                    window.location.reload();
-                }).catch((e) => {
-                    console.error(e);
+        if(!this.props.disabledEdit){
+            window.cloudinary.openUploadWidget({
+                    cloud_name: 'dn0x8apyr',
+                    upload_preset: 'qyoaprdm',
+                    tags: ["avatar"],
+                    theme: "white",
+                    sign_url: false
+                },
+                (error, result) => {
+                    //Update gallery
+                    console.log(result);
+                    const newAvatar = result[0].url;
+                    this.setState({avatar: newAvatar});
+                    const newProfile = this.props.profile;
+                    newProfile.avatar = newAvatar;
+                    ProfileService.updateProfile(newProfile).then(() => {
+                        localStorage.setItem('notification', 'successUpdated');
+                        window.location.reload();
+                    }).catch((e) => {
+                        console.error(e);
+                    });
                 });
-            });
+        } else {
+            //Do nothing if edit is disabled.
+        }
     }
 
     render() {

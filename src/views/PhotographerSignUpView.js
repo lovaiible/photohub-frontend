@@ -37,7 +37,8 @@ export class PhotographerSignUpView extends React.Component {
             serviceDescription: photographer.serviceDescription,
             price: photographer.price
         }
-        ProfileService.createProfile(newProfile).then((data) => {
+        console.log(newProfile);
+        ProfileService.createProfile(newProfile).then(() => {
             this.props.history.push('/');
         }).catch((e) => {
             console.error(e);
