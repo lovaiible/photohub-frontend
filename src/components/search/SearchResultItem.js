@@ -45,7 +45,7 @@ export class SearchResultItem extends React.Component {
                 <div className="card-block">
                     <div className="card-body">
                         <h5 className="card-title">
-                            <span>{this.props.description ? this.props.description : ''}</span>
+                            <span>{this.props.serviceDescription ? this.props.serviceDescription : ''}</span>
                             <span className="float-right">{this.props.price} €</span>
                         </h5>
                         <div className="card-text">
