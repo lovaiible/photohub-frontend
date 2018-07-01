@@ -29,7 +29,7 @@ class PhotographerDescription extends React.Component {
                     const newProfile = this.props.profile;
                     newProfile.avatar = newAvatar;
                     ProfileService.updateProfile(newProfile).then(() => {
-                        localStorage.setItem('notification', 'successUpdated');
+                        window.localStorage['notify'] = 'You have successfully update your avatar.';
                         window.location.reload();
                     }).catch((e) => {
                         console.error(e);

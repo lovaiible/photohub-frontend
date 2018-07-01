@@ -35,9 +35,9 @@ export default class PhotoEdit extends React.Component {
         newProfile.gallery = this.state.gallery;
         console.log(newProfile);
         ProfileService.updateProfile(newProfile).then(() => {
-            localStorage.setItem('notification', 'successUpdated');
+            window.localStorage['notify'] = 'You have successfully update your gallery.';
             this.setState({visible: false});
-            window.location.reload();
+            //window.location.reload();
         }).catch((e) => {
             console.error(e);
         });

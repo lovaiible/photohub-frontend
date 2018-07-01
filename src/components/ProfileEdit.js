@@ -43,7 +43,7 @@ export default class ProfileEdit extends React.Component {
         let newProfile = this.props.profile;
         newProfile.description = this.state.textChanged;
         ProfileService.updateProfile(newProfile).then((data) => {
-            localStorage.setItem('notification', 'successUpdated');
+            window.localStorage['notify'] = 'You have successfully update your description.';
             window.location.reload();
         }).catch((e) => {
             console.error(e);
@@ -56,7 +56,7 @@ export default class ProfileEdit extends React.Component {
         newProfile.location.city = this.state.city;
         newProfile.location.country = this.state.country;
         ProfileService.updateProfile(newProfile).then((data) => {
-            localStorage.setItem('notification', 'successUpdated');
+            window.localStorage['notify'] = 'You have successfully update your location.';
             window.location.reload();
         }).catch((e) => {
             console.error(e);

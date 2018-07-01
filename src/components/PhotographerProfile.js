@@ -22,13 +22,13 @@ export class PhotographerProfile extends Component {
         super(props);
         this.state = {
             selectedDate: '',
-            gallery: this.props.gallery,
-            currentUser: currentUser,
-            disabledEdit: false,
+            gallery: [],
+            disabledEdit: true,
             searchLink: '',
-            minDate: this.props.minDate,
-            maxDate: this.props.maxDate,
-            profile: this.props.profile
+            minDate: '',
+            maxDate: '',
+            profile: '',
+            notification: ''
         };
         this.handleDate = this.handleDate.bind(this);
         this.handleConfirm = this.handleConfirm.bind(this);
@@ -62,14 +62,22 @@ export class PhotographerProfile extends Component {
         newProfile.minDate = this.state.minDate;
         newProfile.maxDate = this.state.maxDate;
         ProfileService.updateProfile(newProfile).then((data) => {
-            localStorage.setItem('notification', 'successUpdated');
+            window.localStorage['notify'] = 'You have successfully update your calendar.';
         }).catch((e) => {
             console.error(e);
         });
         window.location.reload();
     }
 
-    componentWillMount() {
+    async componentDidMount() {
+        this.setState({
+            gallery: this.props.gallery,
+            currentUser: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
+            disabledEdit: true,
+            minDate: this.props.minDate,
+            maxDate: this.props.maxDate,
+            profile: this.props.profile
+        })
         if (localStorage.getItem('city') == null) {
             this.setState({
                 searchLink: '/'
@@ -79,9 +87,11 @@ export class PhotographerProfile extends Component {
                 searchLink: '/results?city=' + localStorage.getItem('city') + '&category=' + localStorage.getItem('category') + '&date=' + localStorage.getItem('date')
             });
         }
-        /*if (Object.is(this.props.profile.user.id, this.state.currentUser)) {
-            this.setState({disabledEdit: false});
-        }*/
+        const currentUserID = UserService.getCurrentUser().id;
+        if(currentUserID === this.props.profile.user._id){
+            this.setState({disabledEdit : false});
+        }
+
         if (this.props.gallery.length == 0) {
             let newGallery = [];
             newGallery.push({
@@ -89,6 +99,11 @@ export class PhotographerProfile extends Component {
                 thumbnail: "http://res.cloudinary.com/dn0x8apyr/image/upload/c_scale,w_300/v1530195424/picture-not-available.jpg"
             });
             this.setState({gallery: newGallery})
+        }
+
+        if(window.localStorage['notify'] !== undefined) {
+            this.state.notification = window.localStorage['notify'];
+            window.localStorage.removeItem("notify");
         }
     }
 
@@ -99,9 +114,7 @@ export class PhotographerProfile extends Component {
                 tags: [this.props.pID],
                 theme: "white",
                 sign_url: false
-            },
-            (error, result) => {
-                //Update gallery
+            }, (error, result) => {
                 console.log(result);
                 const currentGallery = this.props.gallery;
                 const newImage = result.map(data => {
@@ -116,10 +129,10 @@ export class PhotographerProfile extends Component {
                 this.setState({gallery: currentGallery});
 
                 //save gallery to backend
-                let newProfile = this.props.profile;
+                let newProfile = this.state.profile;
                 newProfile.gallery = currentGallery;
                 ProfileService.updateProfile(newProfile).then(() => {
-                    localStorage.setItem('notification', 'successUpdated');
+                    window.localStorage['notify'] = 'You have successfully update your gallery.';
                 }).catch((e) => {
                     console.error(e);
                 });
@@ -167,11 +180,10 @@ export class PhotographerProfile extends Component {
                         </form>
                     </div>
                     <div className="w3-container w3-margin-top w3-cell-row">
-                        <Button flat primary swapTheming
+                        <Button raised  primary id="submit" type="submit"
                                 onClick={this.handleConfirm}
-                                disabled={this.state.selectedDate == ''}
-                        >Confirm</Button>
-                        <Button flat secondary swapTheming>Cancel</Button>
+                                disabled={this.state.selectedDate === '' || this.state.currentUser === undefined}>Confirm</Button>
+                        <Button raised secondary>Cancel</Button>
                     </div>
                 </div>
             </div>;
@@ -214,9 +226,13 @@ export class PhotographerProfile extends Component {
             </div>;
             checkout = "";
         }
+        let notification = (this.state.notification !== ' ') ?
+            <div className="notification success"> {this.state.notification}</div> : '';
 
         return (
+
             <Page>
+                {notification}
                 <div className="breadcrumbs">
                     <Link to={'/'} className="breadcrumbLink">Home</Link> > <Link to={'' + this.state.searchLink}
                                                                                   className="breadcrumbLink">Search</Link> > <b>{this.props.title}</b>

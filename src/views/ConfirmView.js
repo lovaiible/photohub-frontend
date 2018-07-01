@@ -70,8 +70,7 @@ export class ConfirmView extends React.Component {
                 description: data.serviceDescription,
                 title: data.title,
                 price: data.price,
-                //avatar: data.avatar,
-                avatar: data.picture[0].original,
+                avatar: data.gallery[0].original,
                 category: data.category
             });
         }).catch((e) => {
