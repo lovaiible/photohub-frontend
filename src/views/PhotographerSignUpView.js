@@ -47,7 +47,7 @@ export class PhotographerSignUpView extends React.Component {
             description: photographer.description,
             location: selectedCity,
             user: selectedUser,
-            category: selectedCategory,
+            category: selectedCategory[0],
             serviceDescription: photographer.serviceDescription,
             price: photographer.price
         }
